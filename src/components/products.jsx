@@ -41,7 +41,7 @@ function product() {
 						<Card >
 							<Card.Img variant="top" className="p-1" src={jam1} />
 							<Card.Body>
-								<Card.Title>Jam Tangan Casio</Card.Title>
+								<Card.Title className="fs-7">Jam Tangan Casio</Card.Title>
 								<p className="text-black-50">Aksesoris</p>
 								<Card.Text>Rp. 250.000</Card.Text>
 							</Card.Body>
@@ -51,7 +51,7 @@ function product() {
 						<Card >
 							<Card.Img variant="top" className="p-1" src={jam2} />
 							<Card.Body>
-								<Card.Title>Jam Tangan Casio</Card.Title>
+								<Card.Title className="fs-7">Jam Tangan Casio</Card.Title>
 								<p className="text-black-50">Aksesoris</p>
 								<Card.Text>Rp. 250.000</Card.Text>
 							</Card.Body>
@@ -61,7 +61,7 @@ function product() {
 						<Card >
 							<Card.Img variant="top" className="p-1" src={jam1} />
 							<Card.Body>
-								<Card.Title>Jam Tangan Casio</Card.Title>
+								<Card.Title className="fs-7">Jam Tangan Casio</Card.Title>
 								<p className="text-black-50">Aksesoris</p>
 								<Card.Text>Rp. 250.000</Card.Text>
 							</Card.Body>
@@ -71,7 +71,7 @@ function product() {
 						<Card >
 							<Card.Img variant="top" className="p-1" src={jam2} />
 							<Card.Body>
-								<Card.Title>Jam Tangan Casio</Card.Title>
+								<Card.Title className="fs-7">Jam Tangan Casio</Card.Title>
 								<p className="text-black-50">Aksesoris</p>
 								<Card.Text>Rp. 250.000</Card.Text>
 							</Card.Body>
@@ -81,7 +81,7 @@ function product() {
 						<Card >
 							<Card.Img variant="top" className="p-1" src={jam1} />
 							<Card.Body>
-								<Card.Title>Jam Tangan Casio</Card.Title>
+								<Card.Title className="fs-7">Jam Tangan Casio</Card.Title>
 								<p className="text-black-50">Aksesoris</p>
 								<Card.Text>Rp. 250.000</Card.Text>
 							</Card.Body>
@@ -91,7 +91,7 @@ function product() {
 						<Card >
 							<Card.Img variant="top" className="p-1" src={jam2} />
 							<Card.Body>
-								<Card.Title>Jam Tangan Casio</Card.Title>
+								<Card.Title className="fs-7">Jam Tangan Casio</Card.Title>
 								<p className="text-black-50">Aksesoris</p>
 								<Card.Text>Rp. 250.000</Card.Text>
 							</Card.Body>
@@ -103,7 +103,7 @@ function product() {
 						<Card >
 							<Card.Img variant="top" className="p-1" src={jam1} />
 							<Card.Body>
-								<Card.Title>Jam Tangan Casio</Card.Title>
+								<Card.Title className="fs-7">Jam Tangan Casio</Card.Title>
 								<p className="text-black-50">Aksesoris</p>
 								<Card.Text>Rp. 250.000</Card.Text>
 							</Card.Body>
@@ -113,7 +113,7 @@ function product() {
 						<Card >
 							<Card.Img variant="top" className="p-1" src={jam2} />
 							<Card.Body>
-								<Card.Title>Jam Tangan Casio</Card.Title>
+								<Card.Title className="fs-7">Jam Tangan Casio</Card.Title>
 								<p className="text-black-50">Aksesoris</p>
 								<Card.Text>Rp. 250.000</Card.Text>
 							</Card.Body>
@@ -123,7 +123,7 @@ function product() {
 						<Card >
 							<Card.Img variant="top" className="p-1" src={jam1} />
 							<Card.Body>
-								<Card.Title>Jam Tangan Casio</Card.Title>
+								<Card.Title className="fs-7">Jam Tangan Casio</Card.Title>
 								<p className="text-black-50">Aksesoris</p>
 								<Card.Text>Rp. 250.000</Card.Text>
 							</Card.Body>
@@ -133,7 +133,7 @@ function product() {
 						<Card >
 							<Card.Img variant="top" className="p-1" src={jam2} />
 							<Card.Body>
-								<Card.Title>Jam Tangan Casio</Card.Title>
+								<Card.Title className="fs-7">Jam Tangan Casio</Card.Title>
 								<p className="text-black-50">Aksesoris</p>
 								<Card.Text>Rp. 250.000</Card.Text>
 							</Card.Body>
@@ -143,7 +143,7 @@ function product() {
 						<Card >
 							<Card.Img variant="top" className="p-1" src={jam1} />
 							<Card.Body>
-								<Card.Title>Jam Tangan Casio</Card.Title>
+								<Card.Title className="fs-7">Jam Tangan Casio</Card.Title>
 								<p className="text-black-50">Aksesoris</p>
 								<Card.Text>Rp. 250.000</Card.Text>
 							</Card.Body>
@@ -153,7 +153,7 @@ function product() {
 						<Card >
 							<Card.Img variant="top" className="p-1" src={jam2} />
 							<Card.Body>
-								<Card.Title>Jam Tangan Casio</Card.Title>
+								<Card.Title className="fs-7">Jam Tangan Casio</Card.Title>
 								<p className="text-black-50">Aksesoris</p>
 								<Card.Text>Rp. 250.000</Card.Text>
 							</Card.Body>

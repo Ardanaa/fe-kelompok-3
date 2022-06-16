@@ -9,6 +9,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+.fs-7 {
+  font-size: 14px!important;
+}
+
 .search {
   width: 444px !important;
   height: 48px;
