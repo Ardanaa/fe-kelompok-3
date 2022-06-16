@@ -33,6 +33,17 @@ code {
   background-color: #4B1979!important;
 }
 
+.bg-color-secondary {
+  background-color: #7126B5 !important;
+}
+
 .box-shadow {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+}
+
+
+/* regist */
+
+.center {
+  padding: 100px;
 }
