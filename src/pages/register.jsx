@@ -27,7 +27,7 @@ function Register() {
 			};
 
 			const registerRequest = await axios.post(
-				"http://localhost:2000/auth/register",
+				"http://localhost:2000/v1/auth/register",
 				userToRegisterPayload
 			);
 
@@ -61,8 +61,8 @@ function Register() {
 									type="text"
 									ref={nameField}
 									placeholder="Nama Lengkap"
-                  className="radius-primary"
-                />
+									className="radius-primary"
+								/>
 							</Form.Group>
 							<Form.Group className="mb-3">
 								<Form.Label>Email</Form.Label>
@@ -70,8 +70,8 @@ function Register() {
 									type="text"
 									ref={emailField}
 									placeholder="Contoh: johndee@gmail.com"
-                  className="radius-primary"
-                />
+									className="radius-primary"
+								/>
 							</Form.Group>
 							<Form.Group className="mb-3">
 								<Form.Label>Password</Form.Label>
@@ -79,17 +79,27 @@ function Register() {
 									type="password"
 									ref={passwordField}
 									placeholder="Masukkan Password"
-                  className="radius-primary"
-                />
+									className="radius-primary"
+								/>
 							</Form.Group>
 							{errorResponse.isError && (
 								<Alert variant="danger">{errorResponse.message}</Alert>
 							)}
-							<Button className="w-100 radius-primary bg-color-secondary" type="submit">
+							<Button
+								className="w-100 radius-primary bg-color-secondary"
+								type="submit"
+							>
 								Daftar
 							</Button>
 							<p className="m-4 text-center">
-								Sudah punya akun? <Link to="/login" className="text-decoration-none"style={{color:"#7126B5"}}>Masuk di sini</Link>
+								Sudah punya akun?{" "}
+								<Link
+									to="/login"
+									className="text-decoration-none"
+									style={{ color: "#7126B5" }}
+								>
+									Masuk di sini
+								</Link>
 							</p>
 						</Form>
 					</div>
