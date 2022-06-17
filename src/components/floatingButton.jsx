@@ -1,5 +1,6 @@
 import { Button } from "react-bootstrap";
 import { FiPlus } from "react-icons/fi";
+import "../css/floatingButton.css"
 
 function floatingButton() {
 	return (

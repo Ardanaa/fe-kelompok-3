@@ -1,8 +1,9 @@
-import { React, useState } from "react";
+import { React } from "react";
 import { Container, Button, Row, Col, Card } from "react-bootstrap";
 import { FiSearch } from "react-icons/fi";
 import jam1 from "../assets/images/jam1.png";
 import jam2 from "../assets/images/jam2.png";
+import "../css/products.css"
 // import Axios from "axios";
 
 function product() {

@@ -5,7 +5,7 @@ import {
 	Nav,
 	Navbar,
 } from "react-bootstrap";
-import { FiSearch, FiLogIn } from "react-icons/fi";
+import { FiLogIn } from "react-icons/fi";
 import React from "react";
 
 export function NavbarDefault() {
