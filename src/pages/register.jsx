@@ -46,12 +46,12 @@ function Register() {
 	};
 
 	return (
-		<Container fluid className="p-0">
+		<Container fluid className="ps-0">
 			<Row>
-				<Col>
+				<Col className="pe-0">
 					<img src={banner} className="w-100" alt="" />
 				</Col>
-				<Col>
+				<Col className="ps-0">
 					<div className="center">
 						<Form onSubmit={onRegister}>
 							<h1 className="mb-3">Daftar</h1>
