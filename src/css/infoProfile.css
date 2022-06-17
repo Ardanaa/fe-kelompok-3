@@ -1,0 +1,13 @@
+.upload-button {
+    background-image: url(../assets/icons/uploadIcon.png);
+    background-size: auto;
+    width: 96px;
+    height: 96px;
+    cursor: pointer;
+    margin-left: 210px;
+}
+
+.navbar-info {
+    margin-right: 500px;
+    padding-top: 8px;
+}

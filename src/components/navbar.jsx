@@ -52,7 +52,7 @@ export function NavbarInfo() {
 					href="#"
 					className="brand bg-color-primary"
 				></Navbar.Brand>
-				<p className=" m-auto fw-bold">Lengkapi Info Akun</p>
+				<p className="navbar-info fw-bold">Lengkapi Info Akun</p>
 			</Container>
 		</Navbar>
 );
