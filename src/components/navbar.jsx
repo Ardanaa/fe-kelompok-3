@@ -8,7 +8,7 @@ import {
 import { FiSearch, FiLogIn } from "react-icons/fi";
 import React from "react";
 
-function navbar() {
+export function NavbarDefault() {
 	return (
 			<Navbar className="box-shadow " bg="light" expand="lg">
 				<Container className="py-1">
@@ -42,6 +42,8 @@ function navbar() {
 				</Container>
 			</Navbar>
 	);
-}
+};
 
-export default navbar;
+export function NavbarInfo() {
+
+}
