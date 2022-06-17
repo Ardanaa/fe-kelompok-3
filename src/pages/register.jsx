@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { Col, Container, Row, Form, Button, Alert } from "react-bootstrap";
 import banner from "../assets/images/bannerSH.png";
 import axios from "axios";
+import "../css/register.css";
 
 function Register() {
 	const navigate = useNavigate();
