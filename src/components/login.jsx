@@ -33,7 +33,7 @@ function Login() {
 
 			const registerResponse = registerRequest.data;
 
-			if (registerResponse.status) navigate("/login");
+			if (registerResponse.status) navigate("/");
 		} catch (err) {
 			console.log(err);
 			const response = err.response.data;
