@@ -4,12 +4,12 @@ import { AiOutlineEye } from "react-icons/ai";
 
 function Login() {
   return (
-    <Container>
+    <Container fluid className="ps-0">
       <Row>
-        <Col className="mx-auto" md={9} lg={5}>
+        <Col className="pe-0 ">
           <img src="/images/imgLogin.jpg" className="img-fluid bg" />
         </Col>
-        <Col className="mt-5 mx-auto" xs={12} md={12} lg={6}>
+        <Col className="mt-5 mx-auto">
           <>
             <div>
               <p style={{ fontSize: "30px" }}>
@@ -24,7 +24,7 @@ function Login() {
                   placeholder="Contoh: johndee@gmail.com"
                 />
               </Form.Group>
-              <div className="mb-3">
+              <div className="mb-3 box">
                 <input
                   className="formBasicPassword"
                   type="password"
@@ -34,7 +34,7 @@ function Login() {
                   <AiOutlineEye />
                 </button>
               </div>
-              <Form.Group className="mb-3 box" controlId="formBasicPassword">
+              <Form className="mb-3 box" controlId="formBasicPassword">
                 <Form.Label>
                   Password <AiOutlineEye />
                 </Form.Label>
@@ -42,7 +42,7 @@ function Login() {
                 <button className="btn">
                   <AiOutlineEye />
                 </button>
-              </Form.Group>
+              </Form>
               <Button
                 className="ms-auto button-primary radius-secondary bg-color-primary border-0"
                 variant="primary"
