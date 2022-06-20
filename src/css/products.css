@@ -1,0 +1,8 @@
+#btn-category Button {
+    cursor: pointer;
+}
+
+#btn-category .active,
+Button:hover {
+    background-color: #7126B5!important
+}
