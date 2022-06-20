@@ -4,18 +4,13 @@ import {
 	Form,
 	Nav,
 	Navbar,
-	NavDropdown,
 } from "react-bootstrap";
-import { FiSearch, FiLogIn } from "react-icons/fi";
+import { FiLogIn } from "react-icons/fi";
 import React from "react";
-import OwlCarousel from "react-owl-carousel";
-import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel/dist/assets/owl.theme.default.css";
 import { Link } from "react-router-dom";
 
-function navbar() {
+export function NavbarDefault() {
 	return (
-		<>
 			<Navbar className="box-shadow " bg="light" expand="lg">
 				<Container className="py-1">
 					<Navbar.Brand
@@ -52,28 +47,9 @@ function navbar() {
 					</Link>
 				</Container>
 			</Navbar>
-
-			{/* carousel */}
-			<div class="owl-carousel owl-theme mt-5">
-				<div class="item">
-					<div class="">
-						<img src="" alt="Foto produk" />
-					</div>
-				</div>
-				<div class="item">
-					<div class="">
-						<img src="" alt="Foto produk" />
-					</div>
-				</div>
-				<div class="item">
-					<div class="">
-						<img src="" alt="Foto produk" />
-					</div>
-				</div>
-			</div>
-			{/* carousel end */}
-		</>
 	);
-}
+};
 
-export default navbar;
+export function NavbarInfo() {
+
+}
