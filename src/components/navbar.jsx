@@ -51,5 +51,28 @@ export function NavbarDefault() {
 };
 
 export function NavbarInfo() {
+	return (
+		<Navbar className="box-shadow " bg="light" expand="lg">
+			<Container className="py-1 ">
+				<Navbar.Brand
+					href="#"
+					className="brand bg-color-primary"
+				></Navbar.Brand>
+				<p className="navbar-info fw-bold">Lengkapi Info Akun</p>
+			</Container>
+		</Navbar>
+);
+};
 
-}
+export function NavbarProduct() {
+	return (
+		<Navbar className="box-shadow " bg="light" expand="lg">
+			<Container className="py-1 ">
+				<Navbar.Brand
+					href="#"
+					className="brand bg-color-primary"
+				></Navbar.Brand>
+			</Container>
+		</Navbar>
+);
+};
