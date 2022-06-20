@@ -3,6 +3,7 @@ import { render } from "react-dom";
 import "./index.css";
 import Home from "./pages/home";
 import InfoProfile from "./pages/infoProfile";
+import InfoProduct from "./pages/infoProduct";
 import Login from './pages/login';
 import Register from "./pages/register";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -14,6 +15,7 @@ render(
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/infoProfile" element={<InfoProfile />} />
+      <Route path="/infoProduct" element={<InfoProduct />} />
       <Route path="/login" element={<Login />} />
 			<Route path="/register" element={<Register />} />
     </Routes>
