@@ -7,6 +7,7 @@ import {
 } from "react-bootstrap";
 import { FiLogIn } from "react-icons/fi";
 import React from "react";
+import { Link } from "react-router-dom";
 
 export function NavbarDefault() {
 	return (
@@ -33,12 +34,17 @@ export function NavbarDefault() {
 							</Form>
 						</Nav>
 					</Navbar.Collapse>
-					<Button
-						className="ms-auto radius-secondary bg-color-primary border-0"
-					>
-						<FiLogIn className="me-1 mb-1" />
-						Masuk
-					</Button>
+					<Link
+						to="/login"
+						>
+						<Button
+							className="ms-auto radius-secondary bg-color-primary border-0"
+							variant="primary"
+						>
+							<FiLogIn className="me-1 mb-1" />
+							Masuk
+						</Button>
+					</Link>
 				</Container>
 			</Navbar>
 	);
