@@ -2,6 +2,7 @@ import React from "react";
 import { render } from "react-dom";
 import "./index.css";
 import Home from "./pages/home";
+import HomeLogin from "./pages/homeLogin";
 import InfoProfile from "./pages/infoProfile";
 import InfoProduct from "./pages/infoProduct";
 import Login from './pages/login';
@@ -14,6 +15,7 @@ render(
   <Router>
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/homeLogin" element={<HomeLogin />} />
       <Route path="/infoProfile" element={<InfoProfile />} />
       <Route path="/infoProduct" element={<InfoProduct />} />
       <Route path="/login" element={<Login />} />

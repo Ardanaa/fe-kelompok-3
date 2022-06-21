@@ -2,7 +2,6 @@ import { React, useRef, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Col, Container, Row, Form, Button, Alert } from "react-bootstrap";
 import axios from "axios";
-import { AiOutlineEye } from "react-icons/ai";
 import "../css/login.css";
 import imgLogin from "../assets/images/imageLogin.jpg";
 
@@ -33,7 +32,7 @@ function Login() {
 
 			const registerResponse = registerRequest.data;
 
-			if (registerResponse.status) navigate("/");
+			if (registerResponse.status) navigate("/homeLogin");
 		} catch (err) {
 			console.log(err);
 			const response = err.response.data;
