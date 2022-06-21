@@ -51,25 +51,19 @@ function carousel() {
 				autoplay={true}
 				stagePadding={200}
 				loop={true}
-				margin= {5}
+				margin={5}
 				lazyLoad={true}
 				dots={false}
-				// responsive={responsive}
+			// responsive={responsive}
 			>
 				<div className="item">
-					<div className="">
 					<img src={imgBanner} className="radius-large" alt="Foto produk" />
-					</div>
 				</div>
 				<div className="item">
-					<div className="">
-						<img src={imgBanner} className="radius-large"  alt="Foto produk" />
-					</div>
+					<img src={imgBanner} className="radius-large" alt="Foto produk" />
 				</div>
 				<div className="item">
-					<div className="">
-						<img src={imgBanner} className="radius-large"  alt="Foto produk" />
-					</div>
+					<img src={imgBanner} className="radius-large" alt="Foto produk" />
 				</div>
 			</OwlCarousel>
 			{/* carousel end */}
