@@ -12,8 +12,8 @@ code {
 .search {
   width: 444px !important;
   height: 48px;
-  padding: 14px 64px 14px 24px!important;
-  background-color: #EEEEEE!important;
+  padding: 14px 64px 14px 24px !important;
+  background-color: #EEEEEE !important;
 }
 
 .radius-primary {
@@ -30,9 +30,21 @@ code {
 }
 
 .bg-color-primary {
-  background-color: #4B1979!important;
+  background-color: #4B1979 !important;
+}
+
+.bg-color-secondary {
+  background-color: #7126B5 !important;
 }
 
 .box-shadow {
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+}
+
+.color-primary {
+color: #4B1979;
+}
+
+.border-purple {
+  border: 1px solid #7126B5!important;
 }
