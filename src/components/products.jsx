@@ -54,11 +54,11 @@ function Product() {
 			<Container className="mt-5">
 				<Row md={6}>
 					{post.map((post) =>
-						<Col key={post.id}>
+						<Col key={post.id} className="mb-4">
 							<Card >
 								<Card.Img variant="top" className="p-2" src={post.image} style={{ maxHeight: "100px", objectFit: "cover" }} />
 								<Card.Body>
-									<Card.Title className="fs-7">{post.title}</Card.Title>
+									<Card.Title className="fs-7 cut-text">{post.title}</Card.Title>
 									<p className="text-black-50">{post.category}</p>
 									<Card.Text>{post.price}</Card.Text>
 								</Card.Body>
