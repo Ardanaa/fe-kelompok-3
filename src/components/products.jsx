@@ -1,25 +1,56 @@
-import { React } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Button, Row, Col, Card } from "react-bootstrap";
 import { FiSearch } from "react-icons/fi";
+import axios from "axios";
 import jam1 from "../assets/images/jam1.png";
 import jam2 from "../assets/images/jam2.png";
 import "../css/products.css"
 // import Axios from "axios";
 
-function product() {
+function Product() {
+	const [post, setPost] = useState([]);
+	const [category, setCategory] = useState([]);
+
+
+	useEffect(() => {
+		const postData = async () => {
+			const response = await axios.get(`https://fakestoreapi.com/products`);
+			console.log(response);
+			const data = await response.data;
+			console.log(data);
+
+			setPost(data);
+		};
+		postData();
+	}, []);
+
+	useEffect(() => {
+		const categoryData = async () => {
+			const response = await axios.get(`https://fakestoreapi.com/products/categories`);
+			console.log(response);
+			const data = await response.data;
+			console.log(data);
+
+			setCategory(data);
+		};
+		categoryData();
+	}, []);
+
 	return (
 		<Container className="pt-5" id="btn-category">
 			<h5 className="fw-bold">Telusuri Kategori</h5>
-			<div className="d-flex justify-content-start">
-				<Button className="me-4 radius-secondary bg-color-secondary border-0 active">
+			<div className="button-group">
+			<Button className="me-4 radius-secondary bg-color-secondary border-0 active">
 					<FiSearch className="me-1 mb-1" />
 					Semua
 				</Button>
-				<Button className="me-4 radius-secondary bg-color-secondary border-0">
+				{category.map((c) => 
+				<Button  className="me-4 radius-secondary bg-color-secondary border-0">
 					<FiSearch className="me-1 mb-1" />
-					Hobi
+					{c}
 				</Button>
-				<Button className="me-4 radius-secondary bg-color-secondary border-0">
+				)}
+				{/* <Button className="me-4 radius-secondary bg-color-secondary border-0">
 					<FiSearch className="me-1 mb-1" />
 					Kendaraan
 				</Button>
@@ -34,21 +65,23 @@ function product() {
 				<Button className="me-4 radius-secondary bg-color-secondary border-0">
 					<FiSearch className="me-1 mb-1" />
 					Kesehatan
-				</Button>
+				</Button> */}
 			</div>
 			<Container className="mt-5">
 				<Row md={6}>
-					<Col>
-						<Card >
-							<Card.Img variant="top" className="p-1" src={jam1} />
-							<Card.Body>
-								<Card.Title className="fs-7">Jam Tangan Casio</Card.Title>
-								<p className="text-black-50">Aksesoris</p>
-								<Card.Text>Rp. 250.000</Card.Text>
-							</Card.Body>
-						</Card>
-					</Col>
-					<Col>
+					{post.map((post) =>
+						<Col key={post.id} className="mb-4">
+							<Card >
+								<Card.Img variant="top" className="p-2" src={post.image} style={{ maxHeight: "100px", objectFit: "cover" }} />
+								<Card.Body>
+									<Card.Title className="fs-7 cut-text">{post.title}</Card.Title>
+									<p className="text-black-50">{post.category}</p>
+									<Card.Text>{post.price}</Card.Text>
+								</Card.Body>
+							</Card>
+						</Col>
+					)}
+					{/* <Col>
 						<Card >
 							<Card.Img variant="top" className="p-1" src={jam2} />
 							<Card.Body>
@@ -159,11 +192,11 @@ function product() {
 								<Card.Text>Rp. 250.000</Card.Text>
 							</Card.Body>
 						</Card>
-					</Col>
+					</Col> */}
 				</Row>
 			</Container>
 		</Container>
 	);
 }
 
-export default product;
+export default Product;
