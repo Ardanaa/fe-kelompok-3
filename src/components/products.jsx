@@ -9,6 +9,8 @@ import "../css/products.css"
 
 function Product() {
 	const [post, setPost] = useState([]);
+	const [category, setCategory] = useState([]);
+
 
 	useEffect(() => {
 		const postData = async () => {
@@ -22,19 +24,33 @@ function Product() {
 		postData();
 	}, []);
 
+	useEffect(() => {
+		const categoryData = async () => {
+			const response = await axios.get(`https://fakestoreapi.com/products/categories`);
+			console.log(response);
+			const data = await response.data;
+			console.log(data);
+
+			setCategory(data);
+		};
+		categoryData();
+	}, []);
+
 	return (
 		<Container className="pt-5" id="btn-category">
 			<h5 className="fw-bold">Telusuri Kategori</h5>
-			<div className="d-flex justify-content-start">
-				<Button className="me-4 radius-secondary bg-color-secondary border-0 active">
+			<div className="button-group">
+			<Button className="me-4 radius-secondary bg-color-secondary border-0 active">
 					<FiSearch className="me-1 mb-1" />
 					Semua
 				</Button>
-				<Button className="me-4 radius-secondary bg-color-secondary border-0">
+				{category.map((c) => 
+				<Button  className="me-4 radius-secondary bg-color-secondary border-0">
 					<FiSearch className="me-1 mb-1" />
-					Hobi
+					{c}
 				</Button>
-				<Button className="me-4 radius-secondary bg-color-secondary border-0">
+				)}
+				{/* <Button className="me-4 radius-secondary bg-color-secondary border-0">
 					<FiSearch className="me-1 mb-1" />
 					Kendaraan
 				</Button>
@@ -49,7 +65,7 @@ function Product() {
 				<Button className="me-4 radius-secondary bg-color-secondary border-0">
 					<FiSearch className="me-1 mb-1" />
 					Kesehatan
-				</Button>
+				</Button> */}
 			</div>
 			<Container className="mt-5">
 				<Row md={6}>
