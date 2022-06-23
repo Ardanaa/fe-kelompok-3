@@ -6,7 +6,7 @@ import {
 	Navbar,
 } from "react-bootstrap";
 import { FiLogIn, FiList, FiBell, FiUser, FiLogOut } from "react-icons/fi";
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
 
 export function NavbarDefault() {
@@ -51,6 +51,15 @@ export function NavbarDefault() {
 };
 
 export function NavbarLogin() {
+	const [isLoggedIn, setIsLoggedIn] = useState(true);
+	const [user, setUser] = useState({});
+
+	const logout = () => {
+		localStorage.removeItem("token");
+
+		setIsLoggedIn(false);
+		setUser({});
+	};
 	return (
 		<Navbar className="box-shadow " bg="light" expand="lg">
 			<Container className="py-1">
@@ -79,7 +88,7 @@ export function NavbarLogin() {
 					<Button variant="light"> <FiList className=" mb-1" />  </Button>
 					<Button variant="light"> <FiBell className=" mb-1" />  </Button>
 					<Button variant="light"> <FiUser className=" mb-1" />  </Button>
-					<Button variant="light" href="/"> <FiLogOut className=" mb-1" />  </Button>
+					<Button variant="light" href="/" onClick={(e) => logout(e)}> <FiLogOut className=" mb-1" />  </Button>
 				</Nav>
 			</Container>
 		</Navbar>
