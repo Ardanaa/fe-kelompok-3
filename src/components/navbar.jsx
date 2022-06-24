@@ -4,10 +4,13 @@ import {
 	Form,
 	Nav,
 	Navbar,
+	Popover,
+	OverlayTrigger
 } from "react-bootstrap";
 import { FiLogIn, FiList, FiBell, FiUser, FiLogOut } from "react-icons/fi";
-import React, {useState} from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect} from "react";
+import { Link, Navigate } from "react-router-dom";
+import axios from "axios";
 
 export function NavbarDefault() {
 	return (
@@ -53,13 +56,56 @@ export function NavbarDefault() {
 export function NavbarLogin() {
 	const [isLoggedIn, setIsLoggedIn] = useState(true);
 	const [user, setUser] = useState({});
+	useEffect(() => {
+		const validateLogin = async () => {
+			try {
+				// Check status user login
+				// 1. Get token from localStorage
+				const token = localStorage.getItem("token");
 
+				// 2. Check token validity from API
+				const currentUserRequest = await axios.get(
+					"http://localhost:2000/v1/auth/me",
+					{
+						headers: {
+							Authorization: `Bearer ${token}`,
+						},
+					}
+				);
+
+				const currentUserResponse = currentUserRequest.data;
+
+				if (currentUserResponse.status) {
+					setUser(currentUserResponse.data.user);
+				}
+			} catch (err) {
+				setIsLoggedIn(false);
+			}
+		};
+
+		validateLogin();
+	}, []);
 	const logout = () => {
 		localStorage.removeItem("token");
 
 		setIsLoggedIn(false);
 		setUser({});
 	};
+	
+	const popover = (
+		<Popover id="popover-basic">
+			<Popover.Header >
+				{/* <img src={user.name} alt="" /> */}
+				<p>{user.name}</p>
+			</Popover.Header>
+			<Popover.Body>
+					<Button className="bg-color-primary border-0" href="/" onClick={(e) => logout(e)}> <FiLogOut className=" mb-1" /> Log Out </Button>
+			</Popover.Body>
+		</Popover>
+	);
+	console.log(user)
+
+
 	return (
 		<Navbar className="box-shadow " bg="light" expand="lg">
 			<Container className="py-1">
@@ -67,28 +113,31 @@ export function NavbarLogin() {
 					href="#"
 					className="brand bg-color-primary"
 				></Navbar.Brand>
-					<Nav
-						className="me-auto my-2 my-lg-0"
-						style={{ maxHeight: "100px" }}
-						navbarScroll
-					>
-						<Form className="d-flex">
-							<Form.Control
-								type="search"
-								placeholder="Cari di sini ... "
-								className="search radius-primary"
-								aria-label="Search"
-							/>
-						</Form>
-					</Nav>
+				<Nav
+					className="me-auto my-2 my-lg-0"
+					style={{ maxHeight: "100px" }}
+					navbarScroll
+				>
+					<Form className="d-flex">
+						<Form.Control
+							type="search"
+							placeholder="Cari di sini ... "
+							className="search radius-primary"
+							aria-label="Search"
+						/>
+					</Form>
+				</Nav>
 				<Navbar.Toggle aria-controls="navbarScroll" />
 				<Navbar.Collapse id="navbarScroll">
-				<Nav className="ms-auto">
-					<Button variant="light"> <FiList className=" mb-1" />  </Button>
-					<Button variant="light"> <FiBell className=" mb-1" />  </Button>
-					<Button variant="light"> <FiUser className=" mb-1" />  </Button>
-					<Button variant="light" href="/" onClick={(e) => logout(e)}> <FiLogOut className=" mb-1" />  </Button>
-				</Nav>
+					<Nav className="ms-auto">
+						<Button variant="light"> <FiList className=" mb-1" />  </Button>
+						<Button variant="light"> <FiBell className=" mb-1" />  </Button>
+						<OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
+							<Button variant="light"> <FiUser className=" mb-1" />  </Button>
+						</OverlayTrigger>
+
+
+					</Nav>
 				</Navbar.Collapse>
 			</Container>
 		</Navbar>

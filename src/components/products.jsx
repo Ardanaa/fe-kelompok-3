@@ -10,7 +10,7 @@ import "../css/products.css"
 function Product() {
 	const [post, setPost] = useState([]);
 	const [category, setCategory] = useState([""]);
-	const categories = category?`&category= ${category}` : "";
+	// const categories = category ? `&category= ${category}` : "";
 
 
 
@@ -26,13 +26,27 @@ function Product() {
 		postData();
 	}, []);
 
+	const categories = category ? `&category=${category}` : "";
+
+	useEffect(() => {
+		const postData = async () => {
+			const response = await axios.get(`http://localhost:2000/v1/products/search?isPublish=true&&isSold=false${categories}`);
+			console.log(response);
+			const data = await response.data.data.handle_get_all_product;
+			console.log(data);
+
+			setPost(data);
+		};
+		postData();
+	}, [categories]);
+
 	// useEffect(() => {
-		
+
 	// 	const categoryData = async () => {
 	// 		const response = await axios.get(`http://localhost:2000/v1/products/search?isPublish=true&&isSold=false${categories}`);
-	// 		console.log(response);
+	// 		// console.log(response);
 	// 		const data = await response.data.data.handle_get_all_product;
-	// 		console.log(data);
+	// 		// console.log(data);
 
 	// 		setCategory(data);
 	// 	};
@@ -43,32 +57,14 @@ function Product() {
 		<Container className="pt-5" id="btn-category">
 			<h5 className="fw-bold">Telusuri Kategori</h5>
 			<div className="button-group">
-			<Button className="me-4 radius-secondary bg-color-secondary border-0 active">
+				<Button onClick={() => setCategory(null)} className="me-4 radius-secondary bg-color-secondary border-0 active">
 					<FiSearch className="me-1 mb-1" />
 					Semua
 				</Button>
-				{category.map((c) => 
-				<Button className="me-4 radius-secondary bg-color-secondary border-0">
-					<FiSearch className="me-1 mb-1" />
-					{c.category}
+				{/* {/* {category.map((c) =>  */}
+				<Button onClick={() => setCategory("Fashion")} className="me-4 radius-secondary bg-color-secondary border-0">
+					<FiSearch className="me-1 mb-1" /> Fashion
 				</Button>
-				)}
-				{/* <Button className="me-4 radius-secondary bg-color-secondary border-0">
-					<FiSearch className="me-1 mb-1" />
-					Kendaraan
-				</Button>
-				<Button className="me-4 radius-secondary bg-color-secondary border-0">
-					<FiSearch className="me-1 mb-1" />
-					Baju
-				</Button>
-				<Button className="me-4 radius-secondary bg-color-secondary border-0">
-					<FiSearch className="me-1 mb-1" />
-					Elektronik
-				</Button>
-				<Button className="me-4 radius-secondary bg-color-secondary border-0">
-					<FiSearch className="me-1 mb-1" />
-					Kesehatan
-				</Button> */}
 			</div>
 			<Container className="mt-5">
 				<Row md={6}>

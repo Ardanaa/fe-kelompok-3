@@ -20,7 +20,7 @@ export default function App() {
   return (
     <>
       <Swiper
-        spaceBetween={-100}
+        spaceBetween={0}
         loop={true}
         autoplay={{
           delay: 2500,
