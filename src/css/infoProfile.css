@@ -5,6 +5,16 @@
     height: 96px;
     cursor: pointer;
     margin-left: 210px;
+    border-radius: 12px;
+}
+
+img {
+    object-fit: cover;
+    width: 96px;
+    height: 96px;
+    cursor: pointer;
+    margin-left: 210px;
+    border-radius: 12px;
 }
 
 .navbar-info {
