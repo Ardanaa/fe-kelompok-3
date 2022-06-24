@@ -9,7 +9,9 @@ import "../css/products.css"
 
 function Product() {
 	const [post, setPost] = useState([]);
-	const [category, setCategory] = useState([]);
+	const [category, setCategory] = useState([""]);
+	const categories = category?`&category= ${category}` : "";
+
 
 
 	useEffect(() => {
@@ -25,8 +27,9 @@ function Product() {
 	}, []);
 
 	// useEffect(() => {
+		
 	// 	const categoryData = async () => {
-	// 		const response = await axios.get(`http://localhost:2000//v1/products/search?isPublish=true&&isSold=false`);
+	// 		const response = await axios.get(`http://localhost:2000/v1/products/search?isPublish=true&&isSold=false${categories}`);
 	// 		console.log(response);
 	// 		const data = await response.data.data.handle_get_all_product;
 	// 		console.log(data);
@@ -34,7 +37,7 @@ function Product() {
 	// 		setCategory(data);
 	// 	};
 	// 	categoryData();
-	// }, []);
+	// }, [categories]);
 
 	return (
 		<Container className="pt-5" id="btn-category">
@@ -45,9 +48,9 @@ function Product() {
 					Semua
 				</Button>
 				{category.map((c) => 
-				<Button  className="me-4 radius-secondary bg-color-secondary border-0">
+				<Button className="me-4 radius-secondary bg-color-secondary border-0">
 					<FiSearch className="me-1 mb-1" />
-					{c}
+					{c.category}
 				</Button>
 				)}
 				{/* <Button className="me-4 radius-secondary bg-color-secondary border-0">
