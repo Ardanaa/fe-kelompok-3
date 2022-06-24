@@ -107,19 +107,19 @@ export default function infoproduct() {
                   hidden
                 />
               </form-group>
-              <div className="mb-3">
+              <div className="mb-3 d-flex">
                 <Button
                   variant="outline-primary"
                   className=" w-50 radius-primary bg-color-secondary"
                   type="submit"
                 >
-                  Masuk
+                  Preview
                 </Button>{" "}
                 <Button
                   className=" w-50 radius-primary bg-color-secondary"
                   type="submit"
                 >
-                  Masuk
+                  Terbitkan
                 </Button>
               </div>
             </Form>
