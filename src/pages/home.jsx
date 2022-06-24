@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavbarLogin, NavbarDefault } from "../components/navbar";
-import Carousel from "../components/carousel";
+import CarouselV2 from "../components/carouselv2";
 import Products from "../components/products";
 import FloatingButton from "../components/floatingButton";
 import axios from "axios";
@@ -55,13 +55,13 @@ export default function HomeLogin() {
 
   return isLoggedIn ? (<>
     <NavbarLogin></NavbarLogin>
-    <Carousel></Carousel>
+    <CarouselV2></CarouselV2>
     <Products></Products>
     <FloatingButton></FloatingButton>
   </>
   ) : (<>
     <NavbarDefault></NavbarDefault>
-    <Carousel></Carousel>
+    <CarouselV2></CarouselV2>
     <Products></Products>
     <FloatingButton></FloatingButton>
   </>);
