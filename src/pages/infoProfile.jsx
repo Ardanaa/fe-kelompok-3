@@ -1,11 +1,11 @@
 import { NavbarInfo } from "../components/navbar";
-import { React, useRef, useState } from "react";
+import  React,{ useRef, useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Col, Container, Row, Form, Button, Alert } from "react-bootstrap";
 import axios from "axios";
 import "../css/infoProfile.css";
 
-export default function infoProfile() {
+export default function InfoProfile() {
 	// const navigate = useNavigate();
 
 	// const nameField = useRef("");
@@ -45,6 +45,21 @@ export default function infoProfile() {
 	// 		});
 	// 	}
 	// };
+	const fileInputRef= useRef();
+	const [image, setImage] = useState();
+	const [preview, setPreview] = useState();
+
+	useEffect(() =>{
+		if (image) {
+			const reader = new FileReader();
+			reader.onloadend = () => {
+				setPreview(reader.result);
+			}
+			reader.readAsDataURL(image);
+		} else {
+			setPreview(null);
+		}
+	}, [image]);
 
 	return (
 		<>
@@ -52,11 +67,30 @@ export default function infoProfile() {
 			<Container className="d-flex justify-content-center pt-3 my-5">
 				<Form className="w-50">
 					<form-group className="">
-						<Form.Label className="upload-button" for="exampleFormControlFile1"></Form.Label>
+						{ preview ? (
+							<img src={preview} onClick={() => setImage(null)} alt="preview" />
+						) : (
+						<Form.Label 
+							className="upload-button"
+							onClick={(e) => {
+								e.preventDefault();
+								fileInputRef.current.click();
+							}}
+							></Form.Label>
+						)}
 						<Form.Control
 							type="file"
 							class="form-control-file"
-							id="exampleFormControlFile1"
+							ref={fileInputRef}
+							accept="image/*"
+							onChange={(e) => {
+								const file = e.target.files[0];
+								if (file && file.type.substr(0,5) === "image"){
+									setImage(file);
+								}else{
+									setImage(null);
+								}
+							}}
 							hidden
 						/>
 					</form-group>
