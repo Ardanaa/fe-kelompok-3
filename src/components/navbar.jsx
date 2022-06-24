@@ -67,8 +67,6 @@ export function NavbarLogin() {
 					href="#"
 					className="brand bg-color-primary"
 				></Navbar.Brand>
-				<Navbar.Toggle aria-controls="navbarScroll" />
-				<Navbar.Collapse id="navbarScroll">
 					<Nav
 						className="me-auto my-2 my-lg-0"
 						style={{ maxHeight: "100px" }}
@@ -83,13 +81,15 @@ export function NavbarLogin() {
 							/>
 						</Form>
 					</Nav>
-				</Navbar.Collapse>
-				<Nav className="">
+				<Navbar.Toggle aria-controls="navbarScroll" />
+				<Navbar.Collapse id="navbarScroll">
+				<Nav className="ms-auto">
 					<Button variant="light"> <FiList className=" mb-1" />  </Button>
 					<Button variant="light"> <FiBell className=" mb-1" />  </Button>
 					<Button variant="light"> <FiUser className=" mb-1" />  </Button>
 					<Button variant="light" href="/" onClick={(e) => logout(e)}> <FiLogOut className=" mb-1" />  </Button>
 				</Nav>
+				</Navbar.Collapse>
 			</Container>
 		</Navbar>
 	);

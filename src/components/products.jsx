@@ -14,9 +14,9 @@ function Product() {
 
 	useEffect(() => {
 		const postData = async () => {
-			const response = await axios.get(`https://fakestoreapi.com/products`);
+			const response = await axios.get(`http://localhost:2000/v1/products/search?isPublish=true&&isSold=false`);
 			console.log(response);
-			const data = await response.data;
+			const data = await response.data.data.handle_get_all_product;
 			console.log(data);
 
 			setPost(data);
@@ -24,17 +24,17 @@ function Product() {
 		postData();
 	}, []);
 
-	useEffect(() => {
-		const categoryData = async () => {
-			const response = await axios.get(`https://fakestoreapi.com/products/categories`);
-			console.log(response);
-			const data = await response.data;
-			console.log(data);
+	// useEffect(() => {
+	// 	const categoryData = async () => {
+	// 		const response = await axios.get(`http://localhost:2000//v1/products/search?isPublish=true&&isSold=false`);
+	// 		console.log(response);
+	// 		const data = await response.data.data.handle_get_all_product;
+	// 		console.log(data);
 
-			setCategory(data);
-		};
-		categoryData();
-	}, []);
+	// 		setCategory(data);
+	// 	};
+	// 	categoryData();
+	// }, []);
 
 	return (
 		<Container className="pt-5" id="btn-category">
@@ -72,9 +72,9 @@ function Product() {
 					{post.map((post) =>
 						<Col key={post.id} className="mb-4">
 							<Card >
-								<Card.Img variant="top" className="p-2" src={post.image} style={{ maxHeight: "100px", objectFit: "cover" }} />
+								<Card.Img variant="top" className="p-2" src={`http://localhost:2000/public/files/${post.picture}`} style={{ maxHeight: "100px", objectFit: "cover" }} />
 								<Card.Body>
-									<Card.Title className="fs-7 cut-text">{post.title}</Card.Title>
+									<Card.Title className="fs-7 cut-text">{post.name}</Card.Title>
 									<p className="text-black-50">{post.category}</p>
 									<Card.Text>{post.price}</Card.Text>
 								</Card.Body>

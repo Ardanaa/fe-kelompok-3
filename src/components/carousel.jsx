@@ -9,36 +9,36 @@ import image3 from "../assets/images/image3.png";
 import imgBanner from "../assets/images/imgBanner.png";
 import "../css/carousel.css"
 
-// const responsive = {
-// 	0: {
-// 		items: 1,
-// 		stagePadding: 60,
-// 	},
-// 	600: {
-// 		items: 1,
-// 		stagePadding: 100,
-// 	},
-// 	1000: {
-// 		items: 1,
-// 		stagePadding: 200,
-// 	},
-// 	1200: {
-// 		items: 1,
-// 		stagePadding: 250,
-// 	},
-// 	1400: {
-// 		items: 1,
-// 		stagePadding: 300,
-// 	},
-// 	1600: {
-// 		items: 1,
-// 		stagePadding: 350,
-// 	},
-// 	1800: {
-// 		items: 1,
-// 		stagePadding: 400,
-// 	},
-// };
+const responsive = {
+	0: {
+		items: 1,
+		stagePadding: 60,
+	},
+	600: {
+		items: 1,
+		stagePadding: 100,
+	},
+	1000: {
+		items: 1,
+		stagePadding: 200,
+	},
+	1200: {
+		items: 1,
+		stagePadding: 250,
+	},
+	1400: {
+		items: 1,
+		stagePadding: 300,
+	},
+	1600: {
+		items: 1,
+		stagePadding: 350,
+	},
+	1800: {
+		items: 1,
+		stagePadding: 400,
+	},
+};
 
 function carousel() {
 	return (
@@ -54,7 +54,7 @@ function carousel() {
 				margin={5}
 				lazyLoad={true}
 				dots={false}
-			// responsive={responsive}
+			responsive={responsive}
 			>
 				<div className="item">
 					<img src={imgBanner} className="radius-large" alt="Foto produk" />
