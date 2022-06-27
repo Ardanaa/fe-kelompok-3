@@ -34,7 +34,7 @@ export default function InfoProfile() {
 
 			const userPayload = new FormData();
 
-			userPayload.append("picture", fileInputRef.current.value);
+			userPayload.append("picture", image);
 			userPayload.append("name", nameField.current.value);
 			userPayload.append("city", cityField.current.value);
 			userPayload.append("address", addressField.current.value);
