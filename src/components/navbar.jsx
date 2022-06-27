@@ -11,6 +11,7 @@ import { FiLogIn, FiList, FiBell, FiUser, FiLogOut } from "react-icons/fi";
 import React, { useState, useEffect} from "react";
 import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
+import "../css/navbar.css"
 
 export function NavbarDefault() {
 	return (
@@ -95,8 +96,10 @@ export function NavbarLogin() {
 	const popover = (
 		<Popover id="popover-basic">
 			<Popover.Header >
-				{/* <img src={user.name} alt="" /> */}
-				<p>{user.name}</p>
+				<div className="popover-profile d-flex align-items-center">
+				<img src={`http://localhost:2000/public/files/${user.picture}`} alt="" />
+				<p className="my-auto">{user.name}</p>
+				</div>
 			</Popover.Header>
 			<Popover.Body>
 					<Button className="bg-color-primary border-0" href="/" onClick={(e) => logout(e)}> <FiLogOut className=" mb-1" /> Log Out </Button>
