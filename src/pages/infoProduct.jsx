@@ -1,8 +1,8 @@
 import { NavbarProduct } from "../components/navbar";
-import infoProduct from "../components/infoProduct";
 import { NavbarInfo } from "../components/navbar";
 import { React, useRef, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import "../css/infoProduct.css";
 import {
   Col,
   Container,
@@ -13,7 +13,6 @@ import {
   FloatingLabel,
 } from "react-bootstrap";
 import axios from "axios";
-import navbar from "../components/navbar";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 
 export default function infoproduct() {
@@ -56,7 +55,7 @@ export default function infoproduct() {
         <Row>
           <div className="col-3 text-center">
           <Button variant="light">
-            <AiOutlineArrowLeft className="icon-back" />
+            <AiOutlineArrowLeft className="mb-1" />
             </Button>
           </div>
           <div className="col-6">
