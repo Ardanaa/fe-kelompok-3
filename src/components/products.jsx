@@ -14,17 +14,17 @@ function Product() {
 
 
 
-	useEffect(() => {
-		const postData = async () => {
-			const response = await axios.get(`http://localhost:2000/v1/products/search?isPublish=true&&isSold=false`);
-			console.log(response);
-			const data = await response.data.data.handle_get_all_product;
-			console.log(data);
+	// useEffect(() => {
+	// 	const postData = async () => {
+	// 		const response = await axios.get(`http://localhost:2000/v1/products/search?isPublish=true&&isSold=false`);
+	// 		console.log(response);
+	// 		const data = await response.data.data.handle_get_all_product;
+	// 		console.log(data);
 
-			setPost(data);
-		};
-		postData();
-	}, []);
+	// 		setPost(data);
+	// 	};
+	// 	postData();
+	// }, []);
 
 	const categories = category ? `&category=${category}` : "";
 
