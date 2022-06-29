@@ -5,8 +5,10 @@ import Home from "./pages/home";
 import InfoProduct from "./pages/infoProduct";
 import Login from './pages/login';
 import Register from "./pages/register";
+import Produk from "./pages/produk";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 
 const root = document.getElementById("root");
 render(
@@ -16,6 +18,7 @@ render(
       <Route path="/infoProduct" element={<InfoProduct />} />
       <Route path="/login" element={<Login />} />
 			<Route path="/register" element={<Register />} />
+      <Route path="/produk" element={<Produk />} />
     </Routes>
   </Router>,
   root
