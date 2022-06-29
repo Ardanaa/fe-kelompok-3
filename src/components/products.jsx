@@ -57,7 +57,7 @@ function Product() {
 		<Container className="pt-5" id="btn-category">
 			<h5 className="fw-bold">Telusuri Kategori</h5>
 			<div className="button-group">
-				<Button onClick={() => setCategory(null)} className="me-4 radius-secondary bg-color-secondary border-0 active">
+				<Button onClick={() => setCategory(null)} className="me-4 radius-secondary bg-color-secondary border-0">
 					<FiSearch className="me-1 mb-1" />
 					Semua
 				</Button>
@@ -66,18 +66,18 @@ function Product() {
 					<FiSearch className="me-1 mb-1" /> Fashion
 				</Button>
 			</div>
-			<Container className="mt-5">
+			<Container id="products" className="mt-5">
 				<Row md={6}>
 					{post.map((post) =>
-						<Col key={post.id} className="mb-4">
+						<Col md={2} key={post.id} className="mb-3 p-2" >
 							<Card >
-								<Card.Img variant="top" className="p-2" src={`http://localhost:2000/public/files/${post.picture}`} style={{ maxHeight: "100px", objectFit: "cover" }} />
-								<Card.Body>
-									<Card.Title className="fs-7 cut-text">{post.name}</Card.Title>
-									<p className="text-black-50">{post.category}</p>
-									<Card.Text>{post.price}</Card.Text>
-								</Card.Body>
-							</Card>
+                  <Card.Img variant="top" className="p-2" src={`http://localhost:2000/public/files/${post.picture}`} style={{ maxHeight: "100px", objectFit: "cover" }} />
+                  <Card.Body>
+                    <Card.Title className="fs-7 ">{post.name}</Card.Title>
+                    <p className="text-black-50 fs-8  mb-0">{post.category}</p>
+                    <Card.Text className="fs-7 ">Rp. {post.price}</Card.Text>
+                  </Card.Body>
+                </Card>
 						</Col>
 					)}
 					{/* <Col>
