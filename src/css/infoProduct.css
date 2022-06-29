@@ -1,0 +1,17 @@
+.upload-button-product {
+    background-image: url(../assets/icons/addIcon.png);
+    background-size: auto;
+    width: 96px;
+    height: 96px;
+    cursor: pointer;
+    margin-right: 210px;
+}
+
+#infoProduct img {
+    object-fit: cover;
+    width: 96px;
+    height: 96px;
+    cursor: pointer;
+    margin-left: 100px;
+    border-radius: 12px;
+}
