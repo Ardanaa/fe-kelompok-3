@@ -21,6 +21,8 @@ export default function InfoProduct() {
   const categoryField = useRef("");
   const descriptionField = useRef("");
   const [pictureField, setPictureField] = useState();
+  const [isPublish, setIsPublish] = useState(Boolean);
+  const [isSold, setIsSold] = useState(Boolean);
 
   const [image, setImage] = useState();
   const [preview, setPreview] = useState();
@@ -30,6 +32,7 @@ export default function InfoProduct() {
     isError: false,
     message: "",
   });
+
 
   useEffect(() => {
     if (image) {
@@ -56,6 +59,8 @@ export default function InfoProduct() {
       postPayload.append("category", categoryField.current.value);
       postPayload.append("description", descriptionField.current.value);
       postPayload.append("picture", image);
+      postPayload.append("isPublish", isPublish);
+      postPayload.append("isSold", isSold);
 
       const postRequest = await axios.post(
         "http://localhost:2000/v1/products/create",
@@ -70,7 +75,7 @@ export default function InfoProduct() {
       console.log(postRequest);
       const postResponse = postRequest.data.data.handle_created_product;
 
-      if (postResponse.status) navigate("/");
+      if (postResponse.status) navigate("/daftarJual", {replace: true});
 		} catch (err) {
 			console.log(err);
 			const response = err.response.data;
@@ -81,6 +86,7 @@ export default function InfoProduct() {
 			});
 		}
 	};
+  
   return (
     <>
       <NavbarProduct></NavbarProduct>
@@ -170,12 +176,14 @@ export default function InfoProduct() {
                   variant="outline-primary"
                   className=" w-50 radius-primary bg-color-secondary"
                   type="submit"
+                  onClick={(e) => setIsPublish(false)}
                 >
                   Preview
                 </Button>{" "}
                 <Button
                   className=" w-50 radius-primary bg-color-secondary"
                   type="submit"
+                  onClick={(e) => setIsPublish(true)}
                 >
                   Terbitkan
                 </Button>

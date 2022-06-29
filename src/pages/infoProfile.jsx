@@ -145,11 +145,11 @@ export default function InfoProfile() {
 						/>
 					</Form.Group>
 					<Form.Label>Kota*</Form.Label>
-					<Form.Select ref={cityField} aria-label="Default select example">
-						<option defaultValue={user.city}>Pilih Kota</option>
-						<option value="jakarta">Jakarta</option>
-						<option value="semarang">Semarang</option>
-						<option value="bekasi">Bekasi</option>
+					<Form.Select aria-label="Default select example">
+						<option >Pilih Kota</option>
+						<option ref={cityField} value="jakarta">Jakarta</option>
+						<option ref={cityField} value="semarang">Semarang</option>
+						<option ref={cityField} value="bekasi">Bekasi</option>
 					</Form.Select>
 					<Form.Group className="mb-3" controlId="formBasicText">
 						<Form.Label
