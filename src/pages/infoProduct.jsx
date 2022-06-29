@@ -73,32 +73,35 @@ export default function InfoProduct() {
         }
       );
       console.log(postRequest);
-      const postResponse = postRequest.data.data.handle_created_product;
+      const postResponse = postRequest.data;
+      console.log(postResponse)
 
-      if (postResponse.status) navigate("/daftarJual", {replace: true});
-		} catch (err) {
-			console.log(err);
-			const response = err.response.data;
+      if (postResponse.status) navigate("/daftarJual");
+    } catch (err) {
+      console.log(err);
+      const response = err.response.data;
 
-			setErrorResponse({
-				isError: true,
-				message: response.message,
-			});
-		}
-	};
-  
+      setErrorResponse({
+        isError: true,
+        message: response.message,
+      });
+    }
+  };
+
   return (
     <>
       <NavbarProduct></NavbarProduct>
       <Container className="justify-content-center mt-5">
         <Row>
           <div className="col-3 text-center">
-            <Button variant="light">
-              <AiOutlineArrowLeft className="mb-1" />
-            </Button>
+            <Link to="/daftarJual">
+              <Button variant="light">
+                <AiOutlineArrowLeft className="mb-1" />
+              </Button>
+            </Link>
           </div>
           <div className="col-6">
-            <Form onSubmit={onPost}  id="infoProduct" className="">
+            <Form onSubmit={onPost} id="infoProduct" className="">
               <Form.Group className="mb-3">
                 <Form.Label>Nama Produk</Form.Label>
                 <Form.Control
@@ -123,9 +126,9 @@ export default function InfoProduct() {
                 <Form.Label>Kategori</Form.Label>
                 <Form.Select ref={categoryField} aria-label="Default select example">
                   <option>Pilih Kategori</option>
-                  <option value="fashion">Fashion</option>
-                  <option value="elektronik">Elektronik</option>
-                  <option value="otomotif">Otomotif</option>
+                  <option value="Fashion">Fashion</option>
+                  <option value="Elektronik">Elektronik</option>
+                  <option value="Otomotif">Otomotif</option>
                 </Form.Select>
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicText">
@@ -173,13 +176,12 @@ export default function InfoProduct() {
               </form-group>
               <div className="mb-3 d-flex">
                 <Button
-                  variant="outline-primary"
                   className=" w-50 radius-primary bg-color-secondary"
                   type="submit"
                   onClick={(e) => setIsPublish(false)}
                 >
                   Preview
-                </Button>{" "}
+                </Button>
                 <Button
                   className=" w-50 radius-primary bg-color-secondary"
                   type="submit"
