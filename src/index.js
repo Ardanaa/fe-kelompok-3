@@ -17,7 +17,7 @@ render(
 	<Router>
 		<Routes>
 			<Route path="/" element={<Home />} />
-			<Route path="/infoProfile/" element={<InfoProfile />} />
+			<Route path="/infoProfile/:id" element={<InfoProfile />} />
 			<Route path="/infoProduct" element={<InfoProduct />} />
 			<Route path="/login" element={<Login />} />
 			<Route path="/register" element={<Register />} />
