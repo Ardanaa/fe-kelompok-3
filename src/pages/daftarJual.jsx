@@ -110,7 +110,9 @@ export default function DaftarJual() {
                     <Card.Title className="fs-7 cut-text">{post.name}</Card.Title>
                     <p className="text-black-50 fs-8  mb-0">{post.category}</p>
                     <Card.Text className="fs-7 ">Rp.{post.price}</Card.Text>
-                    <Badge bg="primary">test</Badge>
+                    <Badge bg={post.isPublish === true ? "primary" : "warning"}>
+                      {post.isPublish === true ? "Produk sudah di publish":"Produk belum di publish"}
+                    </Badge>
                   </Card.Body>
                 </Card>
               </Col>
