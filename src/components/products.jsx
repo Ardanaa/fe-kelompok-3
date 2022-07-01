@@ -10,21 +10,6 @@ import "../css/products.css"
 function Product() {
 	const [post, setPost] = useState([]);
 	const [category, setCategory] = useState([""]);
-	// const categories = category ? `&category= ${category}` : "";
-
-
-
-	// useEffect(() => {
-	// 	const postData = async () => {
-	// 		const response = await axios.get(`http://localhost:2000/v1/products/search?isPublish=true&&isSold=false`);
-	// 		console.log(response);
-	// 		const data = await response.data.data.handle_get_all_product;
-	// 		console.log(data);
-
-	// 		setPost(data);
-	// 	};
-	// 	postData();
-	// }, []);
 
 	const categories = category ? `&category=${category}` : "";
 
@@ -39,19 +24,6 @@ function Product() {
 		};
 		postData();
 	}, [categories]);
-
-	// useEffect(() => {
-
-	// 	const categoryData = async () => {
-	// 		const response = await axios.get(`http://localhost:2000/v1/products/search?isPublish=true&&isSold=false${categories}`);
-	// 		// console.log(response);
-	// 		const data = await response.data.data.handle_get_all_product;
-	// 		// console.log(data);
-
-	// 		setCategory(data);
-	// 	};
-	// 	categoryData();
-	// }, [categories]);
 
 	return (
 		<Container className="pt-5" id="btn-category">

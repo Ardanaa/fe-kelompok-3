@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Container, Stack, Row, Col, Card } from 'react-bootstrap';
+import { Button, Container, Stack, Row, Col, Card, Badge } from 'react-bootstrap';
 import { NavbarLogin } from "../components/navbar";
 import { FiBox, FiHeart, FiDollarSign, FiChevronRight } from "react-icons/fi";
 import Uploadproduct from '../assets/images/uploadProduct.png'
@@ -73,23 +73,25 @@ export default function DaftarJual() {
         </Stack>
       </div>
       <div className="d-flex flex-row mt-3">
-        <div >
-          <Card id="daftar-jual" classname="radius-primary box-shadow" style={{ width: '248px' }}>
-            <Card.Body>
-              <p className="fw-bold">Kategori</p>
-              <Button variant="light" className="bg-transparent border-0 w-100 text-start active">
-                <FiBox /> Semua Produk <FiChevronRight className="" />
-              </Button>
-              <hr className="m-1"></hr>
-              <Button variant="light" className="bg-transparent border-0 w-100 text-start">
-                <FiHeart /> Diminati <FiChevronRight className="" />
-              </Button>
-              <hr className="m-1"></hr>
-              <Button variant="light" className="bg-transparent border-0 w-100 text-start">
-                <FiDollarSign /> Terjual <FiChevronRight className="" />
-              </Button>
-            </Card.Body>
-          </Card>
+        <div>
+          <div className="box-shadow">
+            <Card id="daftar-jual" classname="radius-primary" style={{ width: '248px' }}>
+              <Card.Body>
+                <p className="fw-bold">Kategori</p>
+                <Button variant="light" className="bg-transparent border-0 w-100 text-start active">
+                  <FiBox /> Semua Produk <FiChevronRight className="" />
+                </Button>
+                <hr className="m-1"></hr>
+                <Button variant="light" className="bg-transparent border-0 w-100 text-start">
+                  <FiHeart /> Diminati <FiChevronRight className="" />
+                </Button>
+                <hr className="m-1"></hr>
+                <Button variant="light" className="bg-transparent border-0 w-100 text-start">
+                  <FiDollarSign /> Terjual <FiChevronRight className="" />
+                </Button>
+              </Card.Body>
+            </Card>
+          </div>
         </div>
         <div className=" flex-fill ms-2">
           <Row className="" >
@@ -108,6 +110,7 @@ export default function DaftarJual() {
                     <Card.Title className="fs-7 cut-text">{post.name}</Card.Title>
                     <p className="text-black-50 fs-8  mb-0">{post.category}</p>
                     <Card.Text className="fs-7 ">Rp.{post.price}</Card.Text>
+                    <Badge bg="primary">test</Badge>
                   </Card.Body>
                 </Card>
               </Col>

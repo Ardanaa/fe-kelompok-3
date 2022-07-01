@@ -13,8 +13,8 @@ export default function InfoProfile() {
 
 	const [image, setImage] = useState();
 	const [preview, setPreview] = useState();
-
 	const fileInputRef = useRef();
+	
 	const nameField = useRef("");
 	const cityField = useRef("");
 	const addressField = useRef("");
@@ -147,9 +147,9 @@ export default function InfoProfile() {
 					<Form.Label>Kota*</Form.Label>
 					<Form.Select aria-label="Default select example">
 						<option >Pilih Kota</option>
-						<option ref={cityField} value="jakarta">Jakarta</option>
-						<option ref={cityField} value="semarang">Semarang</option>
-						<option ref={cityField} value="bekasi">Bekasi</option>
+						<option ref={cityField} selected={user.city==="jakarta"?"selected":""} value="jakarta">Jakarta</option>
+						<option ref={cityField} selected={user.city==="semarang"?"selected":""} value="semarang">Semarang</option>
+						<option ref={cityField} selected={user.city==="bekasi"?"selected":""} value="bekasi">Bekasi</option>
 					</Form.Select>
 					<Form.Group className="mb-3" controlId="formBasicText">
 						<Form.Label
