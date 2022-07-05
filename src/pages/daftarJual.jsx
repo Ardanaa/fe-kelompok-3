@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Container, Stack, Row, Col, Card, Badge } from 'react-bootstrap';
+import { Button, Container, Stack, Row, Col, Card, Badge, Alert } from 'react-bootstrap';
 import { NavbarLogin } from "../components/navbar";
 import { FiBox, FiHeart, FiDollarSign, FiChevronRight } from "react-icons/fi";
 import Uploadproduct from '../assets/images/uploadProduct.png'
@@ -45,7 +45,7 @@ export default function DaftarJual() {
     const postData = async () => {
       const response = await axios.get(`http://localhost:2000/v1/products/search`);
       console.log(response);
-      const data = await response.data.data.handle_get_all_product;
+      const data = await response.data.data.get_all_product;
       console.log(data);
 
       setPost(data);
@@ -111,7 +111,7 @@ export default function DaftarJual() {
                     <p className="text-black-50 fs-8  mb-0">{post.category}</p>
                     <Card.Text className="fs-7 ">Rp.{post.price}</Card.Text>
                     <Badge bg={post.isPublish === true ? "primary" : "warning"}>
-                      {post.isPublish === true ? "Produk sudah di publish":"Produk belum di publish"}
+                      {post.isPublish === true ? "Produk sudah di publish" : "Produk belum di publish"}
                     </Badge>
                   </Card.Body>
                 </Card>

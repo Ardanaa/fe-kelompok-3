@@ -17,7 +17,7 @@ function Product() {
 		const postData = async () => {
 			const response = await axios.get(`http://localhost:2000/v1/products/search?isPublish=true&&isSold=false${categories}`);
 			console.log(response);
-			const data = await response.data.data.handle_get_all_product;
+			const data = await response.data.data.get_all_product;
 			console.log(data);
 
 			setPost(data);
