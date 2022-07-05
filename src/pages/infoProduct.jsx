@@ -21,7 +21,6 @@ export default function InfoProduct() {
   const categoryField = useRef("");
   const descriptionField = useRef("");
   const [pictureField, setPictureField] = useState();
-  const [isPublish, setIsPublish] = useState(Boolean);
   const [isSold, setIsSold] = useState(Boolean);
 
   const [image, setImage] = useState();
@@ -32,6 +31,7 @@ export default function InfoProduct() {
     isError: false,
     message: "",
   });
+
 
 
   useEffect(() => {
@@ -46,7 +46,7 @@ export default function InfoProduct() {
     }
   }, [image]);
 
-  const onPost = async (e) => {
+  const onPost = async (e, isPublish) => {
     e.preventDefault();
 
     try {
@@ -76,7 +76,10 @@ export default function InfoProduct() {
       const postResponse = postRequest.data;
       console.log(postResponse)
 
-      if (postResponse.status) navigate("/daftarJual");
+      if (postResponse.status) {
+        if (isPublish) navigate("/daftarJual") 
+        else navigate("/");
+      };
     } catch (err) {
       console.log(err);
       const response = err.response.data;
@@ -101,7 +104,7 @@ export default function InfoProduct() {
             </Link>
           </div>
           <div className="col-6">
-            <Form onSubmit={onPost} id="infoProduct" className="">
+            <Form id="infoProduct" className="">
               <Form.Group className="mb-3">
                 <Form.Label>Nama Produk</Form.Label>
                 <Form.Control
@@ -178,14 +181,14 @@ export default function InfoProduct() {
                 <Button
                   className=" w-50 radius-primary bg-color-secondary"
                   type="submit"
-                  onClick={(e) => setIsPublish(false)}
+                  onClick={(e) => onPost(e, false)}
                 >
                   Preview
                 </Button>
                 <Button
                   className=" w-50 radius-primary bg-color-secondary"
                   type="submit"
-                  onClick={(e) => setIsPublish(true)}
+                  onClick={(e) => onPost(e, true)}
                 >
                   Terbitkan
                 </Button>
