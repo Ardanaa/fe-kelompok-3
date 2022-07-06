@@ -33,26 +33,7 @@ function CarouselProduct() {
             <img src={jam} style={{ width: '100%', borderRadius: '16px' }} alt="" />
           </div>
         </SwiperSlide>
-        <SwiperSlide>
-          <div className="card-carousel">
-            <img src={jam} style={{ width: '100%', borderRadius: '16px' }} alt="" />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="card-carousel">
-            <img src={jam} style={{ width: '100%', borderRadius: '16px' }} alt="" />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="card-carousel">
-            <img src={jam} style={{ width: '100%', borderRadius: '16px' }} alt="" />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="card-carousel">
-            <img src={jam} style={{ width: '100%', borderRadius: '16px' }} alt="" />
-          </div>
-        </SwiperSlide>
+        
       </Swiper>
     </Container>
   );
