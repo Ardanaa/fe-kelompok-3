@@ -39,8 +39,3 @@
     pointer-events: none;
     background-size: 100% auto;
 }
-
-.owl-controls {
-    position: absolute;
-    margin-top: 200px;
-}

@@ -2,7 +2,6 @@ import { React, useRef, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Col, Container, Row, Form, Button, Alert } from "react-bootstrap";
 import axios from "axios";
-import { AiOutlineEye } from "react-icons/ai";
 import "../css/login.css";
 import imgLogin from "../assets/images/imageLogin.jpg";
 
@@ -17,23 +16,27 @@ function Login() {
 		message: "",
 	});
 
-	const onRegister = async (e) => {
+	const onLogin = async (e) => {
 		e.preventDefault();
 
 		try {
-			const userToRegisterPayload = {
+			const userToLoginPayload = {
 				email: emailField.current.value,
 				password: passwordField.current.value,
 			};
 
-			const registerRequest = await axios.post(
+			const loginRequest = await axios.post(
 				"http://localhost:2000/v1/auth/login",
-				userToRegisterPayload
+				userToLoginPayload
 			);
 
-			const registerResponse = registerRequest.data;
+			const loginResponse = loginRequest.data;
 
-			if (registerResponse.status) navigate("/");
+			if (loginResponse.status) {
+				localStorage.setItem("token", loginResponse.data.token);
+
+				navigate("/");
+			}
 		} catch (err) {
 			console.log(err);
 			const response = err.response.data;
@@ -52,7 +55,7 @@ function Login() {
         </Col>
         <Col className="ps-0">
 					<div className="center">
-						<Form onSubmit={onRegister}>
+						<Form onSubmit={onLogin}>
 							<h1 className="mb-3">Masuk</h1>
 							<Form.Group className="mb-3">
 								<Form.Label>Email</Form.Label>

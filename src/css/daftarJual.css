@@ -1,0 +1,8 @@
+#daftar-jual button:hover, .active {
+  color: #7126B5!important;
+  background-color: transparent!important;
+}
+
+#daftar-jual button:focus {
+  box-shadow: none!important;
+}

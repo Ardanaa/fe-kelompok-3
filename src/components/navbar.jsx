@@ -5,10 +5,12 @@ import {
 	Nav,
 	Navbar,
 	Popover,
-	OverlayTrigger
+	OverlayTrigger,
+	Row,
+	Stack
 } from "react-bootstrap";
 import { FiLogIn, FiList, FiBell, FiUser, FiLogOut } from "react-icons/fi";
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
 import "../css/navbar.css"
@@ -57,6 +59,10 @@ export function NavbarDefault() {
 export function NavbarLogin() {
 	const [isLoggedIn, setIsLoggedIn] = useState(true);
 	const [user, setUser] = useState({});
+	const [post, setPost] = useState([]);
+	const [postStatus, setPostStatus] = useState([]);
+
+
 	useEffect(() => {
 		const validateLogin = async () => {
 			try {
@@ -92,28 +98,59 @@ export function NavbarLogin() {
 		setIsLoggedIn(false);
 		setUser({});
 	};
-	
-	const popover = (
+
+	useEffect(() => {
+		const postData = async () => {
+			const response = await axios.get(`http://localhost:2000/v1/products/search`);
+			// console.log(response);
+			const data = await response.data.data.get_all_product;
+			// console.log(data);
+			const dataStatus = await response.data.message;
+			// console.log(dataStatus);
+			setPost(data);
+			setPostStatus(dataStatus);
+		};
+		postData();
+	}, []);
+
+	const popoverUser = (
 		<Popover id="popover-basic">
 			<Popover.Header >
 				<div className="popover-profile d-flex align-items-center">
-				<img src={`http://localhost:2000/public/files/${user.picture}`} alt="" />
-				<p className="my-auto">{user.name}</p>
+					<img src={`http://localhost:2000/public/files/${user.picture}`} alt="" />
+					<p className="my-auto">{user.name}</p>
 				</div>
 			</Popover.Header>
 			<Popover.Body>
-					<Button className="bg-color-primary border-0" href="/" onClick={(e) => logout(e)}> <FiLogOut className=" mb-1" /> Log Out </Button>
+				<Button className="bg-color-primary border-0" href="/" onClick={(e) => logout(e)}> <FiLogOut className=" mb-1" /> Log Out </Button>
 			</Popover.Body>
 		</Popover>
 	);
-	console.log(user)
 
+	const popoverNotif = (
+		<Popover id="popover-basic">
+			<Popover.Header>
+				<Row>
+					{post.slice(0, 3).map((post) =>
+						<Stack direction="horizontal" gap={3}>
+							<img src={`http://localhost:2000/public/files/${post.picture}`} alt=""
+								style={{ width: "48px", height: "48px", objectFit: "cover", borderRadius: "12px" }} />
+							<Stack>
+								<p className="m-0 text-black-50">{postStatus}</p>
+								<p className="m-0 fw-bold text-black">{post.name}</p>
+							</Stack>
+							{/* <p className="ms-auto fw-bold text-black">{post.createdAt}</p> */}
+						</Stack>
+					).reverse()}
+				</Row>
+			</Popover.Header>
+		</Popover>
+	);
 
 	return (
 		<Navbar className="box-shadow " bg="light" expand="lg">
 			<Container className="py-1">
 				<Navbar.Brand
-					href="#"
 					className="brand bg-color-primary"
 				></Navbar.Brand>
 				<Nav
@@ -133,9 +170,13 @@ export function NavbarLogin() {
 				<Navbar.Toggle aria-controls="navbarScroll" />
 				<Navbar.Collapse id="navbarScroll">
 					<Nav className="ms-auto">
-						<Button variant="light"> <FiList className=" mb-1" />  </Button>
-						<Button variant="light"> <FiBell className=" mb-1" />  </Button>
-						<OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
+						<Link to={`/daftarJual/${user.id}`}>
+							<Button variant="light"> <FiList className=" mb-1" />  </Button>
+						</Link>
+						<OverlayTrigger trigger="click" placement="bottom" overlay={popoverNotif}>
+							<Button variant="light"> <FiBell className=" mb-1" />  </Button>
+						</OverlayTrigger>
+						<OverlayTrigger trigger="click" placement="bottom" overlay={popoverUser}>
 							<Button variant="light"> <FiUser className=" mb-1" />  </Button>
 						</OverlayTrigger>
 
