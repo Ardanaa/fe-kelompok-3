@@ -1,0 +1,261 @@
+.productInfo {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+
+.button-btnPurple {
+    margin-top: 24px;
+    background-color: #7126B5;
+    color: #ffffff;
+    border: none;
+    border-radius: 16px;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 14px 24px;
+    transition: 0.2s;
+    width: 100%;
+}
+
+.button-btnPurple-hover {
+    background-color: #5a169a;
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 0px 1px #ebebeb;
+}
+
+.button-btnWhite {
+    margin-top: 14px;
+    background-color: #ffffff;
+    color: #000000;
+    border: 2px solid #7126B5;
+    border-radius: 16px;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 14px 24px;
+    transition: 0.2s;
+    width: 100%;
+}
+
+.button-btnWhite-hover {
+    background-color: #7026b515;
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 0px 1px #ebebeb;
+}
+
+.button-active {
+    box-shadow: none;
+    transform: translateY(2px);   
+}
+
+/* LEFT SIDE */
+.left {
+    width: 600px;
+    margin-right: 32px;
+}
+
+.left-img {
+    border-radius: 16px;
+}
+
+.left-p {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #8A8A8A;
+}
+
+.left-bottom {
+    box-shadow: 0px 0px 10px 1px #ebebeb;
+    border-radius: 16px;
+    padding: 16px;
+    margin-top: 24px;
+}
+
+/* RIGHT SIDE */
+.right {
+    width: 336px;
+}
+
+.right-top {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px 1px #ebebeb;
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.right-bottom {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px 1px #ebebeb;
+    border-radius: 16px;
+    margin-top: 24px;
+    padding: 16px;
+    display: flex;
+}
+
+.right-bottom-img {
+    width: 48px;
+    height: 48px;
+    align-self: center;
+    margin: 0;
+}
+
+.right-bottom-sellerInfo {
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-left: 16px;
+}
+
+.right-bottom-sellerInfo-h1 {
+    line-height: 0;
+}
+
+.right-bottom-sellerInfo-h4 {
+    line-height: 0;
+    margin-top: 5px;
+}
+
+/* POPUP */
+.popupContainer {
+    margin: 0;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #00000099;
+    display: flex;
+    justify-content: center;
+}
+
+.popupDisplay {
+    display: inherit;
+}
+
+.popupHide {
+    display: none;
+}
+
+.popup {
+    width: 360px;
+    height: fit-content;
+    background-color: #ffffff;
+    border-radius: 16px;
+    position: absolute;
+    z-index: 5;
+    top: calc(50% - 40px - (438px / 2));
+    padding: 24px 32px;
+}
+
+.popup h1 {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.popup h2 {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #8A8A8A;
+}
+
+.popup h3 {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.popup .info {
+    background-color: #EEEEEE;
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+    display: flex;
+    margin: 24px 0;
+}
+
+.popup .info img {
+    width: 48px;
+    height: 49px;
+    border-radius: 12px;
+}
+
+.popup .info div {
+    margin-left: 16px;
+}
+
+.popup .info div h1 {
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.popup .info div h3 {
+    margin: 0;
+}
+
+.popup input {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #8A8A8A;
+    border-radius: 16px;
+    padding: 12px 16px;
+    width: 100%;
+    border: 1px solid #D0D0D0;
+}
+
+.popup input:focus {
+    border: 1px solid #D0D0D0;
+}
+
+.popup p {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    background-color: #ffffff;
+    border: 1px solid #8A8A8A;
+    padding: 4px 12px;
+    border-radius: 100%;
+    cursor: pointer;
+    z-index: 7;
+}
+
+.card-product {
+    top: 10px;
+    width: 430px;
+    height: 300px;
+    border-radius: 16px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+}
+
+.card-seller {
+    top: 30px;
+    width: 430px;
+    height: 85px;
+    border-radius: 16px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+}
+.seller {
+    width: 100%;
+}
+.card-carousel {
+    margin-top: 10px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-desc {
+    top: 30px;
+    width: 90%;
+    height: 100%;
+    margin-left: 5%;
+    border-radius: 16px;
+    line-height: 20px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  }

@@ -46,7 +46,7 @@ function carousel() {
 			{/* carousel */}
 			<OwlCarousel
 				items={1}
-				className="owl-theme mt-5"
+				className="owl-theme mt-5 col-2"
 				center
 				autoplay={true}
 				stagePadding={200}

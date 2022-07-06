@@ -107,7 +107,6 @@ export function NavbarLogin() {
 			// console.log(data);
 			const dataStatus = await response.data.message;
 			// console.log(dataStatus);
-
 			setPost(data);
 			setPostStatus(dataStatus);
 		};
