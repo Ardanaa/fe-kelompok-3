@@ -45,9 +45,17 @@ export default function DaftarJual() {
 
   useEffect(() => {
     const postData = async () => {
-      const response = await axios.get(`http://localhost:2000/v1/users/${id}/products`);
+
+      const token = localStorage.getItem("token");
+
+      const response = await axios.get(`http://localhost:2000/v1/users/${id}/products`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       console.log(response);
-      const data = await response.data.data.get_all_product;
+      const data = await response.data.data.product_user_id;
       console.log(data);
 
       setPost(data);
