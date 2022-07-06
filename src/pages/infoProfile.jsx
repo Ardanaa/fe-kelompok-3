@@ -68,7 +68,7 @@ export default function InfoProfile() {
 	const getUsers = async () => {
     try {
 			const token = localStorage.getItem("token");
-      const responsePosts = await axios.get(
+      const responseUser = await axios.get(
         `http://localhost:2000/v1/auth/me`,
 				{
 					headers: {
@@ -76,11 +76,11 @@ export default function InfoProfile() {
 					},
 				}
       );
-			console.log(responsePosts)
-      const dataPosts = await responsePosts.data.data.user;
+			console.log(responseUser)
+      const dataUser = await responseUser.data.data.user;
 
-      setUser(dataPosts);
-      console.log(dataPosts);
+      setUser(dataUser);
+      console.log(dataUser);
     } catch (err) {
       console.log(err);
     }

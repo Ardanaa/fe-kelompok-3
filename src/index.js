@@ -21,7 +21,7 @@ render(
 			<Route path="/infoProduct" element={<InfoProduct />} />
 			<Route path="/login" element={<Login />} />
 			<Route path="/register" element={<Register />} />
-			<Route path="/daftarJual" element={<DaftarJual />} />
+			<Route path="/daftarJual/:id" element={<DaftarJual />} />
 		</Routes>
 	</Router>,
 	root

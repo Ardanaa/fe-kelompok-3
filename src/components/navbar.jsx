@@ -102,11 +102,11 @@ export function NavbarLogin() {
 	useEffect(() => {
 		const postData = async () => {
 			const response = await axios.get(`http://localhost:2000/v1/products/search`);
-			console.log(response);
+			// console.log(response);
 			const data = await response.data.data.get_all_product;
-			console.log(data);
+			// console.log(data);
 			const dataStatus = await response.data.message;
-			console.log(dataStatus);
+			// console.log(dataStatus);
 
 			setPost(data);
 			setPostStatus(dataStatus);
@@ -148,8 +148,6 @@ export function NavbarLogin() {
 		</Popover>
 	);
 
-
-
 	return (
 		<Navbar className="box-shadow " bg="light" expand="lg">
 			<Container className="py-1">
@@ -173,7 +171,7 @@ export function NavbarLogin() {
 				<Navbar.Toggle aria-controls="navbarScroll" />
 				<Navbar.Collapse id="navbarScroll">
 					<Nav className="ms-auto">
-						<Link to="/daftarJual">
+						<Link to={`/daftarJual/${user.id}`}>
 							<Button variant="light"> <FiList className=" mb-1" />  </Button>
 						</Link>
 						<OverlayTrigger trigger="click" placement="bottom" overlay={popoverNotif}>

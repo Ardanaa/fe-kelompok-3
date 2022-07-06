@@ -1,6 +1,6 @@
 import { NavbarProduct } from "../components/navbar";
 import React, { useRef, useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useParams } from "react-router-dom";
 import "../css/infoProduct.css";
 import {
   Col,
@@ -16,11 +16,11 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 
 export default function InfoProduct() {
   const navigate = useNavigate();
+  const [user, setUser] = useState([]);
   const titleField = useRef("");
   const priceField = useRef("");
   const categoryField = useRef("");
   const descriptionField = useRef("");
-  const [pictureField, setPictureField] = useState();
   const [isSold, setIsSold] = useState(Boolean);
 
   const [image, setImage] = useState();
@@ -32,6 +32,29 @@ export default function InfoProduct() {
     message: "",
   });
 
+  const getUsers = async () => {
+    try {
+			const token = localStorage.getItem("token");
+      const responseUser = await axios.get(
+        `http://localhost:2000/v1/auth/me`,
+				{
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				}
+      );
+			console.log(responseUser)
+      const dataUser = await responseUser.data.data.user;
+
+      setUser(dataUser);
+      console.log(dataUser);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    getUsers();
+  }, []);
 
 
   useEffect(() => {
@@ -77,7 +100,7 @@ export default function InfoProduct() {
       console.log(postResponse)
 
       if (postResponse.status) {
-        if (isPublish) navigate("/daftarJual") 
+        if (isPublish) navigate(`/daftarJual/${user.id}`) 
         else navigate("/");
       };
     } catch (err) {

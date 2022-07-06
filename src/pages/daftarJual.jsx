@@ -3,14 +3,16 @@ import { Button, Container, Stack, Row, Col, Card, Badge, Alert } from 'react-bo
 import { NavbarLogin } from "../components/navbar";
 import { FiBox, FiHeart, FiDollarSign, FiChevronRight } from "react-icons/fi";
 import Uploadproduct from '../assets/images/uploadProduct.png'
-import { Navigate, Link } from 'react-router-dom';
+import { Navigate, Link, useParams } from 'react-router-dom';
 import axios from "axios";
 import "../css/daftarJual.css"
 
 export default function DaftarJual() {
+  const { id } = useParams();
   const [post, setPost] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [user, setUser] = useState({});
+
   useEffect(() => {
     const validateLogin = async () => {
       try {
@@ -43,7 +45,7 @@ export default function DaftarJual() {
 
   useEffect(() => {
     const postData = async () => {
-      const response = await axios.get(`http://localhost:2000/v1/products/search`);
+      const response = await axios.get(`http://localhost:2000/v1/users/${id}/products`);
       console.log(response);
       const data = await response.data.data.get_all_product;
       console.log(data);
@@ -51,7 +53,7 @@ export default function DaftarJual() {
       setPost(data);
     };
     postData();
-  }, []);
+  }, [id]);
 
   return isLoggedIn ? (<>
     <NavbarLogin></NavbarLogin>;
