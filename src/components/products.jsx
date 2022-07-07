@@ -5,7 +5,7 @@ import axios from "axios";
 import jam1 from "../assets/images/jam1.png";
 import jam2 from "../assets/images/jam2.png";
 import "../css/products.css"
-// import Axios from "axios";
+import { Link } from "react-router-dom";
 
 function Product() {
 	const [post, setPost] = useState([]);
@@ -42,14 +42,16 @@ function Product() {
 				<Row md={6}>
 					{post.map((post) =>
 						<Col md={2} key={post.id} className="mb-3 p-2" >
-							<Card >
-                  <Card.Img variant="top" className="p-2" src={`http://localhost:2000/public/files/${post.picture}`} style={{ maxHeight: "100px", objectFit: "cover" }} />
-                  <Card.Body>
-                    <Card.Title className="fs-7 ">{post.name}</Card.Title>
-                    <p className="text-black-50 fs-8  mb-0">{post.category}</p>
-                    <Card.Text className="fs-7 ">Rp. {post.price}</Card.Text>
-                  </Card.Body>
-                </Card>
+							<Link className="text-decoration-none text-black" to={`/produk/${post.id}`}>
+								<Card >
+									<Card.Img variant="top" className="p-2" src={`http://localhost:2000/public/files/${post.picture}`} style={{ maxHeight: "100px", objectFit: "cover" }} />
+									<Card.Body>
+										<Card.Title className="fs-7 ">{post.name}</Card.Title>
+										<p className="text-black-50 fs-8  mb-0">{post.category}</p>
+										<Card.Text className="fs-7 ">Rp. {post.price}</Card.Text>
+									</Card.Body>
+								</Card>
+							</Link>
 						</Col>
 					).reverse()}
 				</Row>
