@@ -24,6 +24,7 @@ export default function Produk() {
   const [post, setPost] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
+
   const [errorResponse, setErrorResponse] = useState({
     isError: false,
     message: "",
@@ -163,22 +164,25 @@ export default function Produk() {
                     <Card.Title>{post.name}</Card.Title>
                     <p>{post.category}</p>
                     <h4>Rp. {post.price}</h4>
-                    {/* <button className='btnPurple' onClick={changeDisplay}>Saya tertarik dan ingin nego</button> */}
-                    <Link to={`/updateProduct/${post.id}`} >
+                    <div>
+                      <Link to={`/updateProduct/${post.id}`} >
+                        <Button
+                          className=" w-100 border-purple radius-primary bg-white color-primary mb-2"
+                          type="submit"
+                          hidden={post.user_id === user.id ? "true" : "false"}
+                        >
+                          Edit
+                        </Button>
+                      </Link>
                       <Button
-                        className=" w-100 border-purple radius-primary bg-white color-primary mb-2"
+                        className=" w-100 border-purple radius-primary bg-color-secondary"
                         type="submit"
+                        onClick={(e) => onPublish(e, true)}
                       >
-                        Edit
+                        {post.user_id === user.id ? "Terbitkan" : "Saya tertarik dan ingin nego"}
                       </Button>
-                    </Link>
-                    <Button
-                      className=" w-100 border-purple radius-primary bg-color-secondary"
-                      type="submit"
-                    onClick={(e) => onPublish(e, true)}
-                    >
-                      Terbitkan
-                    </Button>
+                      {/* <button className='btnPurple' >Saya tertarik dan ingin nego</button> */}
+                    </div>
                   </Card.Body>
                 </div>
 
