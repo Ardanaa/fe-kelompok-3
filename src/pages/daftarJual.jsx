@@ -3,11 +3,12 @@ import { Button, Container, Stack, Row, Col, Card, Badge, Alert } from 'react-bo
 import { NavbarLogin } from "../components/navbar";
 import { FiBox, FiHeart, FiDollarSign, FiChevronRight } from "react-icons/fi";
 import Uploadproduct from '../assets/images/uploadProduct.png'
-import { Navigate, Link, useParams } from 'react-router-dom';
+import { Navigate, Link, useParams, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import "../css/daftarJual.css"
 
 export default function DaftarJual() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [post, setPost] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -63,6 +64,16 @@ export default function DaftarJual() {
     postData();
   }, [id]);
 
+  const handleJual = () => {
+		isLoggedIn ? user.picture ? user.city ? user.address ? user.phoneNumber ?
+		navigate('/infoProduct') : 
+		navigate(`/infoProfile/${user.id}`) : 
+		navigate(`/infoProfile/${user.id}`) : 
+		navigate(`/infoProfile/${user.id}`) : 
+		navigate(`/infoProfile/${user.id}`) : 
+		navigate('/login')
+	}
+
   return isLoggedIn ? (<>
     <NavbarLogin></NavbarLogin>;
     <Container style={{ padding: "0px 110px" }}>
@@ -106,11 +117,11 @@ export default function DaftarJual() {
         <div className=" flex-fill ms-2">
           <Row className="" >
             <Col md={4} className="">
-              <Link to="/infoProduct">
-                <Card className="border-0">
+              {/* <Link to="/infoProduct"> */}
+                <Card onClick={handleJual} className="border-0" role="button">
                   <img src={Uploadproduct} alt="" />
                 </Card>
-              </Link>
+              {/* </Link> */}
             </Col>
             {post.map((post) =>
               <Col md={4} key={post.id} className="mb-3">
