@@ -6,3 +6,11 @@
 #daftar-jual button:focus {
   box-shadow: none!important;
 }
+
+.content {
+  display: none;
+}
+
+.active-content {
+  display: block;
+}
