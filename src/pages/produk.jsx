@@ -1,11 +1,11 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 // import Carousel from "react-elastic-carousel";
 import "../css/produk.css";
 import { useState, useEffect } from "react";
 import { NavbarLogin } from "../components/navbar";
 import CarouselProduct from "../components/CarouselProduct";
 import jam from "../assets/images/jam1.png";
-import { Container, Row, Col, Card, Stack } from "react-bootstrap";
+import { Container, Row, Col, Card, Stack, Button } from "react-bootstrap";
 import axios from "axios";
 import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
@@ -18,34 +18,16 @@ import {
 } from 'swiper';
 
 export default function Produk() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [user, setUser] = useState([]);
   const [post, setPost] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
-
-  useEffect(() => {
-    const getUsers = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const responseUser = await axios.get(
-          `http://localhost:2000/v1/users/${post.user_id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        console.log(responseUser)
-        const dataUser = await responseUser.data.data.user;
-
-        setUser(dataUser);
-        console.log(dataUser);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getUsers();
-  }, [post.user_id]);
+  const [errorResponse, setErrorResponse] = useState({
+    isError: false,
+    message: "",
+  });
 
   useEffect(() => {
     const postData = async () => {
@@ -67,6 +49,67 @@ export default function Produk() {
     postData();
   }, [id]);
 
+  useEffect(() => {
+    const validateLogin = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const currentUserRequest = await axios.get(
+          "http://localhost:2000/v1/auth/me",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        const currentUserResponse = currentUserRequest.data;
+
+        if (currentUserResponse.status) {
+          setUser(currentUserResponse.data.user);
+        }
+      } catch (err) {
+        setIsLoggedIn(false);
+      }
+    };
+
+    validateLogin();
+  }, []);
+
+  const onPublish = async (e, isPublish) => {
+    e.preventDefault();
+
+    try {
+      const token = localStorage.getItem("token");
+
+      const postPayload = new FormData();
+      postPayload.append("isPublish", isPublish);
+
+      const postRequest = await axios.put(
+        `http://localhost:2000/v1/products/update/${id}`,
+        postPayload,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(postRequest);
+      const postResponse = postRequest.data;
+      console.log(postResponse)
+
+      if (postResponse.status) navigate(`/daftarJual/${user.id}`);
+    } catch (err) {
+      console.log(err);
+      const response = err.response.data;
+
+      setErrorResponse({
+        isError: true,
+        message: response.message,
+      });
+    }
+  };
+
   // const [displayClass, setDisplayClass] = useState(popupHide)
 
   // const changeDisplay = () => {
@@ -79,7 +122,7 @@ export default function Produk() {
   //     }
   // }
 
-  return (
+  return isLoggedIn ? (
     <>
       <NavbarLogin></NavbarLogin>
       <Container style={{ padding: "0px 110px" }} className="mt-5">
@@ -121,6 +164,21 @@ export default function Produk() {
                     <p>{post.category}</p>
                     <h4>Rp. {post.price}</h4>
                     {/* <button className='btnPurple' onClick={changeDisplay}>Saya tertarik dan ingin nego</button> */}
+                    <Link to={`/updateProduct/${post.id}`} >
+                      <Button
+                        className=" w-100 border-purple radius-primary bg-white color-primary mb-2"
+                        type="submit"
+                      >
+                        Edit
+                      </Button>
+                    </Link>
+                    <Button
+                      className=" w-100 border-purple radius-primary bg-color-secondary"
+                      type="submit"
+                    onClick={(e) => onPublish(e, true)}
+                    >
+                      Terbitkan
+                    </Button>
                   </Card.Body>
                 </div>
 
@@ -168,6 +226,7 @@ export default function Produk() {
           </Row>
         </div>
       </Container>
-    </>
+    </>) : (
+    <navigate to="/login" replace />
   );
 }

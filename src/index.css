@@ -42,7 +42,7 @@ code {
 }
 
 .color-primary {
-  color: #4B1979;
+  color: #4B1979 !important;
 }
 
 .fs-7 {

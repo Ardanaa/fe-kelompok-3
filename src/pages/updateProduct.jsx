@@ -14,7 +14,8 @@ import {
 import axios from "axios";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 
-export default function InfoProduct() {
+export default function UpdateProduct() {
+  const { id } = useParams();
   const navigate = useNavigate();
   const [user, setUser] = useState([]);
   const titleField = useRef("");
@@ -22,6 +23,7 @@ export default function InfoProduct() {
   const categoryField = useRef("");
   const descriptionField = useRef("");
   const [isSold, setIsSold] = useState(Boolean);
+  const [post, setPost] = useState([]);
 
   const [image, setImage] = useState();
   const [preview, setPreview] = useState();
@@ -34,16 +36,16 @@ export default function InfoProduct() {
 
   const getUsers = async () => {
     try {
-			const token = localStorage.getItem("token");
+      const token = localStorage.getItem("token");
       const responseUser = await axios.get(
         `http://localhost:2000/v1/auth/me`,
-				{
-					headers: {
-						Authorization: `Bearer ${token}`,
-					},
-				}
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
-			console.log(responseUser)
+      console.log(responseUser)
       const dataUser = await responseUser.data.data.user;
 
       setUser(dataUser);
@@ -69,7 +71,28 @@ export default function InfoProduct() {
     }
   }, [image]);
 
-  const onPost = async (e, isPublish) => {
+  useEffect(() => {
+    const postData = async () => {
+
+      const token = localStorage.getItem("token");
+
+      const response = await axios.get(`http://localhost:2000/v1/products/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+      console.log(response);
+      const data = await response.data.data.product_by_id;
+      console.log(data);
+
+      setPost(data);
+    };
+    postData();
+  }, [id]);
+
+
+  const onUpdate = async (e) => {
     e.preventDefault();
 
     try {
@@ -82,11 +105,10 @@ export default function InfoProduct() {
       postPayload.append("category", categoryField.current.value);
       postPayload.append("description", descriptionField.current.value);
       postPayload.append("picture", image);
-      postPayload.append("isPublish", isPublish);
       postPayload.append("isSold", isSold);
 
-      const postRequest = await axios.post(
-        "http://localhost:2000/v1/products/create",
+      const postRequest = await axios.put(
+        `http://localhost:2000/v1/products/update/${id}`,
         postPayload,
         {
           headers: {
@@ -99,10 +121,7 @@ export default function InfoProduct() {
       const postResponse = postRequest.data;
       console.log(postResponse)
 
-      if (postResponse.status) {
-        if (isPublish) navigate(`/daftarJual/${user.id}`) 
-        else navigate(`/daftarJual/${user.id}`);
-      };
+      if (postResponse.status) navigate(`/daftarJual/${user.id}`);
     } catch (err) {
       console.log(err);
       const response = err.response.data;
@@ -135,7 +154,7 @@ export default function InfoProduct() {
                   placeholder="Contoh: johndee@gmail.com"
                   className="radius-primary"
                   ref={titleField}
-                // defaultValue={products.name}
+                  defaultValue={post.name}
                 />
               </Form.Group>
               <Form.Group className="mb-3">
@@ -145,16 +164,16 @@ export default function InfoProduct() {
                   placeholder="Rp 0,00"
                   className="radius-primary"
                   ref={priceField}
-                // defaultValue={products.price}
+                  defaultValue={post.price}
                 />
               </Form.Group>
               <Form.Group className="mb-3">
                 <Form.Label>Kategori</Form.Label>
                 <Form.Select ref={categoryField} aria-label="Default select example">
                   <option>Pilih Kategori</option>
-                  <option value="Fashion">Fashion</option>
-                  <option value="Elektronik">Elektronik</option>
-                  <option value="Otomotif">Otomotif</option>
+                  <option selected={post.category === "fashion" ? "selected" : ""} value="fashion">Fashion</option>
+                  <option selected={post.category === "elektronik" ? "selected" : ""} value="elektronik">Elektronik</option>
+                  <option selected={post.category === "otomotif" ? "selected" : ""} value="otomotif">Otomotif</option>
                 </Form.Select>
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicText">
@@ -164,7 +183,7 @@ export default function InfoProduct() {
                   placeholder="Contoh: Jalan Ikan Hiu 33"
                   rows="3"
                   ref={descriptionField}
-                // defaultValue={products.description}
+                  defaultValue={post.description}
                 ></textarea>
               </Form.Group>
               <p>Foto Produk</p>
@@ -200,22 +219,21 @@ export default function InfoProduct() {
                 />
 
               </form-group>
-              <div className="mb-3 d-flex">
+                <Link to={`/produk/${post.id}`} >
+                  <Button
+                    className=" w-50 radius-primary bg-color-secondary"
+                    type="submit"
+                  >
+                    Cancel
+                  </Button>
+                </Link>
                 <Button
                   className=" w-50 radius-primary bg-color-secondary"
                   type="submit"
-                  onClick={(e) => onPost(e, false)}
+                  onClick={(e) => onUpdate(e)}
                 >
-                  Preview
+                  Update
                 </Button>
-                <Button
-                  className=" w-50 radius-primary bg-color-secondary"
-                  type="submit"
-                  onClick={(e) => onPost(e, true)}
-                >
-                  Terbitkan
-                </Button>
-              </div>
             </Form>
           </div>
         </Row>

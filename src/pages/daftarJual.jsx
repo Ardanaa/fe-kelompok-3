@@ -49,11 +49,11 @@ export default function DaftarJual() {
       const token = localStorage.getItem("token");
 
       const response = await axios.get(`http://localhost:2000/v1/users/${id}/products`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
       console.log(response);
       const data = await response.data.data.product_user_id;
       console.log(data);
@@ -114,17 +114,19 @@ export default function DaftarJual() {
             </Col>
             {post.map((post) =>
               <Col md={4} key={post.id} className="mb-3">
-                <Card >
-                  <Card.Img variant="top" className="p-2" src={`http://localhost:2000/public/files/${post.picture}`} style={{ maxHeight: "100px", objectFit: "cover" }} />
-                  <Card.Body>
-                    <Card.Title className="fs-7 cut-text">{post.name}</Card.Title>
-                    <p className="text-black-50 fs-8  mb-0">{post.category}</p>
-                    <Card.Text className="fs-7 ">Rp.{post.price}</Card.Text>
-                    <Badge bg={post.isPublish === true ? "primary" : "warning"}>
-                      {post.isPublish === true ? "Produk sudah di publish" : "Produk belum di publish"}
-                    </Badge>
-                  </Card.Body>
-                </Card>
+                <Link className="text-decoration-none text-black" to={`/produk/${post.id}`}>
+                  <Card >
+                    <Card.Img variant="top" className="p-2" src={`http://localhost:2000/public/files/${post.picture}`} style={{ maxHeight: "100px", objectFit: "cover" }} />
+                    <Card.Body>
+                      <Card.Title className="fs-7 cut-text">{post.name}</Card.Title>
+                      <p className="text-black-50 fs-8  mb-0">{post.category}</p>
+                      <Card.Text className="fs-7 ">Rp.{post.price}</Card.Text>
+                      <Badge bg={post.isPublish === true ? "primary" : "warning"}>
+                        {post.isPublish === true ? "Produk sudah di publish" : "Produk belum di publish"}
+                      </Badge>
+                    </Card.Body>
+                  </Card>
+                </Link>
               </Col>
             ).reverse()}
           </Row>
