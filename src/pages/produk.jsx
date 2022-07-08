@@ -169,7 +169,7 @@ export default function Produk() {
                         <Button
                           className=" w-100 border-purple radius-primary bg-white color-primary mb-2"
                           type="submit"
-                          hidden={post.user_id === user.id ? "true" : "false"}
+                          hidden={post.user_id === user.id ? false : true}
                         >
                           Edit
                         </Button>
