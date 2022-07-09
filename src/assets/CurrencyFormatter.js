@@ -9,10 +9,10 @@ function position(currencyPosition, value) {
 }
 
 const CurrencyFormatter = (value) => {
-    var string = 'string';
+    var integer = 'integer';
     var result;
 
-    if (value === 0 || value === null || value === undefined || value === '0' || typeof value === string) {
+    if (value === 0 || value === null || value === undefined || value === '0' || typeof value === integer) {
         return position(currencyPosition, 0);
     }
 
