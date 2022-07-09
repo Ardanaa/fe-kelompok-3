@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Button, Row, Col, Card } from "react-bootstrap";
 import { FiSearch } from "react-icons/fi";
 import axios from "axios";
-import jam1 from "../assets/images/jam1.png";
-import jam2 from "../assets/images/jam2.png";
+import CurrencyFormatter from "../assets/CurrencyFormatter.js";
 import "../css/products.css"
 import { Link } from "react-router-dom";
 
@@ -24,7 +23,7 @@ function Product() {
 		};
 		postData();
 	}, [categories]);
-
+	
 	return (
 		<Container className="pt-5" id="btn-category">
 			<h5 className="fw-bold">Telusuri Kategori</h5>
@@ -48,7 +47,7 @@ function Product() {
 									<Card.Body>
 										<Card.Title className="fs-7 ">{post.name}</Card.Title>
 										<p className="text-black-50 fs-8  mb-0">{post.category}</p>
-										<Card.Text className="fs-7 ">Rp. {post.price}</Card.Text>
+										<Card.Text className="fs-7 "> {CurrencyFormatter(post.price)} </Card.Text>
 									</Card.Body>
 								</Card>
 							</Link>
