@@ -4,6 +4,7 @@ import { FiSearch } from "react-icons/fi";
 import axios from "axios";
 import "../css/products.css"
 import { Link } from "react-router-dom";
+import CurrencyFormatter from "../assets/CurrencyFormatter.js";
 
 function Product() {
 	const [post, setPost] = useState([]);
@@ -46,7 +47,7 @@ function Product() {
 									<Card.Body>
 										<Card.Title className="fs-7 ">{post.name}</Card.Title>
 										<p className="text-black-50 fs-8  mb-0">{post.category}</p>
-										<Card.Text className="fs-7 "> Rp. {post.price} </Card.Text>
+										<Card.Text className="fs-7 "> {CurrencyFormatter(post.price)} </Card.Text>
 									</Card.Body>
 								</Card>
 							</Link>

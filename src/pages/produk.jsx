@@ -16,6 +16,8 @@ import 'swiper/css/pagination';
 import {
   Navigation, Pagination, Mousewheel, Keyboard,
 } from 'swiper';
+import CurrencyFormatter from "../assets/CurrencyFormatter.js";
+
 
 export default function Produk() {
   const navigate = useNavigate();
@@ -163,7 +165,7 @@ export default function Produk() {
                   <Card.Body>
                     <Card.Title>{post.name}</Card.Title>
                     <p>{post.category}</p>
-                    <h4>Rp. {post.price}</h4>
+                    <h4> {CurrencyFormatter(post.price)} </h4>
                     <div>
                       <Link to={`/updateProduct/${post.id}`} >
                         <Button
