@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Container, Button, Row, Col, Card } from "react-bootstrap";
 import { FiSearch } from "react-icons/fi";
 import axios from "axios";
-import CurrencyFormatter from "../assets/CurrencyFormatter.js";
 import "../css/products.css"
 import { Link } from "react-router-dom";
 
@@ -33,7 +32,7 @@ function Product() {
 					Semua
 				</Button>
 				{/* {/* {category.map((c) =>  */}
-				<Button onClick={() => setCategory("fashion")} className="me-4 radius-secondary bg-color-secondary border-0">
+				<Button onClick={() => setCategory("Fashion")} className="me-4 radius-secondary bg-color-secondary border-0">
 					<FiSearch className="me-1 mb-1" /> Fashion
 				</Button>
 			</div>
@@ -47,7 +46,7 @@ function Product() {
 									<Card.Body>
 										<Card.Title className="fs-7 ">{post.name}</Card.Title>
 										<p className="text-black-50 fs-8  mb-0">{post.category}</p>
-										<Card.Text className="fs-7 "> {CurrencyFormatter(post.price)} </Card.Text>
+										<Card.Text className="fs-7 "> Rp. {post.price} </Card.Text>
 									</Card.Body>
 								</Card>
 							</Link>

@@ -6,7 +6,8 @@ import Uploadproduct from '../assets/images/uploadProduct.png'
 import { Navigate, Link, useParams, useNavigate } from 'react-router-dom';
 import likedEmpty from '../assets/images/likedEmpty.png'
 import axios from "axios";
-import "../css/daftarJual.css"
+import "../css/daftarJual.css";
+import CurrencyFormatter from "../assets/CurrencyFormatter.js";
 
 export default function DaftarJual() {
   const navigate = useNavigate();
