@@ -41,7 +41,7 @@ function Product() {
 				<Row md={6}>
 					{post.map((post) =>
 						<Col md={2} key={post.id} className="mb-3 p-2" >
-							<Link className="text-decoration-none text-black" to={`/produk/${post.id}`}>
+							<Link className="text-decoration-none text-black" to={`/products/${post.id}`}>
 								<Card >
 									<Card.Img variant="top" className="p-2" src={`http://localhost:2000/public/files/${post.picture}`} style={{ maxHeight: "100px", objectFit: "cover" }} />
 									<Card.Body>

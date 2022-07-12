@@ -24,6 +24,7 @@ export default function Produk() {
   const { id } = useParams();
   const [user, setUser] = useState([]);
   const [post, setPost] = useState([]);
+  const [postOwner, setPostOwner] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
 
@@ -51,6 +52,7 @@ export default function Produk() {
     };
     postData();
   }, [id]);
+  
 
   useEffect(() => {
     const validateLogin = async () => {
@@ -191,7 +193,7 @@ export default function Produk() {
 
                 <Card className="mt-3 mb-5 productInfo box-shadow radius-primary">
                   <Card.Body>
-                    <Stack direction="horizontal" gap={3}>
+                    <Stack direction="horizontal" gap={3}></Stack>
                       <img src={`http://localhost:2000/public/files/${user.picture}`} alt=""
                         style={{ width: "48px", height: "48px", objectFit: "cover", borderRadius: "12px" }} />
                       <Stack>

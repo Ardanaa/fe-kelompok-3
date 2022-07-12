@@ -24,7 +24,7 @@ render(
 			<Route path="/updateProduct/:id" element={<UpdateProduct />} />
 			<Route path="/login" element={<Login />} />
 			<Route path="/register" element={<Register />} />
-			<Route path="/produk/:id" element={<Produk />} />
+			<Route path="/products/:id" element={<Produk />} />
 			<Route path="/daftarJual/:id" element={<DaftarJual />} />
 		</Routes>
 	</Router>,
