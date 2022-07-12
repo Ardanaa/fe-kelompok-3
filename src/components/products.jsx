@@ -43,7 +43,7 @@ function Product() {
 						<Col md={2} key={post.id} className="mb-3 p-2" >
 							<Link className="text-decoration-none text-black" to={`/products/${post.id}`}>
 								<Card >
-									<Card.Img variant="top" className="p-2" src={`http://localhost:2000/public/files/${post.picture}`} style={{ maxHeight: "100px", objectFit: "cover" }} />
+									<Card.Img variant="top" className="p-2" src={`${post.picture}`} style={{ maxHeight: "100px", objectFit: "cover" }} />
 									<Card.Body>
 										<Card.Title className="fs-7 ">{post.name}</Card.Title>
 										<p className="text-black-50 fs-8  mb-0">{post.category}</p>

@@ -24,7 +24,6 @@ export default function Produk() {
   const { id } = useParams();
   const [user, setUser] = useState([]);
   const [post, setPost] = useState([]);
-  const [postOwner, setPostOwner] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
 
@@ -200,7 +199,6 @@ export default function Produk() {
                         <p className="m-0 fw-bold">{user.name}</p>
                         <p className="m-0 text-black-50">{user.city}</p>
                       </Stack>
-                    </Stack>
                   </Card.Body>
                 </Card>
 
