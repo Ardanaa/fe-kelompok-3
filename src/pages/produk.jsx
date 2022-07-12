@@ -220,7 +220,7 @@ export default function Produk() {
                     </Modal.Body>
                     <Modal.Footer className="border-0">
                       <Button className="bg-color-primary w-100 radius-primary border-0" onClick={handleClose}>
-                        Save Changes
+                        Kirim
                       </Button>
                     </Modal.Footer>
                   </div>
