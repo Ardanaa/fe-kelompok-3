@@ -140,7 +140,7 @@ export default function DaftarJual() {
             </Col>
             {post.map((post) =>
               <Col md={4} key={post.id} className="mb-3">
-                <Link className="text-decoration-none text-black" to={`/produk/${post.id}`}>
+                <Link className="text-decoration-none text-black" to={`/products/${post.id}`}>
                   <Card >
                     <Card.Img variant="top" className="p-2" src={`${post.picture}`} style={{ maxHeight: "100px", objectFit: "cover" }} />
                     <Card.Body>
