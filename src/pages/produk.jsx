@@ -1,11 +1,8 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
-// import Carousel from "react-elastic-carousel";
 import "../css/produk.css";
 import { useState, useEffect } from "react";
 import { NavbarLogin } from "../components/navbar";
-import CarouselProduct from "../components/CarouselProduct";
-import jam from "../assets/images/jam1.png";
-import { Container, Row, Col, Card, Stack, Button } from "react-bootstrap";
+import { Container, Row, Col, Card, Stack, Button, Modal, Form } from "react-bootstrap";
 import axios from "axios";
 import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
@@ -23,6 +20,10 @@ export default function Produk() {
   const [user, setUser] = useState([]);
   const [post, setPost] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
 
   const [errorResponse, setErrorResponse] = useState({
@@ -111,18 +112,6 @@ export default function Produk() {
     }
   };
 
-  // const [displayClass, setDisplayClass] = useState(popupHide)
-
-  // const changeDisplay = () => {
-  //     if(displayClass == popupHide) {
-  //         setDisplayClass(popupDisplay)
-  //     }
-
-  //     else {
-  //         setDisplayClass(popupHide)
-  //     }
-  // }
-
   return isLoggedIn ? (
     <>
       <NavbarLogin></NavbarLogin>
@@ -177,7 +166,7 @@ export default function Produk() {
                       <Button
                         className=" w-100 border-purple radius-primary bg-color-secondary"
                         type="submit"
-                        onClick={(e) => onPublish(e, true)}
+                        onClick={post.user_id === user.id ? (e) => onPublish(e, true) : handleShow}
                       >
                         {post.user_id === user.id ? "Terbitkan" : "Saya tertarik dan ingin nego"}
                       </Button>
@@ -200,31 +189,42 @@ export default function Produk() {
                   </Card.Body>
                 </Card>
 
-                {/* <div className='displayClass'>
-                <div className='popupContainer'>
-                    <div className='popup'>
-                        <p onClick='changeDisplay'>X</p>
 
-                        <h1>Masukkan Harga Tawarmu</h1>
-                        <h2>Harga tawaranmu akan diketahui penjual. Jika penjual cocok, kamu akan segera dihubungi penjual.</h2>
-
-                        <div className='info'>
-                            <img src={jam} alt='profileImage'/>
-                            
-                            <div>
-                                <h1>Jam Tangan Casio</h1>
-                                <h3>Rp 250.000</h3>
-                            </div>
-                        </div>
-
-                        <h3>Harga Tawar</h3>
-                        <form action='/' method='POST'>
-                            <input type='number' placeholder='Rp 0,00' required/>
-                        </form>
-                        <button type='button' className='btnPurple'>Kirim</button>
-                    </div>
-                </div>
-            </div> */}
+                <Modal show={show} onHide={handleClose} centered size="sm" dialogClassName="modal-30w">
+                  <div className="p-3">
+                    <Modal.Header closeButton className="border-0">
+                      <Modal.Title></Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                      <p className="fw-bold">Masukan Harga Tawarmu</p>
+                      <p className="text-black-50">Harga tawaranmu akan diketahui penual, jika penjual cocok kamu akan segera dihubungi penjual.</p>
+                      <Stack direction="horizontal" gap={3} className="bg-color-grey radius-secondary p-2">
+                        <img src={`http://localhost:2000/public/files/${post.picture}`} alt=""
+                          style={{ width: "48px", height: "48px", objectFit: "cover", borderRadius: "12px" }} />
+                        <Stack>
+                          <p className="m-0 fw-bold">{post.name}</p>
+                          <p className="m-0 text-black-50">Rp. {post.price}</p>
+                        </Stack>
+                      </Stack>
+                      <Form className="">
+                        <Form.Group className="mt-3">
+                          <Form.Label className="fs-7">Harga Tawar</Form.Label>
+                          <Form.Control
+                            type="text"
+                            placeholder="Rp. 0,00"
+                            className="radius-primary box-shadow"
+                            // ref={titleField}
+                          />
+                        </Form.Group>
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer className="border-0">
+                      <Button className="bg-color-primary w-100 radius-primary border-0" onClick={handleClose}>
+                        Save Changes
+                      </Button>
+                    </Modal.Footer>
+                  </div>
+                </Modal>
               </div>
             </Col>
           </Row>

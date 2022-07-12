@@ -151,6 +151,7 @@ export function NavbarLogin() {
 		<Navbar className="box-shadow " bg="light" expand="lg">
 			<Container className="py-1">
 				<Navbar.Brand
+					href="/"
 					className="brand bg-color-primary"
 				></Navbar.Brand>
 				<Nav

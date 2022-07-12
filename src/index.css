@@ -37,6 +37,10 @@ code {
     background-color: #7126B5 !important;
 }
 
+.bg-color-grey {
+    background-color: #EEEEEE !important;
+}
+
 .box-shadow {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15) !important;
 }
@@ -56,3 +60,7 @@ code {
 .border-purple {
   border-color: #4B1979 !important;
 }
+
+.modal-30w {
+    min-width:33%;
+  }
