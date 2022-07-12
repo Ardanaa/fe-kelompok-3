@@ -192,13 +192,14 @@ export default function Produk() {
 
                 <Card className="mt-3 mb-5 productInfo box-shadow radius-primary">
                   <Card.Body>
-                    <Stack direction="horizontal" gap={3}></Stack>
-                      <img src={`http://localhost:2000/public/files/${user.picture}`} alt=""
+                    <Stack direction="horizontal" gap={3}>
+                      <img src={`${user.picture}`} alt=""
                         style={{ width: "48px", height: "48px", objectFit: "cover", borderRadius: "12px" }} />
                       <Stack>
                         <p className="m-0 fw-bold">{user.name}</p>
                         <p className="m-0 text-black-50">{user.city}</p>
                       </Stack>
+                    </Stack>
                   </Card.Body>
                 </Card>
 
