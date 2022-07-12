@@ -145,7 +145,7 @@ export default function Produk() {
                 >
                   <SwiperSlide>
                     <div className="card-carousel">
-                      <img src={`http://localhost:2000/public/files/${post.picture}`} style={{ width: '100%', borderRadius: '16px' }} alt="" />
+                      <img src={`${post.picture}`} style={{ width: '100%', borderRadius: '16px' }} alt="" />
                     </div>
                   </SwiperSlide>
 
