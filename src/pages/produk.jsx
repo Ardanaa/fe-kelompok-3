@@ -1,6 +1,6 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "../css/produk.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { NavbarLogin } from "../components/navbar";
 import { Container, Row, Col, Card, Stack, Button, Modal, Form } from "react-bootstrap";
 import axios from "axios";
@@ -13,6 +13,7 @@ import 'swiper/css/pagination';
 import {
   Navigation, Pagination, Mousewheel, Keyboard,
 } from 'swiper';
+import CurrencyFormatter from "../assets/CurrencyFormatter.js";
 
 export default function Produk() {
   const navigate = useNavigate();
@@ -20,10 +21,16 @@ export default function Produk() {
   const [user, setUser] = useState([]);
   const [post, setPost] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const requestedPriceField = useRef("")
+  const [isAccepted, setisAccepted] = useState(Boolean);
+  const [isRejected, setisRejected] = useState(Boolean);
+  const [isOpened, setisOpened] = useState(Boolean);
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
 
 
   const [errorResponse, setErrorResponse] = useState({
@@ -44,26 +51,29 @@ export default function Produk() {
         });
       console.log(response);
       const data = await response.data.data.product_by_id;
-      console.log(data);
+      console.log(data.User.picture);
 
       setPost(data);
     };
     postData();
   }, [id]);
 
+  // const sellerID = post.user_id;
+  // console.log(sellerID)
+
   useEffect(() => {
     const validateLogin = async () => {
       try {
         const token = localStorage.getItem("token");
         const currentUserRequest = await axios.get(
-          "http://localhost:2000/v1/auth/me",
+          `http://localhost:2000/v1/auth/me`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           }
         );
-
+        console.log(currentUserRequest)
         const currentUserResponse = currentUserRequest.data;
 
         if (currentUserResponse.status) {
@@ -112,6 +122,47 @@ export default function Produk() {
     }
   };
 
+  const onBid = async (e) => {
+    e.preventDefault();
+
+    try {
+      const token = localStorage.getItem("token");
+
+      const bidPayload = new FormData();
+
+      bidPayload.append("owner_id", post.user_id);
+      bidPayload.append("product_id", post.id);
+      bidPayload.append("requestedPrice", requestedPriceField.current.value);
+      bidPayload.append("isAccepted", isAccepted);
+      bidPayload.append("isRejected", isRejected);
+      bidPayload.append("isOpened", isOpened);
+
+      const bidRequest = await axios.post(
+        "http://localhost:2000/v1/transactions/create",
+        bidPayload,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(bidRequest);
+      const bidResponse = bidRequest.data;
+      console.log(bidResponse)
+
+      if (bidResponse.status) navigate(`/daftarJual/${user.id}`)
+    } catch (err) {
+      console.log(err);
+      const response = err.response.data;
+
+      setErrorResponse({
+        isError: true,
+        message: response.message,
+      });
+    }
+  };
+
   return isLoggedIn ? (
     <>
       <NavbarLogin></NavbarLogin>
@@ -131,7 +182,7 @@ export default function Produk() {
                 >
                   <SwiperSlide>
                     <div className="card-carousel">
-                      <img src={`http://localhost:2000/public/files/${post.picture}`} style={{ width: '100%', borderRadius: '16px' }} alt="" />
+                      <img src={`${post.picture}`} style={{ width: '100%', borderRadius: '16px' }} alt="" />
                     </div>
                   </SwiperSlide>
 
@@ -166,11 +217,10 @@ export default function Produk() {
                       <Button
                         className=" w-100 border-purple radius-primary bg-color-secondary"
                         type="submit"
-                        onClick={post.user_id === user.id ? (e) => onPublish(e, true) : handleShow}
+                        onClick={post.user_id === user.id ?  (e) => onPublish(e, true) : handleShow}
                       >
                         {post.user_id === user.id ? "Terbitkan" : "Saya tertarik dan ingin nego"}
                       </Button>
-                      {/* <button className='btnPurple' >Saya tertarik dan ingin nego</button> */}
                     </div>
                   </Card.Body>
                 </div>
@@ -179,11 +229,11 @@ export default function Produk() {
                 <Card className="mt-3 mb-5 productInfo box-shadow radius-primary">
                   <Card.Body>
                     <Stack direction="horizontal" gap={3}>
-                      <img src={`http://localhost:2000/public/files/${user.picture}`} alt=""
+                      <img src={`${post.User ? post.User.picture : ""}`} alt=""
                         style={{ width: "48px", height: "48px", objectFit: "cover", borderRadius: "12px" }} />
                       <Stack>
-                        <p className="m-0 fw-bold">{user.name}</p>
-                        <p className="m-0 text-black-50">{user.city}</p>
+                        <p className="m-0 fw-bold">{post.User && post.User.name}</p>
+                        <p className="m-0 text-black-50">{post.User && post.User.city}</p>
                       </Stack>
                     </Stack>
                   </Card.Body>
@@ -199,11 +249,11 @@ export default function Produk() {
                       <p className="fw-bold">Masukan Harga Tawarmu</p>
                       <p className="text-black-50">Harga tawaranmu akan diketahui penual, jika penjual cocok kamu akan segera dihubungi penjual.</p>
                       <Stack direction="horizontal" gap={3} className="bg-color-grey radius-secondary p-2">
-                        <img src={`http://localhost:2000/public/files/${post.picture}`} alt=""
+                        <img src={`${post.picture}`} alt=""
                           style={{ width: "48px", height: "48px", objectFit: "cover", borderRadius: "12px" }} />
                         <Stack>
                           <p className="m-0 fw-bold">{post.name}</p>
-                          <p className="m-0 text-black-50">Rp. {post.price}</p>
+                          <p className="m-0 text-black-50">{CurrencyFormatter(post.price)}</p>
                         </Stack>
                       </Stack>
                       <Form className="">
@@ -213,13 +263,16 @@ export default function Produk() {
                             type="text"
                             placeholder="Rp. 0,00"
                             className="radius-primary box-shadow"
-                            // ref={titleField}
+                            ref={requestedPriceField}
                           />
                         </Form.Group>
-                        </Form>
+                      </Form>
                     </Modal.Body>
                     <Modal.Footer className="border-0">
-                      <Button className="bg-color-primary w-100 radius-primary border-0" onClick={handleClose}>
+                      <Button
+                        type="submit"
+                        onClick={(e) => onBid(e)}
+                        className="bg-color-primary w-100 radius-primary border-0">
                         Kirim
                       </Button>
                     </Modal.Footer>

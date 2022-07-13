@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Container, Button, Row, Col, Card } from "react-bootstrap";
 import { FiSearch } from "react-icons/fi";
 import axios from "axios";
-import jam1 from "../assets/images/jam1.png";
-import jam2 from "../assets/images/jam2.png";
 import "../css/products.css"
 import { Link } from "react-router-dom";
+import CurrencyFormatter from "../assets/CurrencyFormatter.js";
 
 function Product() {
 	const [post, setPost] = useState([]);
@@ -44,11 +43,11 @@ function Product() {
 						<Col md={2} key={post.id} className="mb-3 p-2" >
 							<Link className="text-decoration-none text-black" to={`/produk/${post.id}`}>
 								<Card >
-									<Card.Img variant="top" className="p-2" src={`http://localhost:2000/public/files/${post.picture}`} style={{ maxHeight: "100px", objectFit: "cover" }} />
+									<Card.Img variant="top" className="p-2" src={`${post.picture}`} style={{ maxHeight: "100px", objectFit: "cover" }} />
 									<Card.Body>
 										<Card.Title className="fs-7 ">{post.name}</Card.Title>
 										<p className="text-black-50 fs-8  mb-0">{post.category}</p>
-										<Card.Text className="fs-7 ">Rp. {post.price}</Card.Text>
+										<Card.Text className="fs-7 ">{CurrencyFormatter(post.price)}</Card.Text>
 									</Card.Body>
 								</Card>
 							</Link>
