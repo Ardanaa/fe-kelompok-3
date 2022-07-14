@@ -117,7 +117,7 @@ export function NavbarLogin() {
 		<Popover id="popover-basic">
 			<Popover.Header >
 				<div className="popover-profile d-flex align-items-center">
-					<img src={`http://localhost:2000/public/files/${user.picture}`} alt="" />
+					<img src={`${user.picture}`} alt="" />
 					<p className="my-auto">{user.name}</p>
 				</div>
 			</Popover.Header>
@@ -133,7 +133,7 @@ export function NavbarLogin() {
 				<Row>
 					{post.slice(0, 3).map((post) =>
 						<Stack direction="horizontal" gap={3}>
-							<img src={`http://localhost:2000/public/files/${post.picture}`} alt=""
+							<img src={`${post.picture}`} alt=""
 								style={{ width: "48px", height: "48px", objectFit: "cover", borderRadius: "12px" }} />
 							<Stack>
 								<p className="m-0 text-black-50">{postStatus}</p>

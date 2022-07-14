@@ -82,7 +82,7 @@ export default function DaftarJual() {
       <p className="fw-bold fs-3">Daftar Jual Saya</p>
       <div className=" radius-primary box-shadow p-2">
         <Stack direction="horizontal" gap={3}>
-          <img src={`http://localhost:2000/public/files/${user.picture}`} alt=""
+          <img src={`${user.picture}`} alt=""
             style={{ width: "48px", height: "48px", objectFit: "cover", borderRadius: "12px" }} />
           <Stack>
             <p className="m-0 fw-bold">{user.name}</p>
@@ -141,7 +141,7 @@ export default function DaftarJual() {
               <Col md={4} key={post.id} className="mb-3">
                 <Link className="text-decoration-none text-black" to={`/produk/${post.id}`}>
                   <Card >
-                    <Card.Img variant="top" className="p-2" src={`http://localhost:2000/public/files/${post.picture}`} style={{ maxHeight: "100px", objectFit: "cover" }} />
+                    <Card.Img variant="top" className="p-2" src={`${post.picture}`} style={{ maxHeight: "100px", objectFit: "cover" }} />
                     <Card.Body>
                       <Card.Title className="fs-7 cut-text">{post.name}</Card.Title>
                       <p className="text-black-50 fs-8  mb-0">{post.category}</p>
