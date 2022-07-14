@@ -12,6 +12,7 @@ export default function DaftarJual() {
   const navigate = useNavigate();
   const { id } = useParams();
   const [post, setPost] = useState([]);
+  const [interest, setInterest] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [user, setUser] = useState({});
   const [toogleCategory, setToogleCategory] = useState(1)
@@ -64,6 +65,26 @@ export default function DaftarJual() {
       setPost(data);
     };
     postData();
+  }, [id]);
+  
+  useEffect(() => {
+    const interestData = async () => {
+
+      const token = localStorage.getItem("token");
+
+      const response = await axios.get(`http://localhost:2000/v1/transactios/owner/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+      console.log(response);
+      const data = await response.data.data.get_transaction_owner;
+      console.log(data);
+
+      setInterest(data);
+    };
+    interestData();
   }, [id]);
 
   const handleJual = () => {
@@ -157,10 +178,32 @@ export default function DaftarJual() {
           </Row>
         </div>
         <div
-          className={toogleCategory === 2 ? "active-content mx-auto" : "content"}
+          className={toogleCategory === 2 ? "active-content" : "content"}
           // style={{marginLeft: "200px", alignItems: "center !important"}}
         >
+          {interest ? (
+          <Row className="" >
+            {interest.map((interest) =>
+              <Col key={interest.id} className="mb-3">
+                <Link className="text-decoration-none text-black" to={`/infoPenawaran/${interest.id}`}>
+                  <Card >
+                    <Card.Img variant="top" className="p-2" src={`${interest.Product.picture}`} style={{ maxHeight: "100px", objectFit: "cover" }} />
+                    <Card.Body>
+                      <Card.Title className="fs-7 cut-text">{interest.Product.name}</Card.Title>
+                      <p className="text-black-50 fs-8  mb-0">{interest.Product.category}</p>
+                      <Card.Text className="fs-7 ">Rp.{interest.Product.price}</Card.Text>
+                      {/* <Badge bg={interest.isPublish === true ? "primary" : "warning"}>
+                        {interest.isPublish === true ? "Produk sudah di publish" : "Produk belum di publish"}
+                      </Badge> */}
+                    </Card.Body>
+                  </Card>
+                </Link>
+              </Col>
+            ).reverse()}
+          </Row>
+          ) : (
           <img src={likedEmpty} alt="" />
+          )}
         </div>
       </div>
     </Container>

@@ -21,7 +21,8 @@ export default function Produk() {
   const [user, setUser] = useState([]);
   const [post, setPost] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const requestedPriceField = useRef("")
+  const requestedPriceField = useRef("");
+
   const [isAccepted, setisAccepted] = useState(Boolean);
   const [isRejected, setisRejected] = useState(Boolean);
   const [isOpened, setisOpened] = useState(Boolean);
@@ -128,14 +129,12 @@ export default function Produk() {
     try {
       const token = localStorage.getItem("token");
 
-      const bidPayload = new FormData();
-
-      bidPayload.append("owner_id", post.user_id);
-      bidPayload.append("product_id", post.id);
-      bidPayload.append("requestedPrice", requestedPriceField.current.value);
-      bidPayload.append("isAccepted", isAccepted);
-      bidPayload.append("isRejected", isRejected);
-      bidPayload.append("isOpened", isOpened);
+      const bidPayload = {
+        owner_id: post.User.id,
+        product_id: post.id,
+        requestedPrice: requestedPriceField.current.value,
+        isOpened: true,
+      };
 
       const bidRequest = await axios.post(
         "http://localhost:2000/v1/transactions/create",
@@ -143,7 +142,6 @@ export default function Produk() {
         {
           headers: {
             Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
           },
         }
       );
