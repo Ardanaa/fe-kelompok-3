@@ -8,6 +8,7 @@ import InfoProduct from "./pages/infoProduct";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import Produk from "./pages/produk";
+import InfoPenawar from "./pages/infoPenawar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "owl.carousel/dist/assets/owl.carousel.css";
@@ -25,6 +26,7 @@ render(
 			<Route path="/register" element={<Register />} />
       <Route path="/produk" element={<Produk />} />
 		<Route path="/daftarJual/:id" element={<DaftarJual />} />
+		<Route path="/infoPenawar/:id" element={<InfoPenawar />} />
     </Routes>
   </Router>,
   root
