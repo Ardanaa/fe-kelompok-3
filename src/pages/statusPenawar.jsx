@@ -16,7 +16,6 @@ import axios from "axios";
 import "../css/daftarJual.css";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { FaWhatsapp } from "react-icons/fa";
-import { ModalPenawar } from "../components/modalStatus";
 
 export default function InfoPenawar() {
   //   const [post, setPost] = useState([]);
@@ -81,7 +80,7 @@ export default function InfoPenawar() {
                 className=" w-50 radius-primary bg-color me-3"
                 type="submit"
               >
-                Tolak
+                Status
               </Button>{" "}
               <Button
                 className=" w-50 radius-primary bg-color-secondary"
@@ -89,73 +88,46 @@ export default function InfoPenawar() {
                 onClick={handleShow}
               >
                 Terima
+                <FaWhatsapp className="mb-1" />
               </Button>
             </div>
+
             <Modal show={show} onHide={handleClose}>
-      <div className="p-3">
-        <Modal.Header closeButton className="border-0">
-          <Modal.Title></Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p className="fw-bold">Perbarui status penjualan produkmu</p>
-          <p className="text-black-50">
-            Segera hubungi pembeli melalui whatsapp untuk transaksi selanjutnya
-          </p>
-          <h5 className="text-center mb-3">Product Match</h5>
-          <Stack
-            direction="horizontal"
-            gap={3}
-            className="bg-color-grey radius-secondary p-2"
-          >
-            <img
-              src={Jam}
-              alt=""
-              style={{
-                width: "48px",
-                height: "48px",
-                objectFit: "cover",
-                borderRadius: "12px",
-              }}
-            />
-            <Stack>
-              <p className="m-0 fw-bold">Nama Pembeli</p>
-              <p className="m-0 text-black-50">Kota</p>
-            </Stack>
-          </Stack>
-          <Stack
-            direction="horizontal"
-            gap={3}
-            className="bg-color-grey radius-secondary p-2"
-          >
-            <img
-              src={Jam}
-              alt=""
-              style={{
-                width: "48px",
-                height: "48px",
-                objectFit: "cover",
-                borderRadius: "12px",
-              }}
-            />
-            <Stack>
-              <p className="m-0 fw-bold">Jam Tangan Casio</p>
-              <p className="m-0">Rp 250.000</p>
-              <p className="m-0">Ditawar Rp 200.000</p>
-            </Stack>
-          </Stack>
-        </Modal.Body>
-        <Modal.Footer className="pe-5 d-gird gap-2">
-          <Button
-            className="bg-color-primary w-100 radius-primary border-0"
-            onClick={handleClose}
-          >
-            Hubungi via Whatsapp
-            <FaWhatsapp className="mb-1" />
-          </Button>
-        </Modal.Footer>
-      </div>
-    </Modal>
-           <ModalPenawar/>
+              <div className="p-3">
+                <Modal.Header closeButton className="border-0">
+                  <Modal.Title></Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <p className="fw-bold">Perbarui status penjualan produkmu</p>
+                  <Form>
+                      <div key={`default`} className="mb-3">
+                        <Form.Check
+                          type={'radio'}
+                          id={`default`}
+                          label={`Berhasil terjual`}
+                        />
+                        <p className=" text-black-50">Kamu telah sepakat menjual produk ini kepada pembeli</p>
+
+                        <Form.Check
+                          type={'radio'}
+                          label={`Batalkan transaksi`}
+                          id={`default`}
+                        />
+                        <p className=" text-black-50">Kamu membatalkan transaksi produk ini dengan pembeli</p>
+                      </div>
+                  </Form>
+                </Modal.Body>
+                <Modal.Footer className="pe-5 d-gird gap-2">
+                  <Button
+                    className="bg-color-primary w-100 radius-primary border-0"
+                    onClick={handleClose}
+                  >
+                    Hubungi via Whatsapp
+                    <FaWhatsapp className="mb-1" />
+                  </Button>
+                </Modal.Footer>
+              </div>
+            </Modal>
           </div>
         </Row>
       </Container>
