@@ -133,7 +133,7 @@ export default function Produk() {
         owner_id: post.User.id,
         product_id: post.id,
         requestedPrice: requestedPriceField.current.value,
-        isOpened: true,
+        isOpened: false,
       };
 
       const bidRequest = await axios.post(
