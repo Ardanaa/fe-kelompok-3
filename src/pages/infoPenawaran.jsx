@@ -1,16 +1,21 @@
 import { NavbarPenawaran } from "../components/navbar";
 import React, { useRef, useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { Col, Container, Row, Form, Button, Alert, Stack } from "react-bootstrap";
+import { Col, Container, Row, Form, Button, Alert, Stack, Modal } from "react-bootstrap";
 import axios from "axios";
 import CurrencyFormatter from "../assets/CurrencyFormatter.js";
 import dateFormat from "dateformat";
+import { FaWhatsapp } from "react-icons/fa";
 
 export default function InfoProfile() {
 	const navigate = useNavigate();
 	const { id } = useParams();
 	const [user, setUser] = useState([]);
 	const [interest, setInterest] = useState([]);
+	const [show, setShow] = useState(false);
+
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
 
 
 
@@ -19,34 +24,29 @@ export default function InfoProfile() {
 		message: "",
 	});
 
-	const onUpdate = async (e) => {
+	const onAccept = async (e, isAccepted, isRejected) => {
 		e.preventDefault();
 
 		try {
 			const token = localStorage.getItem("token");
 
-			const userPayload = new FormData();
+			const acceptPayload = {
+				isAccepted: isAccepted,
+				isRejected: isRejected,
+			}
 
-			// userPayload.append("picture", image);
-			// userPayload.append("name", nameField.current.value);
-			// userPayload.append("city", cityField.current.value);
-			// userPayload.append("address", addressField.current.value);
-			// userPayload.append("phoneNumber", phoneNumberField.current.value);
-
-			const userRequest = await axios.put(
-				`http://localhost:2000/v1/users/update/${id}`,
-				userPayload,
+			const acceptRequest = await axios.put(
+				`http://localhost:2000/v1/transaction/update/${id}`,
+				acceptPayload,
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,
-						"Content-Type": "multipart/form-data",
 					},
 				}
 			);
+			const acceptResponse = acceptRequest.data.data.updated_transaction;
 
-			const userResponse = userRequest.data;
-
-			if (userResponse.status) navigate("/");
+			if (acceptResponse.status) navigate("/");
 		} catch (err) {
 			console.log(err);
 			const response = err.response.data;
@@ -110,20 +110,64 @@ export default function InfoProfile() {
 						</Stack>
 					</Stack>
 					<div className="d-flex">
-							<Button
-								className="ms-auto me-2 border-purple radius-primary bg-white color-primary"
-								type="submit"
-							>
-								Tolak
-							</Button>
+						<Button
+							className="ms-auto me-2 border-purple radius-primary bg-white color-primary"
+							type="submit"
+							onClick={(e) => onAccept(e, false, true)}
+							hidden={interest.isRejected ? true : false}
+						>
+							{interest.isAccepted ? "Status" : "Tolak"}
+						</Button>
 						<Button
 							className="border-purple radius-primary bg-color-secondary"
 							type="submit"
+							onClick={(e) => onAccept(e, true, false)}
+							hidden={interest.isRejected ? true : false}
 						>
-							Terima
+							{interest.isAccepted ? "Hubungi di " : "Terima"}
 						</Button>
 					</div>
 				</div>
+
+				<Modal show={show} onHide={handleClose} centered size="sm" dialogClassName="modal-30w">
+					<div className="p-3">
+						<Modal.Header closeButton className="border-0">
+							<Modal.Title></Modal.Title>
+						</Modal.Header>
+						<Modal.Body>
+							<p className="fw-bold">Yeay kamu berhasil mendapat harga yang sesuai</p>
+							<p className="text-black-50">Segera hubungi pembeli melalui whatsapp untuk transaksi selanjutnya</p>
+							<div className="bg-color-grey radius-secondary p-2">
+									<p className="text-center fw-bold">Product Match</p>
+								<Stack className="mb-3" direction="horizontal" gap={3}>
+									<img src={`${interest.User ? interest.User.picture : ""}`} alt="buyer"
+										style={{ width: "48px", height: "48px", objectFit: "cover", borderRadius: "12px" }} />
+									<Stack>
+										<p className="m-0 fw-bold">{interest.User && interest.User.name}</p>
+										<p className="m-0 text-black-50">{interest.User && interest.User.city}</p>
+									</Stack>
+								</Stack>
+								<Stack direction="horizontal" gap={3}>
+									<img src={`${interest.Product ? interest.Product.picture : ""}`} alt="buyer"
+										style={{ width: "48px", height: "48px", objectFit: "cover", borderRadius: "12px" }} />
+									<Stack>
+										<p className="m-0">{interest.Product && interest.Product.name}</p>
+										<p className="m-0 text-decoration-line-through">{CurrencyFormatter(interest.Product && interest.Product.price)}</p>
+										<p className="m-0">Ditawar {CurrencyFormatter(interest.requestedPrice)}</p>
+									</Stack>
+								</Stack>
+							</div>
+
+						</Modal.Body>
+						<Modal.Footer className="border-0">
+							<Button
+								type="submit"
+								className="bg-color-primary w-100 radius-primary border-0">
+								Hubungi via Whatsapp <FaWhatsapp />
+							</Button>
+						</Modal.Footer>
+					</div>
+				</Modal>
 			</Container>
 		</>
 	);
