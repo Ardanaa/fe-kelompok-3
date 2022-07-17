@@ -194,7 +194,7 @@ export function NavbarInfo() {
 		<Navbar className="box-shadow " bg="light" expand="lg">
 			<Container className="py-1 ">
 				<Navbar.Brand
-					href="#"
+					href="/"
 					className="brand bg-color-primary"
 				></Navbar.Brand>
 				<p className="navbar-info fw-bold">Lengkapi Info Akun</p>
@@ -208,9 +208,23 @@ export function NavbarProduct() {
 		<Navbar className="box-shadow " bg="light" expand="lg">
 			<Container className="py-1 ">
 				<Navbar.Brand
-					href="#"
+					href="/"
 					className="brand bg-color-primary"
 				></Navbar.Brand>
+			</Container>
+		</Navbar>
+	);
+};
+
+export function NavbarPenawaran() {
+	return (
+		<Navbar className="box-shadow " bg="light" expand="lg">
+			<Container className="py-1 ">
+				<Navbar.Brand
+					href="/"
+					className="brand bg-color-primary"
+				></Navbar.Brand>
+				<p className="navbar-info fw-bold">Info Penawaran</p>
 			</Container>
 		</Navbar>
 	);
