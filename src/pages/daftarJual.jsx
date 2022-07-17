@@ -7,6 +7,7 @@ import { Navigate, Link, useParams, useNavigate } from 'react-router-dom';
 import likedEmpty from '../assets/images/likedEmpty.png'
 import axios from "axios";
 import "../css/daftarJual.css"
+import CurrencyFormatter from "../assets/CurrencyFormatter.js";
 
 export default function DaftarJual() {
   const navigate = useNavigate();
@@ -166,7 +167,7 @@ export default function DaftarJual() {
                     <Card.Body>
                       <Card.Title className="fs-7 cut-text">{post.name}</Card.Title>
                       <p className="text-black-50 fs-8  mb-0">{post.category}</p>
-                      <Card.Text className="fs-7 ">Rp.{post.price}</Card.Text>
+                      <Card.Text className="fs-7 ">{CurrencyFormatter(post.price)}</Card.Text>
                       <Badge bg={post.isPublish === true ? "primary" : "warning"}>
                         {post.isPublish === true ? "Produk sudah di publish" : "Produk belum di publish"}
                       </Badge>
@@ -191,7 +192,7 @@ export default function DaftarJual() {
                     <Card.Body>
                       <Card.Title className="fs-7 cut-text">{interest.Product.name}</Card.Title>
                       <p className="text-black-50 fs-8  mb-0">{interest.Product.category}</p>
-                      <Card.Text className="fs-7 ">Rp.{interest.Product.price}</Card.Text>
+                      <Card.Text className="fs-7 ">{CurrencyFormatter(interest.Product.price)}</Card.Text>
                       {/* <Badge bg={interest.isPublish === true ? "primary" : "warning"}>
                         {interest.isPublish === true ? "Produk sudah di publish" : "Produk belum di publish"}
                       </Badge> */}
