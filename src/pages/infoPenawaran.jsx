@@ -129,7 +129,7 @@ export default function InfoProfile() {
 						<Button
 							className="ms-auto me-2 border-purple radius-primary bg-white color-primary"
 							type="submit"
-							onClick={interest.isAccepted === true ? handleShowStatus() : (e) => onAccept(e, false, true)}
+							onClick={interest.isAccepted === true ? (e) => handleShowStatus(e) : (e) => onAccept(e, false, true)}
 							hidden={interest.isRejected === true ? true : false}
 						>
 							{interest.isAccepted === true ? "Status" : "Tolak"}
