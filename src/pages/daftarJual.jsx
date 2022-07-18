@@ -73,7 +73,7 @@ export default function DaftarJual() {
 
       const token = localStorage.getItem("token");
 
-      const response = await axios.get(`http://localhost:2000/v1/transactios/owner/${id}`,
+      const response = await axios.get(`http://localhost:2000/v1/transactions/owner/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
