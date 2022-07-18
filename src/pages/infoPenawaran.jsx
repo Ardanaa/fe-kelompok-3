@@ -46,7 +46,21 @@ export default function InfoProfile() {
 			);
 			const acceptResponse = acceptRequest.data.data.updated_transaction;
 
-			if (acceptResponse.status) navigate("/");
+			const response = await axios.get(`http://localhost:2000/v1/transaction/${id}`,
+				{
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				});
+			console.log(response);
+			const data = await response.data.data.transaction_by_id;
+			console.log(data);
+
+			setInterest(data);
+
+			
+			if (acceptResponse.status) navigate(`/infoPenawaran/${interest.id}`); handleShow() ;
+			console.log(acceptResponse.status)
 		} catch (err) {
 			console.log(err);
 			const response = err.response.data;
@@ -70,7 +84,7 @@ export default function InfoProfile() {
 					},
 				});
 			console.log(response);
-			const data = await response.data.data.transaction_by_id[0];
+			const data = await response.data.data.transaction_by_id;
 			console.log(data);
 
 			setInterest(data);
@@ -114,17 +128,17 @@ export default function InfoProfile() {
 							className="ms-auto me-2 border-purple radius-primary bg-white color-primary"
 							type="submit"
 							onClick={(e) => onAccept(e, false, true)}
-							hidden={interest.isRejected ? true : false}
+							hidden={interest.isRejected === true ? true : false}
 						>
-							{interest.isAccepted ? "Status" : "Tolak"}
+							{interest.isAccepted === true ? "Status" : "Tolak"}
 						</Button>
 						<Button
 							className="border-purple radius-primary bg-color-secondary"
 							type="submit"
 							onClick={(e) => onAccept(e, true, false)}
-							hidden={interest.isRejected ? true : false}
+							hidden={interest.isRejected === true ? true : false}
 						>
-							{interest.isAccepted ? "Hubungi di " : "Terima"}
+							{interest.isAccepted === true ? "Hubungi di " : "Terima"}
 						</Button>
 					</div>
 				</div>
