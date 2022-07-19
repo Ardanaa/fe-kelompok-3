@@ -157,8 +157,8 @@ export function NavbarLogin() {
 	);
 
 	const popoverNotif = (
-		<Popover id="popover-basic" style={{ maxWidth: "376px" }}>
-			<Popover.Header>
+		<Popover id="popover-basic" className="box-shadow radius-primary" style={{ maxWidth: "376px" }}>
+			<Popover.Header className="radius-primary bg-white border-0">
 				{notif.map((notif) =>
 					user.id === notif.owner_id ? (
 						<Row className="mb-0">
