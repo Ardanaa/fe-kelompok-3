@@ -7,19 +7,23 @@ import {
 	Popover,
 	OverlayTrigger,
 	Row,
-	Stack
+	Stack,
+	Offcanvas
 } from "react-bootstrap";
 import { FiLogIn, FiList, FiBell, FiUser, FiLogOut } from "react-icons/fi";
 import React, { useState, useEffect } from "react";
 import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
 import "../css/navbar.css"
+import { useDispatch } from "react-redux";
+import { addUser } from "../slices/userSlice";
 
 export function NavbarDefault() {
 	return (
 		<Navbar className="box-shadow " bg="light" expand="lg">
 			<Container className="py-1">
 				<Navbar.Brand
+					id="navbar-brand"
 					href="#"
 					className="brand bg-color-primary"
 				></Navbar.Brand>
@@ -61,6 +65,7 @@ export function NavbarLogin() {
 	const [user, setUser] = useState({});
 	const [post, setPost] = useState([]);
 	const [postStatus, setPostStatus] = useState([]);
+	const dispatch = useDispatch();
 
 
 	useEffect(() => {
@@ -83,6 +88,13 @@ export function NavbarLogin() {
 				const currentUserResponse = currentUserRequest.data;
 
 				if (currentUserResponse.status) {
+					dispatch(
+						addUser({
+								user: currentUserResponse.data.user,
+								token: token,
+						})
+				);
+				localStorage.setItem("user", JSON.stringify(currentUserResponse.data.user))
 					setUser(currentUserResponse.data.user);
 				}
 			} catch (err) {
@@ -151,6 +163,7 @@ export function NavbarLogin() {
 		<Navbar className="box-shadow " bg="light" expand="lg">
 			<Container className="py-1">
 				<Navbar.Brand
+					id="navbar-brand"
 					href="/"
 					className="brand bg-color-primary"
 				></Navbar.Brand>
@@ -168,7 +181,32 @@ export function NavbarLogin() {
 						/>
 					</Form>
 				</Nav>
-				<Navbar.Toggle aria-controls="navbarScroll" />
+				<Navbar.Toggle aria-controls={`offcanvasNavbar-expand-expand`} />
+				<Navbar.Offcanvas
+					id={`offcanvasNavbar-expand-expand`}
+					aria-labelledby={`offcanvasNavbarLabel-expand-expand`}
+					placement="start"
+				>
+					<Offcanvas.Header closeButton>
+						<Offcanvas.Title id={`offcanvasNavbarLabel-expand-expand`}>
+							Offcanvas
+						</Offcanvas.Title>
+					</Offcanvas.Header>
+					<Offcanvas.Body>
+						<Nav className="justify-content-end flex-grow-1 pe-3">
+							<Link to={`/daftarJual/${user.id}`}>
+								<Button variant="light"> <FiList className=" mb-1" />  </Button>
+							</Link>
+							<OverlayTrigger trigger="click" placement="bottom" overlay={popoverNotif}>
+								<Button variant="light"> <FiBell className=" mb-1" />  </Button>
+							</OverlayTrigger>
+							<OverlayTrigger trigger="click" placement="bottom" overlay={popoverUser}>
+								<Button variant="light"> <FiUser className=" mb-1" />  </Button>
+							</OverlayTrigger>
+						</Nav>
+					</Offcanvas.Body>
+				</Navbar.Offcanvas>
+				{/* <Navbar.Toggle aria-controls="navbarScroll" />
 				<Navbar.Collapse id="navbarScroll">
 					<Nav className="ms-auto">
 						<Link to={`/daftarJual/${user.id}`}>
@@ -180,10 +218,8 @@ export function NavbarLogin() {
 						<OverlayTrigger trigger="click" placement="bottom" overlay={popoverUser}>
 							<Button variant="light"> <FiUser className=" mb-1" />  </Button>
 						</OverlayTrigger>
-
-
 					</Nav>
-				</Navbar.Collapse>
+				</Navbar.Collapse> */}
 			</Container>
 		</Navbar>
 	);
@@ -194,6 +230,7 @@ export function NavbarInfo() {
 		<Navbar className="box-shadow " bg="light" expand="lg">
 			<Container className="py-1 ">
 				<Navbar.Brand
+					id="navbar-brand"
 					href="/"
 					className="brand bg-color-primary"
 				></Navbar.Brand>
@@ -208,6 +245,7 @@ export function NavbarProduct() {
 		<Navbar className="box-shadow " bg="light" expand="lg">
 			<Container className="py-1 ">
 				<Navbar.Brand
+					id="navbar-brand"
 					href="/"
 					className="brand bg-color-primary"
 				></Navbar.Brand>
@@ -221,6 +259,7 @@ export function NavbarPenawaran() {
 		<Navbar className="box-shadow " bg="light" expand="lg">
 			<Container className="py-1 ">
 				<Navbar.Brand
+					id="navbar-brand"
 					href="/"
 					className="brand bg-color-primary"
 				></Navbar.Brand>
