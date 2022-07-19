@@ -150,7 +150,7 @@ export default function InfoPenawar() {
             onClick={handleClose}
           >
             Hubungi via Whatsapp
-            <FaWhatsapp className="mb-1" />
+            <FaWhatsapp className="mx-2" />
           </Button>
         </Modal.Footer>
       </div>

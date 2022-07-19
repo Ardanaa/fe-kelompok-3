@@ -87,7 +87,7 @@ export default function InfoPenawar() {
                 type="submit"
                 onClick={handleShow}
               >
-                Terima
+                Hubungi di
                 <FaWhatsapp className="mx-2" />
               </Button>
             </div>
@@ -122,8 +122,7 @@ export default function InfoPenawar() {
                     className="bg-color-primary w-100 radius-primary border-0"
                     onClick={handleClose}
                   > 
-                    <span>Hubungi via Whatsapp</span>
-                    <FaWhatsapp className="mx-2" />
+                    Kirim
                   </Button>
                 </Modal.Footer>
               </div>
