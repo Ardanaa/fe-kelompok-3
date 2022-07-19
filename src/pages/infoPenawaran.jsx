@@ -21,7 +21,10 @@ export default function InfoProfile() {
 	const handleCloseStatus = () => setShowStatus(false);
 	const handleShowStatus = () => setShowStatus(true);
 
-
+	const [successResponse, setSuccessResponse] = useState({
+		isSuccess: false,
+		message: "",
+});
 
 	const [errorResponse, setErrorResponse] = useState({
 		isError: false,
@@ -62,7 +65,53 @@ export default function InfoProfile() {
 
 			setInterest(data);
 
-			if (acceptResponse.status ) navigate(`/infoPenawaran/${interest.id}`);
+			if (acceptResponse.status) navigate(`/infoPenawaran/${interest.id}`);
+		} catch (err) {
+			console.log(err);
+			const response = err.response.data;
+
+			setErrorResponse({
+				isError: true,
+				message: response.message,
+			});
+		}
+	};
+
+	const onChangeStatus = async (e, isSold, isRejected) => {
+		e.preventDefault();
+
+		try {
+			const token = localStorage.getItem("token");
+
+			const acceptPayload = {
+				isSold: isSold,
+				isRejected: isRejected,
+			}
+
+			const acceptRequest = await axios.put(
+				`http://localhost:2000/v1/transactions/update/${id}`,
+				acceptPayload,
+				{
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				}
+			);
+			const acceptResponse = acceptRequest.data.data.updated_transaction;
+
+			const response = await axios.get(`http://localhost:2000/v1/transactions/${id}`,
+				{
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				});
+			console.log(response);
+			const data = await response.data.data.transaction_by_id;
+			console.log(data);
+
+			setInterest(data);
+
+			if (acceptResponse.status) navigate(`/infoPenawaran/${interest.id}`);
 		} catch (err) {
 			console.log(err);
 			const response = err.response.data;
@@ -137,7 +186,7 @@ export default function InfoProfile() {
 						<Button
 							className="border-purple radius-primary bg-color-secondary"
 							type="submit"
-							onClick={(e) => {onAccept(e, true, false); handleShow()}}
+							onClick={(e) => { onAccept(e, true, false); handleShow() }}
 							hidden={interest.isRejected === true ? true : false}
 						>
 							{interest.isAccepted === true ? "Hubungi di " : "Terima"}
@@ -155,7 +204,7 @@ export default function InfoProfile() {
 							<p className="fw-bold">Yeay kamu berhasil mendapat harga yang sesuai</p>
 							<p className="text-black-50">Segera hubungi pembeli melalui whatsapp untuk transaksi selanjutnya</p>
 							<div className="bg-color-grey radius-secondary p-2">
-									<p className="text-center fw-bold">Product Match</p>
+								<p className="text-center fw-bold">Product Match</p>
 								<Stack className="mb-3" direction="horizontal" gap={3}>
 									<img src={`${interest.User ? interest.User.picture : ""}`} alt="buyer"
 										style={{ width: "48px", height: "48px", objectFit: "cover", borderRadius: "12px" }} />
@@ -188,42 +237,43 @@ export default function InfoProfile() {
 
 
 				{/* Modal status */}
-				<Modal show={showStatus} onHide={handleCloseStatus}>
-              <div className="p-3">
-                <Modal.Header closeButton className="border-0">
-                  <Modal.Title></Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                  <p className="fw-bold">Perbarui status penjualan produkmu</p>
-                  <Form>
-                      <div key={`default`} className="mb-3">
-                        <Form.Check
-                          type={'radio'}
-                          id={`default`}
-                          label={`Berhasil terjual`}
-                        />
-                        <p className=" text-black-50">Kamu telah sepakat menjual produk ini kepada pembeli</p>
+				<Modal show={showStatus} onHide={handleCloseStatus} centered size="sm" dialogClassName="modal-30w">
+					<div className="p-3">
+						<Modal.Header closeButton className="border-0">
+							<Modal.Title></Modal.Title>
+						</Modal.Header>
+						<Modal.Body>
+							<p className="fw-bold">Perbarui status penjualan produkmu</p>
+							<Form>
+								<div key={`radio`} className="mb-3">
+									<Form.Check
+										name="status"
+										type="radio"
+										id={`radio-1`}
+										label={`Berhasil terjual`}
+									/>
+									<p className=" text-black-50">Kamu telah sepakat menjual produk ini kepada pembeli</p>
 
-                        <Form.Check
-                          type={'radio'}
-                          label={`Batalkan transaksi`}
-                          id={`default`}
-                        />
-                        <p className=" text-black-50">Kamu membatalkan transaksi produk ini dengan pembeli</p>
-                      </div>
-                  </Form>
-                </Modal.Body>
-                <Modal.Footer className="pe-5 d-gird gap-2">
-                  <Button
-                    className="bg-color-primary w-100 radius-primary border-0"
-                    onClick={handleCloseStatus}
-                  >
-                    Hubungi via Whatsapp
-                    <FaWhatsapp className="mb-1" />
-                  </Button>
-                </Modal.Footer>
-              </div>
-            </Modal>
+									<Form.Check
+										name="status"
+										type="radio"
+										label={`Batalkan transaksi`}
+										id={`radio-2`}
+									/>
+									<p className=" text-black-50">Kamu membatalkan transaksi produk ini dengan pembeli</p>
+								</div>
+							</Form>
+						</Modal.Body>
+						<Modal.Footer className="border-0">
+							<Button
+								className="bg-color-primary w-100 radius-primary border-0"
+								onClick={onChangeStatus}
+							>
+								Kirim
+							</Button>
+						</Modal.Footer>
+					</div>
+				</Modal>
 			</Container>
 		</>
 	);
