@@ -77,6 +77,13 @@ export default function InfoProfile() {
 		}
 	};
 
+	const [selected, setSelected] = useState();
+
+	const selectedButton = (e) => {
+		setSelected(e.target.value);
+		console.log(selected);
+	};
+
 	const onChangeStatus = async (e, isSold, isRejected) => {
 		e.preventDefault();
 
@@ -84,8 +91,8 @@ export default function InfoProfile() {
 			const token = localStorage.getItem("token");
 
 			const acceptPayload = {
-				isSold: isSold,
-				isRejected: isRejected,
+				isSold: selected,
+				// isRejected: selected,
 			}
 
 			const acceptRequest = await axios.put(
@@ -165,7 +172,7 @@ export default function InfoProfile() {
 						<img src={`${interest.Product ? interest.Product.picture : ""}`} alt="buyer"
 							style={{ width: "48px", height: "48px", objectFit: "cover", borderRadius: "12px" }} />
 						<Stack>
-							<p className="m-0 text-black-50 fs-8">Penawaran Produk</p>
+							<p className="m-0 text-black-50 fs-8">{interest.Product && interest.Product.isSold === true ? "Berhasil Terjual" : "Penawaran Produk"}</p>
 							<p className="m-0">{interest.Product && interest.Product.name}</p>
 							<p className="m-0">{CurrencyFormatter(interest.Product && interest.Product.price)}</p>
 							<p className="m-0">Ditawar {CurrencyFormatter(interest.requestedPrice)}</p>
@@ -251,6 +258,9 @@ export default function InfoProfile() {
 										type="radio"
 										id={`radio-1`}
 										label={`Berhasil terjual`}
+										checked={selected === true}
+										value={true}
+										onChange={selectedButton}
 									/>
 									<p className=" text-black-50">Kamu telah sepakat menjual produk ini kepada pembeli</p>
 
@@ -259,6 +269,9 @@ export default function InfoProfile() {
 										type="radio"
 										label={`Batalkan transaksi`}
 										id={`radio-2`}
+										checked={selected === false}
+										value={false}
+										onChange={selectedButton}
 									/>
 									<p className=" text-black-50">Kamu membatalkan transaksi produk ini dengan pembeli</p>
 								</div>
@@ -267,7 +280,7 @@ export default function InfoProfile() {
 						<Modal.Footer className="border-0">
 							<Button
 								className="bg-color-primary w-100 radius-primary border-0"
-								onClick={onChangeStatus}
+								onClick={(e) => {onChangeStatus(e); handleCloseStatus()}}
 							>
 								Kirim
 							</Button>

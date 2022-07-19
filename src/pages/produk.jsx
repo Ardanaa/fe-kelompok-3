@@ -139,6 +139,7 @@ export default function Produk() {
         isOpened: false,
         isAccepted: false,
         isRejected: false,
+        isSold: false,
       };
 
       const bidRequest = await axios.post(
@@ -175,9 +176,9 @@ export default function Produk() {
   return isLoggedIn ? (
     <>
       <NavbarLogin></NavbarLogin>
-      {successResponse.isSuccess && (
+      {/* {successResponse.isSuccess && (
         <Alert variant="success" className='mt-5' onClose={() => setSuccessResponse(true)} dismissible>{successResponse.message}</Alert>
-      )}
+      )} */}
       <Container style={{ padding: "0px 110px" }} className="mt-5">
         <div className="ps-0 d-flex">
           <Row>
