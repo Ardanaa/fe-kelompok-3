@@ -2,7 +2,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import "../css/produk.css";
 import { useState, useEffect, useRef } from "react";
 import { NavbarLogin } from "../components/navbar";
-import { Container, Row, Col, Card, Stack, Button, Modal, Form } from "react-bootstrap";
+import { Container, Row, Col, Card, Stack, Button, Modal, Form, Alert } from "react-bootstrap";
 import axios from "axios";
 import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
@@ -32,7 +32,10 @@ export default function Produk() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-
+  const [successResponse, setSuccessResponse] = useState({
+    isSuccess: false,
+    message: "",
+  });
 
   const [errorResponse, setErrorResponse] = useState({
     isError: false,
@@ -134,6 +137,8 @@ export default function Produk() {
         product_id: post.id,
         requestedPrice: requestedPriceField.current.value,
         isOpened: false,
+        isAccepted: false,
+        isRejected: false,
       };
 
       const bidRequest = await axios.post(
@@ -150,6 +155,11 @@ export default function Produk() {
       console.log(bidResponse)
 
       if (bidResponse.status) navigate(`/daftarJual/${user.id}`)
+      const successResponse = bidRequest.data.message;
+      setSuccessResponse({
+        isSuccess: true,
+        message: successResponse,
+      })
     } catch (err) {
       console.log(err);
       const response = err.response.data;
@@ -161,9 +171,13 @@ export default function Produk() {
     }
   };
 
+
   return isLoggedIn ? (
     <>
       <NavbarLogin></NavbarLogin>
+      {successResponse.isSuccess && (
+        <Alert variant="success" className='mt-5' onClose={() => setSuccessResponse(true)} dismissible>{successResponse.message}</Alert>
+      )}
       <Container style={{ padding: "0px 110px" }} className="mt-5">
         <div className="ps-0 d-flex">
           <Row>
@@ -215,7 +229,7 @@ export default function Produk() {
                       <Button
                         className=" w-100 border-purple radius-primary bg-color-secondary"
                         type="submit"
-                        onClick={post.user_id === user.id ?  (e) => onPublish(e, true) : handleShow}
+                        onClick={post.user_id === user.id ? (e) => onPublish(e, true) : handleShow}
                       >
                         {post.user_id === user.id ? "Terbitkan" : "Saya tertarik dan ingin nego"}
                       </Button>
