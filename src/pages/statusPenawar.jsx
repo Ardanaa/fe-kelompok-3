@@ -88,7 +88,7 @@ export default function InfoPenawar() {
                 onClick={handleShow}
               >
                 Terima
-                <FaWhatsapp className="mb-1" />
+                <FaWhatsapp className="mx-2" />
               </Button>
             </div>
 
@@ -106,24 +106,24 @@ export default function InfoPenawar() {
                           id={`default`}
                           label={`Berhasil terjual`}
                         />
-                        <p className=" text-black-50">Kamu telah sepakat menjual produk ini kepada pembeli</p>
+                        <p className=" text-black-50 radioSubLabel">Kamu telah sepakat menjual produk ini kepada pembeli</p>
 
                         <Form.Check
                           type={'radio'}
                           label={`Batalkan transaksi`}
                           id={`default`}
                         />
-                        <p className=" text-black-50">Kamu membatalkan transaksi produk ini dengan pembeli</p>
+                        <p className=" text-black-50 radioSubLabel">Kamu membatalkan transaksi produk ini dengan pembeli</p>
                       </div>
                   </Form>
                 </Modal.Body>
-                <Modal.Footer className="pe-5 d-gird gap-2">
+                <Modal.Footer className="d-gird gap-2">
                   <Button
                     className="bg-color-primary w-100 radius-primary border-0"
                     onClick={handleClose}
-                  >
-                    Hubungi via Whatsapp
-                    <FaWhatsapp className="mb-1" />
+                  > 
+                    <span>Hubungi via Whatsapp</span>
+                    <FaWhatsapp className="mx-2" />
                   </Button>
                 </Modal.Footer>
               </div>
