@@ -17,6 +17,8 @@ import axios from "axios";
 import "../css/navbar.css"
 import { useDispatch } from "react-redux";
 import { addUser } from "../slices/userSlice";
+import CurrencyFormatter from "../assets/CurrencyFormatter.js";
+import dateFormat from "dateformat";
 
 export function NavbarDefault() {
 	return (
@@ -63,8 +65,8 @@ export function NavbarDefault() {
 export function NavbarLogin() {
 	const [isLoggedIn, setIsLoggedIn] = useState(true);
 	const [user, setUser] = useState({});
-	const [post, setPost] = useState([]);
-	const [postStatus, setPostStatus] = useState([]);
+	const [notif, setNotif] = useState([]);
+	const [notifStatus, setNotifStatus] = useState([]);
 	const dispatch = useDispatch();
 
 
@@ -90,11 +92,11 @@ export function NavbarLogin() {
 				if (currentUserResponse.status) {
 					dispatch(
 						addUser({
-								user: currentUserResponse.data.user,
-								token: token,
+							user: currentUserResponse.data.user,
+							token: token,
 						})
-				);
-				localStorage.setItem("user", JSON.stringify(currentUserResponse.data.user))
+					);
+					localStorage.setItem("user", JSON.stringify(currentUserResponse.data.user))
 					setUser(currentUserResponse.data.user);
 				}
 			} catch (err) {
@@ -112,17 +114,32 @@ export function NavbarLogin() {
 	};
 
 	useEffect(() => {
-		const postData = async () => {
-			const response = await axios.get(`http://localhost:2000/v1/products/search`);
-			// console.log(response);
-			const data = await response.data.data.get_all_product;
-			// console.log(data);
-			const dataStatus = await response.data.message;
-			// console.log(dataStatus);
-			setPost(data);
-			setPostStatus(dataStatus);
+		const notifData = async () => {
+			try {
+
+				const token = localStorage.getItem("token");
+				const user_local = localStorage.getItem("user");
+				const user = JSON.parse(user_local);
+				// console.log(JSON.parse(user));
+				const response = await axios.get(`http://localhost:2000/v1/transactions/notification/${user.id}`,
+					{
+						headers: {
+							Authorization: `Bearer ${token}`,
+						},
+					}
+				)
+				console.log(response);
+				const data = await response.data.data.get_transaction_notification;
+				console.log(data);
+				const dataStatus = await response.data.message;
+				console.log(dataStatus);
+				setNotif(data);
+				setNotifStatus(dataStatus);
+			} catch (err) {
+				console.log(err);
+			}
 		};
-		postData();
+		notifData();
 	}, []);
 
 	const popoverUser = (
@@ -140,21 +157,30 @@ export function NavbarLogin() {
 	);
 
 	const popoverNotif = (
-		<Popover id="popover-basic">
+		<Popover id="popover-basic" style={{ maxWidth: "376px" }}>
 			<Popover.Header>
-				<Row>
-					{post.slice(0, 3).map((post) =>
-						<Stack direction="horizontal" gap={3}>
-							<img src={`${post.picture}`} alt=""
-								style={{ width: "48px", height: "48px", objectFit: "cover", borderRadius: "12px" }} />
-							<Stack>
-								<p className="m-0 text-black-50">{postStatus}</p>
-								<p className="m-0 fw-bold text-black">{post.name}</p>
+				{notif.map((notif) =>
+					user.id === notif.owner_id ? (
+						<Row className="mb-0">
+                <Link className="text-decoration-none text-black" to={`/infoPenawaran/${notif.id}`}>
+							<Stack direction="horizontal" gap={3}>
+								<img src={`${notif.Product.picture}`} alt=""
+									style={{ width: "48px", height: "48px", objectFit: "cover", borderRadius: "12px" }} />
+								<Stack>
+									<p className="m-0 text-black-50">Penawaran Produk</p>
+									<p className="m-0 text-black">{notif.Product.name}</p>
+									<p className="m-0 text-black">{CurrencyFormatter(notif.Product.price)}</p>
+									<p className="m-0 text-black">Ditawar {CurrencyFormatter(notif.requestedPrice)}</p>
+								</Stack>
+								<Stack>
+									<p className="m-0 ms-auto text-black-50 fs-8">{dateFormat(notif.createdAt, "d mmm, h:MM")}</p>
+								</Stack>
 							</Stack>
-							{/* <p className="ms-auto fw-bold text-black">{post.createdAt}</p> */}
-						</Stack>
-					).reverse()}
-				</Row>
+							</Link>
+							<hr />
+						</Row>
+					) : ("")).reverse()
+				}
 			</Popover.Header>
 		</Popover>
 	);
