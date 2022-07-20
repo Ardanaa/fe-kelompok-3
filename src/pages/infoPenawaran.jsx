@@ -77,22 +77,33 @@ export default function InfoProfile() {
 		}
 	};
 
-	const [selected, setSelected] = useState();
+	const [selectedSold, setSelectedSold] = useState();
+	const [selectedReject, setSelectedReject] = useState();
+	const [selectedAccept, setSelectedAccept] = useState();
 
 	const selectedButton = (e) => {
-		setSelected(e.target.value);
-		console.log(selected);
+		console.log(e.target.value);
 	};
 
-	const onChangeStatus = async (e, isSold, isRejected) => {
+	const selectedButtonSold = (e) => {
+		setSelectedSold(e.target.value);
+	}
+
+	const selectedButtonReject = (e) => {
+		setSelectedAccept(false)
+		setSelectedReject(e.target.value);
+	}
+
+	const onChangeStatus = async (e) => {
 		e.preventDefault();
 
 		try {
 			const token = localStorage.getItem("token");
 
 			const acceptPayload = {
-				isSold: selected,
-				// isRejected: selected,
+				isSold: selectedSold,
+				isRejected: selectedReject,
+				isAccepted: selectedAccept,
 			}
 
 			const acceptRequest = await axios.put(
@@ -104,7 +115,9 @@ export default function InfoProfile() {
 					},
 				}
 			);
-			const acceptResponse = acceptRequest.data.data.updated_transaction;
+			const acceptResponse = acceptRequest.data;
+
+			console.log(acceptResponse);
 
 			const response = await axios.get(`http://localhost:2000/v1/transactions/${id}`,
 				{
@@ -186,7 +199,7 @@ export default function InfoProfile() {
 							className="ms-auto me-2 border-purple radius-primary bg-white color-primary"
 							type="submit"
 							onClick={interest.isAccepted === true ? (e) => handleShowStatus(e) : (e) => onAccept(e, false, true)}
-							hidden={interest.isRejected === true ? true : false}
+							hidden={interest.isRejected === true || (interest.Product && interest.Product.isSold) === true ? true : false}
 						>
 							{interest.isAccepted === true ? "Status" : "Tolak"}
 						</Button>
@@ -194,7 +207,7 @@ export default function InfoProfile() {
 							className="border-purple radius-primary bg-color-secondary"
 							type="submit"
 							onClick={(e) => { onAccept(e, true, false); handleShow() }}
-							hidden={interest.isRejected === true ? true : false}
+							hidden={interest.isRejected === true || (interest.Product && interest.Product.isSold) === true ? true : false}
 						>
 							{interest.isAccepted === true ? "Hubungi di " : "Terima"}
 						</Button>
@@ -252,15 +265,15 @@ export default function InfoProfile() {
 						<Modal.Body>
 							<p className="fw-bold">Perbarui status penjualan produkmu</p>
 							<Form>
-								<div key={`radio`} className="mb-3">
+								<div key={`radio`} onChange={selectedButton} className="mb-3">
 									<Form.Check
 										name="status"
 										type="radio"
 										id={`radio-1`}
 										label={`Berhasil terjual`}
-										checked={selected === true}
 										value={true}
-										onChange={selectedButton}
+										onChange={selectedButtonSold}
+										checked={selectedButtonSold === true}
 									/>
 									<p className=" text-black-50">Kamu telah sepakat menjual produk ini kepada pembeli</p>
 
@@ -269,9 +282,10 @@ export default function InfoProfile() {
 										type="radio"
 										label={`Batalkan transaksi`}
 										id={`radio-2`}
-										checked={selected === false}
-										value={false}
-										onChange={selectedButton}
+										value={true}
+										onChange={selectedButtonReject}
+										checked={selectedButtonReject === false}
+										
 									/>
 									<p className=" text-black-50">Kamu membatalkan transaksi produk ini dengan pembeli</p>
 								</div>
