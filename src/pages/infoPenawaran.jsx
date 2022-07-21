@@ -278,12 +278,12 @@ export default function InfoProfile() {
 
 
 					{/* Modal status */}
-					<Modal show={showStatus} onHide={handleCloseStatus} centered size="sm" dialogClassName="modal-30w">
-						<div className="p-3">
+					<Modal id="modal-status" show={showStatus} onHide={handleCloseStatus} centered size="sm" dialogClassName="modal-30w">
+						<div className="p-3 modal-content">
 							<Modal.Header closeButton className="border-0">
 								<Modal.Title></Modal.Title>
 							</Modal.Header>
-							<Modal.Body>
+							<Modal.Body className="card-accept">
 								<p className="fw-bold">Perbarui status penjualan produkmu</p>
 								<Form>
 									<div key={`radio`} onChange={selectedButton} className="mb-3">
