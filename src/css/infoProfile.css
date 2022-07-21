@@ -1,11 +1,21 @@
+#infoProfile{
+    display: flex;
+    justify-content: center;
+}
+
+.section-edit{
+    width: 50%;
+}
+
 .upload-button {
     background-image: url(../assets/icons/uploadIcon.png);
     background-size: auto;
     width: 96px;
     height: 96px;
     cursor: pointer;
-    margin-left: 210px;
     border-radius: 12px;
+    display: block;
+    margin: 0 auto;
 }
 
 #infoProfile img {
@@ -20,4 +30,15 @@
 .navbar-info {
     margin-right: 500px;
     padding-top: 8px;
+}
+
+@media only screen and (max-width: 360px){
+
+    .section-edit{
+        width: 100%;
+    }
+    
+    .section-edit .upload-button{
+        margin-bottom: 8%;
+    }
 }

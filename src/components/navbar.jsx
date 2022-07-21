@@ -253,7 +253,7 @@ export function NavbarLogin() {
 
 export function NavbarInfo() {
 	return (
-		<Navbar className="box-shadow " bg="light" expand="lg">
+		<Navbar className="box-shadow nav-info" bg="light" expand="lg">
 			<Container className="py-1 ">
 				<Navbar.Brand
 					id="navbar-brand"
