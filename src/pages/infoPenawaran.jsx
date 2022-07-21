@@ -201,7 +201,7 @@ export default function InfoProfile() {
 						<p className="fw-bold">Daftar Produkmu yang Ditawar</p>
 					</div>
 					
-					<div className="card-offer radius-primary box-shadow p-2">
+					<div className="card-offer p-2">
 						<Stack direction="horizontal" gap={3}>
 							<img src={`${interest.Product ? interest.Product.picture : ""}`} alt="buyer"
 								style={{ width: "48px", height: "48px", objectFit: "cover", borderRadius: "12px" }} />
