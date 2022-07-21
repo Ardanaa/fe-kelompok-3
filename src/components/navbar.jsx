@@ -268,7 +268,7 @@ export function NavbarInfo() {
 
 export function NavbarProduct() {
 	return (
-		<Navbar className="box-shadow " bg="light" expand="lg">
+		<Navbar className="box-shadow nav-product" bg="light" expand="lg">
 			<Container className="py-1 ">
 				<Navbar.Brand
 					id="navbar-brand"
