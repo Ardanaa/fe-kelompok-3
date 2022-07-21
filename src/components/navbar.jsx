@@ -160,9 +160,8 @@ export function NavbarLogin() {
 		<Popover id="popover-basic" className="box-shadow radius-primary" style={{ maxWidth: "376px" }}>
 			<Popover.Header className="radius-primary bg-white border-0">
 				{notif.map((notif) =>
-					user.id === notif.owner_id ? (
-						<Row className="mb-0">
-                <Link className="text-decoration-none text-black" to={`/infoPenawaran/${notif.id}`}>
+					<Row className="mb-0">
+						<Link className="text-decoration-none text-black" to={`/infoPenawaran/${notif.id}`}>
 							<Stack direction="horizontal" gap={3}>
 								<img src={`${notif.Product.picture}`} alt=""
 									style={{ width: "48px", height: "48px", objectFit: "cover", borderRadius: "12px" }} />
@@ -170,16 +169,17 @@ export function NavbarLogin() {
 									<p className="m-0 text-black-50">Penawaran Produk</p>
 									<p className="m-0 text-black">{notif.Product.name}</p>
 									<p className="m-0 text-black">{CurrencyFormatter(notif.Product.price)}</p>
-									<p className="m-0 text-black">Ditawar {CurrencyFormatter(notif.requestedPrice)}</p>
+									<p className="m-0 text-black">{user.id === notif.owner_id ? "ditawar" : "menawar"}
+										{CurrencyFormatter(notif.requestedPrice)}</p>
 								</Stack>
 								<Stack>
 									<p className="m-0 ms-auto text-black-50 fs-8">{dateFormat(notif.createdAt, "d mmm, h:MM")}</p>
 								</Stack>
 							</Stack>
-							</Link>
-							<hr />
-						</Row>
-					) : ("")).reverse()
+						</Link>
+						<hr />
+					</Row>
+				).reverse()
 				}
 			</Popover.Header>
 		</Popover>

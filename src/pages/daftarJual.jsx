@@ -179,30 +179,30 @@ export default function DaftarJual() {
           </Row>
         </div>
         <div
-          className={toogleCategory === 2 ? "active-content" : "content"}
+          className={toogleCategory === 2 ? "active-content flex-fill" : "content"}
         // style={{marginLeft: "200px", alignItems: "center !important"}}
         >
           {interest ? (
             <Row className="" >
               {interest.map((interest) =>
-                interest.Product.isSold === false ? (
-                <Col key={interest.id} className="mb-3">
-                  <Link className="text-decoration-none text-black" to={`/infoPenawaran/${interest.id}`}>
-                    <Card >
-                      <Card.Img variant="top" className="p-2" src={`${interest.Product.picture}`} style={{ maxHeight: "100px", objectFit: "cover" }} />
-                      <Card.Body>
-                        <Card.Title className="fs-7 cut-text">{interest.Product.name}</Card.Title>
-                        <p className="text-black-50 fs-8  mb-0">{interest.Product.category}</p>
-                        <Card.Text className="fs-7 ">{CurrencyFormatter(interest.Product.price)}</Card.Text>
-                        {/* <Badge bg={interest.isPublish === true ? "primary" : "warning"}>
+                interest.Product.isSold === false && interest.isRejected === false ? (
+                  <Col key={interest.id} md={4} className="mb-3">
+                    <Link className="text-decoration-none text-black" to={`/infoPenawaran/${interest.id}`}>
+                      <Card >
+                        <Card.Img variant="top" className="p-2" src={`${interest.Product.picture}`} style={{ maxHeight: "100px", objectFit: "cover" }} />
+                        <Card.Body>
+                          <Card.Title className="fs-7 cut-text">{interest.Product.name}</Card.Title>
+                          <p className="text-black-50 fs-8  mb-0">{interest.Product.category}</p>
+                          <Card.Text className="fs-7 ">{CurrencyFormatter(interest.Product.price)}</Card.Text>
+                          {/* <Badge bg={interest.isPublish === true ? "primary" : "warning"}>
                         {interest.isPublish === true ? "Produk sudah di publish" : "Produk belum di publish"}
                       </Badge> */}
-                      </Card.Body>
-                    </Card>
-                  </Link>
-                </Col>
-              ) : ("")).reverse()
-            }
+                        </Card.Body>
+                      </Card>
+                    </Link>
+                  </Col>
+                ) : ("")).reverse()
+              }
             </Row>
           ) : (
             <img src={likedEmpty} alt="" />
@@ -210,30 +210,30 @@ export default function DaftarJual() {
         </div>
 
         <div
-          className={toogleCategory === 3 ? "active-content" : "content"}
+          className={toogleCategory === 3 ? "active-content flex-fill" : "content"}
         // style={{marginLeft: "200px", alignItems: "center !important"}}
         >
           {interest ? (
             <Row className="" >
               {interest.map((interest) =>
                 interest.Product.isSold === true ? (
-                <Col key={interest.id} className="mb-3">
-                  <Link className="text-decoration-none text-black" to={`/infoPenawaran/${interest.id}`}>
-                    <Card >
-                      <Card.Img variant="top" className="p-2" src={`${interest.Product.picture}`} style={{ maxHeight: "100px", objectFit: "cover" }} />
-                      <Card.Body>
-                        <Card.Title className="fs-7 cut-text">{interest.Product.name}</Card.Title>
-                        <p className="text-black-50 fs-8  mb-0">{interest.Product.category}</p>
-                        <Card.Text className="fs-7 ">{CurrencyFormatter(interest.Product.price)}</Card.Text>
-                        {/* <Badge bg={interest.isPublish === true ? "primary" : "warning"}>
+                  <Col key={interest.id} md={4} className="mb-3">
+                    <Link className="text-decoration-none text-black" to={`/infoPenawaran/${interest.id}`}>
+                      <Card >
+                        <Card.Img variant="top" className="p-2" src={`${interest.Product.picture}`} style={{ maxHeight: "100px", objectFit: "cover" }} />
+                        <Card.Body>
+                          <Card.Title className="fs-7 cut-text">{interest.Product.name}</Card.Title>
+                          <p className="text-black-50 fs-8  mb-0">{interest.Product.category}</p>
+                          <Card.Text className="fs-7 ">{CurrencyFormatter(interest.Product.price)}</Card.Text>
+                          {/* <Badge bg={interest.isPublish === true ? "primary" : "warning"}>
                         {interest.isPublish === true ? "Produk sudah di publish" : "Produk belum di publish"}
                       </Badge> */}
-                      </Card.Body>
-                    </Card>
-                  </Link>
-                </Col>
-              ) : ("")).reverse()
-            }
+                        </Card.Body>
+                      </Card>
+                    </Link>
+                  </Col>
+                ) : ("")).reverse()
+              }
             </Row>
           ) : (
             <img src={likedEmpty} alt="" />

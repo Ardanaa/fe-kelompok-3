@@ -32,7 +32,6 @@ function Product() {
 					<FiSearch className="me-1 mb-1" />
 					Semua
 				</Button>
-				{/* {/* {category.map((c) =>  */}
 				<Button onClick={() => setCategory("fashion")} className="me-4 radius-secondary bg-color-secondary border-0">
 					<FiSearch className="me-1 mb-1" /> Fashion
 				</Button>
