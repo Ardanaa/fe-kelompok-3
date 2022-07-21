@@ -3,10 +3,11 @@ import { useNavigate, Link } from "react-router-dom";
 import { Col, Container, Row, Form, Button, Alert } from "react-bootstrap";
 import axios from "axios";
 import "../css/login.css";
-import imgLogin from "../assets/images/imageLogin.jpg";
+import banner from "../assets/images/bannerSH.png";
+import { FaArrowLeft } from "react-icons/fa";
 
 function Login() {
-  const navigate = useNavigate();
+	const navigate = useNavigate();
 
 	const emailField = useRef("");
 	const passwordField = useRef("");
@@ -47,15 +48,22 @@ function Login() {
 			});
 		}
 	};
-  return (
-    <Container fluid className="ps-0">
-      <Row>
-        <Col className="pe-0 ">
-          <img src={imgLogin} className="w-100" />
-        </Col>
-        <Col className="ps-0">
+	return (
+		<Container fluid className="ps-0 h-100">
+			<Row >
+				<Col id="img-login" className="pe-0 ">
+					<img src={banner} className="w-100" alt="imgLogin" />
+				</Col>
+				<Col className="ps-md-0">
 					<div className="center">
 						<Form onSubmit={onLogin}>
+							<div className="d-md-none mb-3">
+								<Link to="/">
+									<Button variant="light">
+										<FaArrowLeft className="mb-1" />
+									</Button>
+								</Link>
+							</div>
 							<h1 className="mb-3">Masuk</h1>
 							<Form.Group className="mb-3">
 								<Form.Label>Email</Form.Label>
@@ -79,13 +87,15 @@ function Login() {
 								<Alert variant="danger">{errorResponse.message}</Alert>
 							)}
 							<Button
-								className="w-100 radius-primary bg-color-secondary"
+								className="w-100 radius-primary bg-color-secondary border-0"
 								type="submit"
 							>
 								Masuk
 							</Button>
-							<p className="m-4 text-center">
-								Belum punya akun?{" "}
+						</Form>
+						<div className="text-login">
+							<p className="md-m-4 text-center">
+								Belum punya akun?
 								<Link
 									to="/register"
 									className="text-decoration-none"
@@ -94,12 +104,12 @@ function Login() {
 									Daftar di sini
 								</Link>
 							</p>
-						</Form>
+						</div>
 					</div>
 				</Col>
-      </Row>
-    </Container>
-  );
+			</Row>
+		</Container>
+	);
 }
 
 export default Login;

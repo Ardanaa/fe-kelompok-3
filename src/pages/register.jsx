@@ -4,6 +4,7 @@ import { Col, Container, Row, Form, Button, Alert } from "react-bootstrap";
 import banner from "../assets/images/bannerSH.png";
 import axios from "axios";
 import "../css/register.css";
+import { FaArrowLeft } from "react-icons/fa";
 
 function Register() {
 	const navigate = useNavigate();
@@ -49,12 +50,19 @@ function Register() {
 	return (
 		<Container fluid className="ps-0">
 			<Row>
-				<Col className="pe-0">
+				<Col id="img-register" className="pe-0">
 					<img src={banner} className="w-100" alt="" />
 				</Col>
-				<Col className="ps-0">
+				<Col className="ps-md-0">
 					<div className="center">
 						<Form onSubmit={onRegister}>
+							<div className="d-md-none mb-3">
+								<Link to="/">
+									<Button variant="light">
+										<FaArrowLeft className="mb-1" />
+									</Button>
+								</Link>
+							</div>
 							<h1 className="mb-3">Daftar</h1>
 							<Form.Group className="mb-3">
 								<Form.Label>Nama</Form.Label>
@@ -92,6 +100,8 @@ function Register() {
 							>
 								Daftar
 							</Button>
+						</Form>
+						<div className="text-register">
 							<p className="m-4 text-center">
 								Sudah punya akun?{" "}
 								<Link
@@ -102,7 +112,7 @@ function Register() {
 									Masuk di sini
 								</Link>
 							</p>
-						</Form>
+						</div>
 					</div>
 				</Col>
 			</Row>

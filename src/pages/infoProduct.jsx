@@ -12,7 +12,7 @@ import {
   FloatingLabel,
 } from "react-bootstrap";
 import axios from "axios";
-import { AiOutlineArrowLeft } from "react-icons/ai";
+import { FaArrowLeft } from "react-icons/fa";
 
 export default function InfoProduct() {
   const navigate = useNavigate();
@@ -123,7 +123,7 @@ export default function InfoProduct() {
           <div className="col-3 arrow-left">
             <Link to="/">
               <Button variant="light" className="button-arrow">
-                <AiOutlineArrowLeft/>
+                <FaArrowLeft/>
               </Button>
             </Link>
           </div>
@@ -136,7 +136,7 @@ export default function InfoProduct() {
           <div className="col-3 text-center arrow-desktop">
             <Link to="/daftarJual">
               <Button variant="light">
-                <AiOutlineArrowLeft className="mb-1" />
+                <FaArrowLeft className="mb-1" />
               </Button>
             </Link>
           </div>
