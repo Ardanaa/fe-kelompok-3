@@ -282,7 +282,7 @@ export function NavbarProduct() {
 
 export function NavbarPenawaran() {
 	return (
-		<Navbar className="box-shadow " bg="light" expand="lg">
+		<Navbar className="box-shadow nav-offer" bg="light" expand="lg">
 			<Container className="py-1 ">
 				<Navbar.Brand
 					id="navbar-brand"

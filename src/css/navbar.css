@@ -34,9 +34,24 @@
 /* ----------------- Navbar Product ----------------- */
 
 @media only screen and (max-width: 360px){
+  
   .nav-product{
     display: none !important;
   }
+
 }
 
 /* ----------------- End Navbar Product ----------------- */
+
+
+/* ----------------- Navbar Penawaran ----------------- */
+
+@media only screen and (max-width: 360px){
+
+  .nav-offer{
+    display: none !important;
+  }
+
+}
+
+/* ----------------- End Navbar Penawaran ----------------- */
