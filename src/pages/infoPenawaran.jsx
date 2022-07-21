@@ -236,12 +236,12 @@ export default function InfoProfile() {
 					</div>
 
 					{/* Modal Terima */}
-					<Modal show={show} onHide={handleClose} centered size="sm" dialogClassName="modal-30w">
-						<div className="p-3">
+					<Modal id="modal-accept" show={show} onHide={handleClose} centered size="sm" dialogClassName="modal-30w">
+						<div className="p-3 modal-content">
 							<Modal.Header closeButton className="border-0">
 								<Modal.Title></Modal.Title>
 							</Modal.Header>
-							<Modal.Body>
+							<Modal.Body className="card-accept">
 								<p className="fw-bold">Yeay kamu berhasil mendapat harga yang sesuai</p>
 								<p className="text-black-50">Segera hubungi pembeli melalui whatsapp untuk transaksi selanjutnya</p>
 								<div className="bg-color-grey radius-secondary p-2">

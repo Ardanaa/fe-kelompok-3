@@ -30,6 +30,7 @@
 
     .info-offer{
         width: 100% !important;
+        overflow-y: hidden;
     }
 
     .mobile-design{
@@ -69,5 +70,27 @@
     .button{
         width: 100%;
     }
+
+    /* Modal Terima */
+
+    #modal-accept{
+        top: 12%;
+        position: fixed;
+        width: 100%;
+        transform: translateX(-2.2%);
+        
+    }
+
+    .modal-content{
+        -webkit-border-radius: 40px 40px 0 0 !important;
+        -moz-border-radius: 40px 40px 0 0 !important;
+        border-radius: 40px 40px 0 0 !important;
+    }
+
+    .card-accept p{
+        font-size: 14px;
+    }
+
+    /* Selesai Modal Terima */
 
 }
