@@ -21,10 +21,10 @@
     height: 100%;
 }
 
-/* .button-decision{
+.button-decision{
     margin-top: 4%;
-    float: right;
-} */
+    justify-content: end;
+}
 
 @media only screen and (max-width: 360px){
 
@@ -62,9 +62,12 @@
     }
 
     .button-decision{
-        width: 100%;
         margin: 4% auto;
-        float: none !important;
+        justify-content: center;
+    }
+
+    .button{
+        width: 100%;
     }
 
 }

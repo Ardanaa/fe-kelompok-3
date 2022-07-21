@@ -217,7 +217,7 @@ export default function InfoProfile() {
 						</Stack>
 						<div className="d-flex button-decision">
 							<Button
-								className="ms-auto me-2 border-purple radius-primary bg-white color-primary"
+								className="button me-2 border-purple radius-primary bg-white color-primary"
 								type="submit"
 								onClick={interest.isAccepted === true ? (e) => handleShowStatus(e) : (e) => onAccept(e, false, true)}
 								hidden={interest.isRejected === true || (interest.Product && interest.Product.isSold) === true ? true : false}
@@ -225,7 +225,7 @@ export default function InfoProfile() {
 								{interest.isAccepted === true ? "Status" : "Tolak"}
 							</Button>
 							<Button
-								className="border-purple radius-primary bg-color-secondary"
+								className="button border-purple radius-primary bg-color-secondary"
 								type="submit"
 								onClick={(e) => { onAccept(e, true, false); handleShow() }}
 								hidden={interest.isRejected === true || (interest.Product && interest.Product.isSold) === true ? true : false}
