@@ -42,8 +42,8 @@ function Product() {
 				<Button onClick={() => setCategory("hobi")} className="me-4 radius-secondary bg-color-secondary border-0">
 					<FiSearch className="me-1 mb-1" /> Hobi
 				</Button>
-				<Button onClick={() => setCategory("kendaraan")} className="me-4 radius-secondary bg-color-secondary border-0">
-					<FiSearch className="me-1 mb-1" /> Kendaraan
+				<Button onClick={() => setCategory("Elektronik")} className="me-4 radius-secondary bg-color-secondary border-0">
+					<FiSearch className="me-1 mb-1" /> Elektronik
 				</Button>
 
 			</div>

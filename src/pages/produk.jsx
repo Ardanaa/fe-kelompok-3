@@ -20,6 +20,7 @@ export default function Produk() {
   const { id } = useParams();
   const [user, setUser] = useState([]);
   const [post, setPost] = useState([]);
+  const [transaksi, setTransaksi] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const requestedPriceField = useRef("");
 
@@ -61,9 +62,6 @@ export default function Produk() {
     };
     postData();
   }, [id]);
-
-  // const sellerID = post.user_id;
-  // console.log(sellerID)
 
   useEffect(() => {
     const validateLogin = async () => {
@@ -172,6 +170,36 @@ export default function Produk() {
     }
   };
 
+  useEffect(() => {
+  const getTransactionByUserId = async () => {
+    try {
+
+        const token = localStorage.getItem("token");
+        const user_local = localStorage.getItem("user");
+				const user = JSON.parse(user_local);
+        // console.log(JSON.parse(user));
+        const response = await axios.get(`http://localhost:2000/v1/transactions/user/${user.id}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        )
+
+        const dataTransactionByUserId = await response.data.data.get_transaction_user;
+        
+        setTransaksi(dataTransactionByUserId)
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    
+    getTransactionByUserId();
+  }, []);
+
+  console.log(transaksi);
+const filteredTransaction = Object.keys(transaksi).length !== 0 ? transaksi.filter((post) => post.product_id === Number(id) && post.isRejected === false) : ""
+
 
   return isLoggedIn ? (
     <>
@@ -230,9 +258,12 @@ export default function Produk() {
                       <Button
                         className=" w-100 border-purple radius-primary bg-color-secondary"
                         type="submit"
+                        disabled={Object.keys(filteredTransaction).length !== 0}
                         onClick={post.user_id === user.id ? (e) => onPublish(e, true) : handleShow}
                       >
-                        {post.user_id === user.id ? "Terbitkan" : "Saya tertarik dan ingin nego"}
+                        {post.user_id === user.id ? 
+                        'terbitkan' : Object.keys(filteredTransaction).length !== 0 ? 
+                        'Menunggu Respon Penjual' : 'saya tertarik dan ingin nego'}
                       </Button>
                     </div>
                   </Card.Body>
