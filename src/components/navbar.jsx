@@ -167,10 +167,10 @@ export function NavbarLogin() {
 	);
 
 	const popoverNotif = (
-		<Popover id="popover-basic" className="box-shadow radius-primary" style={{ maxWidth: "376px" }}>
-			<Popover.Header className="radius-primary bg-white border-0">
+		<Popover id="popover-basic" className="box-shadow radius-primary" style={{ maxWidth: "376px"}}>
+			<Popover.Header className="radius-primary bg-white border-0 overflow-auto" style={{ height: "400px"}} >
 				{notif.map((notif) =>
-					<Row className="mb-0">
+					<Row className="mb-0 overflow-auto">
 						<Link className="text-decoration-none text-black" to={`/infoPenawaran/${notif.id}`}>
 							<Stack direction="horizontal" gap={3}>
 								<img src={`${notif.Product.picture}`} alt=""
