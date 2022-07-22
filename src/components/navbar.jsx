@@ -74,9 +74,9 @@ export function NavbarLogin() {
 
 	const handleSearch = () => {
 		dispatch(
-				addSearch(searching)
+			addSearch(searching)
 		)
-}
+	}
 
 
 	useEffect(() => {
@@ -140,6 +140,7 @@ export function NavbarLogin() {
 				console.log(response);
 				const data = await response.data.data.get_transaction_notification;
 				console.log(data);
+				
 				const dataStatus = await response.data.message;
 				console.log(dataStatus);
 				setNotif(data);
@@ -169,34 +170,38 @@ export function NavbarLogin() {
 		<Popover id="popover-basic" className="box-shadow radius-primary" style={{ maxWidth: "376px" }}>
 			<Popover.Header className="radius-primary bg-white border-0">
 				{notif.map((notif) =>
-					user.id === notif.owner_id || notif.Product.isSold ? (
-						<Row className="mb-0">
-							<Link className="text-decoration-none text-black" to={`/infoPenawaran/${notif.id}`}>
-								<Stack direction="horizontal" gap={3}>
-									<img src={`${notif.Product.picture}`} alt=""
-										style={{ width: "48px", height: "48px", objectFit: "cover", borderRadius: "12px" }} />
-									<Stack>
-										<p className="m-0 text-black-50 fs-8">Penawaran Produk</p>
-										<p className="m-0 text-black">{notif.Product.name}</p>
-										<p className={user.id === notif.user_id && notif.Product.isSold ? "m-0 text-black text-decoration-line-through" : "m-0 text-black"}>
-											{CurrencyFormatter(notif.Product.price)}
-										</p>
-										<p className="m-0 text-black">{user.id === notif.owner_id ? "ditawar " : "Berhasil Menawar "}
-											{CurrencyFormatter(notif.requestedPrice)}
-										</p>
-										<p className="m-0 text-black-50 fs-8">
-											{user.id === notif.user_id && notif.Product.isSold === true ?
-												"Kamu akan segera dihubungi penjual via whatsapp" : ""}
-										</p>
-									</Stack>
-									<Stack>
-										<p className="m-0 ms-auto text-black-50 fs-8">{dateFormat(notif.createdAt, "d mmm, h:MM")}</p>
-									</Stack>
+					<Row className="mb-0">
+						<Link className="text-decoration-none text-black" to={`/infoPenawaran/${notif.id}`}>
+							<Stack direction="horizontal" gap={3}>
+								<img src={`${notif.Product.picture}`} alt=""
+									style={{ width: "48px", height: "48px", objectFit: "cover", borderRadius: "12px" }} />
+								<Stack>
+									<p className="m-0 text-black-50 fs-8">
+										{user.id === notif.owner_id && notif.Product.isSold ?
+											"Berhasil Terjual" : user.id === notif.user_id && notif.Product.isSold ?
+												"Berhasil Ditawar" : notif.isRejected ?
+													"Penawaran ditolak" : "Penawaran Produk"}
+									</p>
+									<p className="m-0 text-black">{notif.Product.name}</p>
+									<p className={user.id === notif.user_id && notif.Product.isSold ? "m-0 text-black text-decoration-line-through" : "m-0 text-black"}>
+										{CurrencyFormatter(notif.Product.price)}
+									</p>
+									<p className="m-0 text-black">{user.id === notif.owner_id ? "ditawar " : "Menawar "}
+										{CurrencyFormatter(notif.requestedPrice)}
+									</p>
+									<p className="m-0 text-black-50 fs-8">
+										{user.id === notif.user_id && notif.Product.isSold === true ?
+											"Kamu akan segera dihubungi penjual via whatsapp" : ""}
+									</p>
 								</Stack>
-							</Link>
-							<hr />
-						</Row>
-					) : ("")).reverse()
+								<Stack>
+									<p className="m-0 ms-auto text-black-50 fs-8">{dateFormat(notif.createdAt, "d mmm, HH:MM")}</p>
+								</Stack>
+							</Stack>
+						</Link>
+						<hr />
+					</Row>
+				).reverse()
 				}
 			</Popover.Header>
 		</Popover>
