@@ -5,16 +5,20 @@ import axios from "axios";
 import "../css/products.css"
 import { Link } from "react-router-dom";
 import CurrencyFormatter from "../assets/CurrencyFormatter.js";
+import { useSelector } from "react-redux";
 
 function Product() {
 	const [post, setPost] = useState([]);
 	const [category, setCategory] = useState([""]);
 
+	const searching = useSelector(state => state.search.search);
 	const categories = category ? `&category=${category}` : "";
+	const searched = searching ? `&name=${searching}` : "";
+	console.log(searching);
 
 	useEffect(() => {
 		const postData = async () => {
-			const response = await axios.get(`http://localhost:2000/v1/products/search?isPublish=true&&isSold=false${categories}`);
+			const response = await axios.get(`http://localhost:2000/v1/products/search?isPublish=true&&isSold=false${categories}${searched}`);
 			console.log(response);
 			const data = await response.data.data.get_all_product;
 			console.log(data);
@@ -22,7 +26,7 @@ function Product() {
 			setPost(data);
 		};
 		postData();
-	}, [categories]);
+	}, [categories, searched]);
 
 	return (
 		<Container className="pt-5" id="btn-category">
@@ -32,9 +36,16 @@ function Product() {
 					<FiSearch className="me-1 mb-1" />
 					Semua
 				</Button>
-				<Button onClick={() => setCategory("fashion")} className="me-4 radius-secondary bg-color-secondary border-0">
+				<Button onClick={() => setCategory("Fashion")} className="me-4 radius-secondary bg-color-secondary border-0">
 					<FiSearch className="me-1 mb-1" /> Fashion
 				</Button>
+				<Button onClick={() => setCategory("hobi")} className="me-4 radius-secondary bg-color-secondary border-0">
+					<FiSearch className="me-1 mb-1" /> Hobi
+				</Button>
+				<Button onClick={() => setCategory("kendaraan")} className="me-4 radius-secondary bg-color-secondary border-0">
+					<FiSearch className="me-1 mb-1" /> Kendaraan
+				</Button>
+
 			</div>
 			<Container id="products" className="mt-5">
 				<Row md={6}>
