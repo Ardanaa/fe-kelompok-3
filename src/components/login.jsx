@@ -30,9 +30,10 @@ function Login() {
 				"http://binar-secondhand-be.herokuapp.com/v1/auth/login",
 				userToLoginPayload
 			);
-
+			
 			const loginResponse = loginRequest.data;
-
+			console.log(loginResponse)
+			
 			if (loginResponse.status) {
 				localStorage.setItem("token", loginResponse.data.token);
 
