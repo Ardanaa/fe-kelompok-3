@@ -166,9 +166,9 @@ export default function InfoProduct() {
                 <Form.Label>Kategori</Form.Label>
                 <Form.Select ref={categoryField} aria-label="Default select example">
                   <option>Pilih Kategori</option>
-                  <option value="Fashion">Fashion</option>
-                  <option value="Elektronik">Elektronik</option>
-                  <option value="Otomotif">Otomotif</option>
+                  <option value="fashion">Fashion</option>
+                  <option value="elektronik">Elektronik</option>
+                  <option value="otomotif">Otomotif</option>
                 </Form.Select>
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicText">

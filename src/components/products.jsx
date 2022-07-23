@@ -36,13 +36,13 @@ function Product() {
 					<FiSearch className="me-1 mb-1" />
 					Semua
 				</Button>
-				<Button onClick={() => setCategory("Fashion")} className="me-4 radius-secondary bg-color-secondary border-0">
+				<Button onClick={() => setCategory("fashion")} className="me-4 radius-secondary bg-color-secondary border-0">
 					<FiSearch className="me-1 mb-1" /> Fashion
 				</Button>
 				<Button onClick={() => setCategory("hobi")} className="me-4 radius-secondary bg-color-secondary border-0">
 					<FiSearch className="me-1 mb-1" /> Hobi
 				</Button>
-				<Button onClick={() => setCategory("Elektronik")} className="me-4 radius-secondary bg-color-secondary border-0">
+				<Button onClick={() => setCategory("elektronik")} className="me-4 radius-secondary bg-color-secondary border-0">
 					<FiSearch className="me-1 mb-1" /> Elektronik
 				</Button>
 
