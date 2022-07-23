@@ -1,0 +1,106 @@
+.info-offer{
+    width: 38%;
+    display: block;
+    margin: 0 auto;
+}
+
+.arrow-left{
+    display: none;
+    text-align: center;
+}
+
+.title-product{
+    display: none;
+}
+
+.list-offer{
+    margin: 10% 0 0 0; 
+}
+
+.card-offer{
+    height: 100%;
+}
+
+.button-decision{
+    margin-top: 4%;
+    justify-content: end;
+}
+
+@media only screen and (max-width: 360px){
+
+    .info-offer{
+        width: 100% !important;
+        overflow-y: hidden;
+    }
+
+    .mobile-design{
+        margin-bottom: 12%;
+    }
+
+    .arrow-left{
+        display: block;
+        margin: auto auto auto -4%;
+        width: 40px;
+        height: auto;
+    }
+
+    .button-arrow{
+        margin: -8% 0 0 0;
+    }
+
+    .title-product{
+        display: inline-block;
+    }
+    
+    .title-product p{
+        display: inline-block;
+        margin: 0 auto;
+        font-weight: bold;
+    }
+
+    .list-offer{
+        margin: 10% 0 0 0; 
+    }
+
+    .button-decision{
+        margin: 4% auto;
+        justify-content: center;
+    }
+
+    .button{
+        width: 100%;
+    }
+
+    /* Modal Terima */
+
+    #modal-accept{
+        top: 12%;
+        position: fixed;
+        width: 100%;
+        transform: translateX(-2.2%);
+    }
+
+    .modal-content{
+        -webkit-border-radius: 40px 40px 0 0 !important;
+        -moz-border-radius: 40px 40px 0 0 !important;
+        border-radius: 40px 40px 0 0 !important;
+    }
+
+    .card-accept p{
+        font-size: 14px;
+    }
+
+    /* Selesai Modal Terima */
+    
+    /* Modal Status */
+
+    #modal-status{
+        top: 20%;
+        position: fixed;
+        width: 100%;
+        transform: translateX(-2.2%);
+    }
+
+    /* Selesai Modal Status */
+
+}

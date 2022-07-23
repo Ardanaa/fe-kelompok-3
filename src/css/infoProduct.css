@@ -1,0 +1,62 @@
+.upload-button-product {
+    background-image: url(../assets/icons/addIcon.png);
+    background-size: auto;
+    width: 96px;
+    height: 96px;
+    cursor: pointer;
+    margin-right: 210px;
+}
+
+#infoProduct img {
+    object-fit: cover;
+    width: 96px;
+    height: 96px;
+    cursor: pointer;
+    margin-left: 100px;
+    border-radius: 12px;
+}
+
+.arrow-left{
+    display: none;
+    text-align: center;
+}
+
+.title-product{
+    display: none;
+}
+
+@media only screen and (max-width: 360px){
+    .mobile-design{
+        margin-bottom: 12%;
+    }
+
+    .arrow-left{
+        display: block;
+        margin: auto auto auto -4%;
+        width: 40px;
+        height: auto;
+    }
+
+    .button-arrow{
+        margin: -8% 0 0 0;
+    }
+
+    .title-product{
+        display: inline-block;
+    }
+    
+    .title-product p{
+        margin: 0 auto 0 -4%;
+        font-weight: bold;
+        
+    }
+
+    .arrow-desktop{
+        display: none;
+    }
+
+    #infoProduct{
+        width: 100%;
+        display: block;
+    }
+}

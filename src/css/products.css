@@ -1,0 +1,13 @@
+#btn-category .active,
+Button:hover {
+    background-color: #7126B5!important;
+    color: white !important;
+}
+
+#products .cut-text { 
+    text-overflow: ellipsis!important;
+    overflow: hidden!important;
+    width: 140px!important;
+    height: 1.2em!important;
+    white-space: nowrap!important;
+  }
