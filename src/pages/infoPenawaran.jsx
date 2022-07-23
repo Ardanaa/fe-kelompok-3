@@ -191,7 +191,7 @@ export default function InfoProfile() {
 							<p className="m-0">Ditawar {CurrencyFormatter(interest.requestedPrice)}</p>
 						</Stack>
 						<Stack>
-							<p className="m-0 ms-auto text-black-50 fs-8">{dateFormat(interest.createdAt, "d mmm, h:MM")}</p>
+							<p className="m-0 ms-auto text-black-50 fs-8">{dateFormat(interest.updatedAt, "d mmm, HH:MM")}</p>
 						</Stack>
 					</Stack>
 					<div className="d-flex">
