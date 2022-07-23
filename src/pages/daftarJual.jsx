@@ -232,8 +232,7 @@ export default function DaftarJual() {
                       </Card>
                     </Link>
                   </Col>
-                ) : ("")).reverse()
-              }
+                ) : ("")).reverse()}
             </Row>
           ) : (
             <img src={likedEmpty} alt="" />

@@ -188,11 +188,16 @@ export default function InfoProfile() {
 				<div className="info-offer">
 					<div className=" radius-primary box-shadow p-2">
 						<Stack direction="horizontal" gap={3}>
-							<img src={`${interest.User ? interest.User.picture : ""}`} alt="buyer"
+							<img src={`${interest.Product ? interest.Product.picture : ""}`} alt="buyer"
 								style={{ width: "48px", height: "48px", objectFit: "cover", borderRadius: "12px" }} />
 							<Stack>
-								<p className="m-0 fw-bold">{interest.User && interest.User.name}</p>
-								<p className="m-0 text-black-50">{interest.User && interest.User.city}</p>
+								<p className="m-0 text-black-50 fs-8">{interest.Product && interest.Product.isSold === true ? "Berhasil Terjual" : "Penawaran Produk"}</p>
+								<p className="m-0">{interest.Product && interest.Product.name}</p>
+								<p className="m-0">{CurrencyFormatter(interest.Product && interest.Product.price)}</p>
+								<p className="m-0">Ditawar {CurrencyFormatter(interest.requestedPrice)}</p>
+							</Stack>
+							<Stack>
+								<p className="m-0 ms-auto text-black-50 fs-8">{dateFormat(interest.updatedAt, "d mmm, HH:MM")}</p>
 							</Stack>
 						</Stack>
 					</div>
@@ -200,7 +205,7 @@ export default function InfoProfile() {
 					<div className="list-offer">
 						<p className="fw-bold">Daftar Produkmu yang Ditawar</p>
 					</div>
-					
+
 					<div className="card-offer p-2">
 						<Stack direction="horizontal" gap={3}>
 							<img src={`${interest.Product ? interest.Product.picture : ""}`} alt="buyer"
@@ -217,7 +222,7 @@ export default function InfoProfile() {
 						</Stack>
 						<div className="d-flex button-decision">
 							<Button
-								className="button me-2 border-purple radius-primary bg-white color-primary"
+								className="ms-auto me-2 border-purple radius-primary bg-white color-primary"
 								type="submit"
 								onClick={interest.isAccepted === true ? (e) => handleShowStatus(e) : (e) => onAccept(e, false, true)}
 								hidden={interest.isRejected === true || (interest.Product && interest.Product.isSold) === true ? true : false}
@@ -225,7 +230,7 @@ export default function InfoProfile() {
 								{interest.isAccepted === true ? "Status" : "Tolak"}
 							</Button>
 							<Button
-								className="button border-purple radius-primary bg-color-secondary"
+								className="border-purple radius-primary bg-color-secondary"
 								type="submit"
 								onClick={(e) => { onAccept(e, true, false); handleShow() }}
 								hidden={interest.isRejected === true || (interest.Product && interest.Product.isSold) === true ? true : false}

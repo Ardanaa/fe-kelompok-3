@@ -17,8 +17,10 @@ import axios from "axios";
 import "../css/navbar.css"
 import { useDispatch } from "react-redux";
 import { addUser } from "../slices/userSlice";
+import { addSearch } from "../slices/searchingSlice";
 import CurrencyFormatter from "../assets/CurrencyFormatter.js";
 import dateFormat from "dateformat";
+
 
 export function NavbarDefault() {
 	return (
@@ -68,6 +70,13 @@ export function NavbarLogin() {
 	const [notif, setNotif] = useState([]);
 	const [notifStatus, setNotifStatus] = useState([]);
 	const dispatch = useDispatch();
+	const [searching, setSearching] = useState("");
+
+	const handleSearch = () => {
+		dispatch(
+			addSearch(searching)
+		)
+	}
 
 
 	useEffect(() => {
@@ -103,9 +112,9 @@ export function NavbarLogin() {
 				setIsLoggedIn(false);
 			}
 		};
-
+		handleSearch();
 		validateLogin();
-	}, []);
+	}, [searching]);
 	const logout = () => {
 		localStorage.removeItem("token");
 
@@ -131,6 +140,7 @@ export function NavbarLogin() {
 				console.log(response);
 				const data = await response.data.data.get_transaction_notification;
 				console.log(data);
+				
 				const dataStatus = await response.data.message;
 				console.log(dataStatus);
 				setNotif(data);
@@ -157,23 +167,35 @@ export function NavbarLogin() {
 	);
 
 	const popoverNotif = (
-		<Popover id="popover-basic" className="box-shadow radius-primary" style={{ maxWidth: "376px" }}>
-			<Popover.Header className="radius-primary bg-white border-0">
+		<Popover id="popover-basic" className="box-shadow radius-primary" style={{ maxWidth: "376px"}}>
+			<Popover.Header className="radius-primary bg-white border-0 overflow-auto" style={{ height: "400px"}} >
 				{notif.map((notif) =>
-					<Row className="mb-0">
+					<Row className="mb-0 overflow-auto">
 						<Link className="text-decoration-none text-black" to={`/infoPenawaran/${notif.id}`}>
 							<Stack direction="horizontal" gap={3}>
 								<img src={`${notif.Product.picture}`} alt=""
 									style={{ width: "48px", height: "48px", objectFit: "cover", borderRadius: "12px" }} />
 								<Stack>
-									<p className="m-0 text-black-50">Penawaran Produk</p>
+									<p className="m-0 text-black-50 fs-8">
+										{user.id === notif.owner_id && notif.Product.isSold ?
+											"Berhasil Terjual" : user.id === notif.user_id && notif.Product.isSold ?
+												"Berhasil Ditawar" : notif.isRejected ?
+													"Penawaran ditolak" : "Penawaran Produk"}
+									</p>
 									<p className="m-0 text-black">{notif.Product.name}</p>
-									<p className="m-0 text-black">{CurrencyFormatter(notif.Product.price)}</p>
-									<p className="m-0 text-black">{user.id === notif.owner_id ? "ditawar" : "menawar"}
-										{CurrencyFormatter(notif.requestedPrice)}</p>
+									<p className={user.id === notif.user_id && notif.Product.isSold ? "m-0 text-black text-decoration-line-through" : "m-0 text-black"}>
+										{CurrencyFormatter(notif.Product.price)}
+									</p>
+									<p className="m-0 text-black">{user.id === notif.owner_id ? "ditawar " : "Menawar "}
+										{CurrencyFormatter(notif.requestedPrice)}
+									</p>
+									<p className="m-0 text-black-50 fs-8">
+										{user.id === notif.user_id && notif.Product.isSold === true ?
+											"Kamu akan segera dihubungi penjual via whatsapp" : ""}
+									</p>
 								</Stack>
 								<Stack>
-									<p className="m-0 ms-auto text-black-50 fs-8">{dateFormat(notif.createdAt, "d mmm, h:MM")}</p>
+									<p className="m-0 ms-auto text-black-50 fs-8">{dateFormat(notif.createdAt, "d mmm, HH:MM")}</p>
 								</Stack>
 							</Stack>
 						</Link>
@@ -200,6 +222,9 @@ export function NavbarLogin() {
 				>
 					<Form className="d-flex">
 						<Form.Control
+							onChange={(e) => {
+								setSearching(e.target.value)
+							}}
 							type="search"
 							placeholder="Cari di sini ... "
 							className="search radius-primary"
