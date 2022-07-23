@@ -4,13 +4,17 @@ import {
 	Form,
 	Nav,
 	Navbar,
+	NavDropdown,
 } from "react-bootstrap";
-import { FiLogIn } from "react-icons/fi";
+import { FiSearch, FiLogIn } from "react-icons/fi";
 import React from "react";
-import { Link } from "react-router-dom";
+import OwlCarousel from "react-owl-carousel";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
 
-export function NavbarDefault() {
+function navbar() {
 	return (
+		<>
 			<Navbar className="box-shadow " bg="light" expand="lg">
 				<Container className="py-1">
 					<Navbar.Brand
@@ -34,45 +38,37 @@ export function NavbarDefault() {
 							</Form>
 						</Nav>
 					</Navbar.Collapse>
-					<Link
-						to="/login"
-						>
-						<Button
-							className="ms-auto radius-secondary bg-color-primary border-0"
-							variant="primary"
-						>
-							<FiLogIn className="me-1 mb-1" />
-							Masuk
-						</Button>
-					</Link>
+					<Button
+						className="ms-auto radius-secondary bg-color-primary border-0"
+						variant="primary"
+					>
+						<FiLogIn className="me-1 mb-1" />
+						Masuk
+					</Button>
 				</Container>
 			</Navbar>
+
+			{/* carousel */}
+			<div class="owl-carousel owl-theme mt-5">
+				<div class="item">
+					<div class="">
+						<img src="" alt="Foto produk" />
+					</div>
+				</div>
+				<div class="item">
+					<div class="">
+						<img src="" alt="Foto produk" />
+					</div>
+				</div>
+				<div class="item">
+					<div class="">
+						<img src="" alt="Foto produk" />
+					</div>
+				</div>
+			</div>
+			{/* carousel end */}
+		</>
 	);
-};
+}
 
-export function NavbarInfo() {
-	return (
-		<Navbar className="box-shadow " bg="light" expand="lg">
-			<Container className="py-1 ">
-				<Navbar.Brand
-					href="#"
-					className="brand bg-color-primary"
-				></Navbar.Brand>
-				<p className="navbar-info fw-bold">Lengkapi Info Akun</p>
-			</Container>
-		</Navbar>
-);
-};
-
-export function NavbarProduct() {
-	return (
-		<Navbar className="box-shadow " bg="light" expand="lg">
-			<Container className="py-1 ">
-				<Navbar.Brand
-					href="#"
-					className="brand bg-color-primary"
-				></Navbar.Brand>
-			</Container>
-		</Navbar>
-);
-};
+export default navbar;
