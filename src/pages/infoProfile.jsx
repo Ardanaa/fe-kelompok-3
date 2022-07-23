@@ -8,13 +8,13 @@ import "../css/infoProfile.css";
 export default function InfoProfile() {
 	const navigate = useNavigate();
 	const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const { id } = useParams();
+	const { id } = useParams();
 	const [user, setUser] = useState([]);
 
 	const [image, setImage] = useState();
 	const [preview, setPreview] = useState();
 	const fileInputRef = useRef();
-	
+
 	const nameField = useRef("");
 	const cityField = useRef("");
 	const addressField = useRef("");
@@ -66,28 +66,28 @@ export default function InfoProfile() {
 	};
 
 	const getUsers = async () => {
-    try {
+		try {
 			const token = localStorage.getItem("token");
-      const responseUser = await axios.get(
-        `http://localhost:2000/v1/auth/me`,
+			const responseUser = await axios.get(
+				`http://localhost:2000/v1/auth/me`,
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,
 					},
 				}
-      );
+			);
 			console.log(responseUser)
-      const dataUser = await responseUser.data.data.user;
+			const dataUser = await responseUser.data.data.user;
 
-      setUser(dataUser);
-      console.log(dataUser);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  useEffect(() => {
-    getUsers();
-  }, []);
+			setUser(dataUser);
+			console.log(dataUser);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+	useEffect(() => {
+		getUsers();
+	}, []);
 
 	useEffect(() => {
 		if (image) {
@@ -104,9 +104,9 @@ export default function InfoProfile() {
 	return (
 		<>
 			<NavbarInfo></NavbarInfo>
-			<Container id="infoProfile" className="d-flex justify-content-center pt-3 my-5">
-				<Form onSubmit={onUpdate} className="w-50">
-					<form-group className="">
+			<Container id="infoProfile" className="pt-3 my-5">
+				<Form onSubmit={onUpdate} className="section-edit">
+					<form-group className="upload-photo">
 						{preview ? (
 							<img src={preview} onClick={() => setImage(null)} alt="preview" />
 						) : (
@@ -147,9 +147,9 @@ export default function InfoProfile() {
 					<Form.Label>Kota*</Form.Label>
 					<Form.Select ref={cityField} aria-label="Default select example">
 						<option >Pilih Kota</option>
-						<option selected={user.city==="jakarta"?"selected":""} value="jakarta">Jakarta</option>
-						<option selected={user.city==="semarang"?"selected":""} value="semarang">Semarang</option>
-						<option selected={user.city==="bekasi"?"selected":""} value="bekasi">Bekasi</option>
+						<option selected={user.city === "jakarta" ? "selected" : ""} value="jakarta">Jakarta</option>
+						<option selected={user.city === "semarang" ? "selected" : ""} value="semarang">Semarang</option>
+						<option selected={user.city === "bekasi" ? "selected" : ""} value="bekasi">Bekasi</option>
 					</Form.Select>
 					<Form.Group className="mb-3" controlId="formBasicText">
 						<Form.Label

@@ -12,3 +12,53 @@
   padding: 14px 64px 14px 24px !important;
   background-color: #EEEEEE !important;
 }
+
+/* ----------------- Navbar Info ----------------- */
+
+@media only screen and (max-width: 360px){
+
+  .nav-info{
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-info .brand{
+    width: 30px;
+    height: 30px;
+    background-image: url("../assets/icons/uploadIcon.png");
+  }
+
+  .nav-info p{
+    margin: 0 auto 0 14%;
+    display: inline-block;
+  }
+
+}
+
+/* ----------------- End Navbar Info ----------------- */
+
+
+/* ----------------- Navbar Product ----------------- */
+
+@media only screen and (max-width: 360px){
+  
+  .nav-product{
+    display: none !important;
+  }
+
+}
+
+/* ----------------- End Navbar Product ----------------- */
+
+
+/* ----------------- Navbar Penawaran ----------------- */
+
+@media only screen and (max-width: 360px){
+
+  .nav-offer{
+    display: none !important;
+  }
+
+}
+
+/* ----------------- End Navbar Penawaran ----------------- */

@@ -12,7 +12,7 @@ import {
   FloatingLabel,
 } from "react-bootstrap";
 import axios from "axios";
-import { AiOutlineArrowLeft } from "react-icons/ai";
+import { FaArrowLeft } from "react-icons/fa";
 
 export default function InfoProduct() {
   const navigate = useNavigate();
@@ -118,15 +118,29 @@ export default function InfoProduct() {
     <>
       <NavbarProduct></NavbarProduct>
       <Container className="justify-content-center mt-5">
-        <Row>
-          <div className="col-3 text-center">
-            <Link to="/daftarJual">
-              <Button variant="light">
-                <AiOutlineArrowLeft className="mb-1" />
+        
+        <Row className="mobile-design">
+          <div className="col-3 arrow-left">
+            <Link to="/">
+              <Button variant="light" className="button-arrow">
+                <FaArrowLeft/>
               </Button>
             </Link>
           </div>
-          <div className="col-6">
+          <div className="col-9 title-product">
+            <p>Lengkapi Detail Product</p>
+          </div>
+        </Row>
+        
+        <Row>
+          <div className="col-3 text-center arrow-desktop">
+            <Link to="/daftarJual">
+              <Button variant="light">
+                <FaArrowLeft className="mb-1" />
+              </Button>
+            </Link>
+          </div>
+          <div className="col-lg-6 col-sm-12">
             <Form id="infoProduct" className="">
               <Form.Group className="mb-3">
                 <Form.Label>Nama Produk</Form.Label>

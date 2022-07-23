@@ -278,7 +278,7 @@ export function NavbarLogin() {
 
 export function NavbarInfo() {
 	return (
-		<Navbar className="box-shadow " bg="light" expand="lg">
+		<Navbar className="box-shadow nav-info" bg="light" expand="lg">
 			<Container className="py-1 ">
 				<Navbar.Brand
 					id="navbar-brand"
@@ -293,7 +293,7 @@ export function NavbarInfo() {
 
 export function NavbarProduct() {
 	return (
-		<Navbar className="box-shadow " bg="light" expand="lg">
+		<Navbar className="box-shadow nav-product" bg="light" expand="lg">
 			<Container className="py-1 ">
 				<Navbar.Brand
 					id="navbar-brand"
@@ -307,7 +307,7 @@ export function NavbarProduct() {
 
 export function NavbarPenawaran() {
 	return (
-		<Navbar className="box-shadow " bg="light" expand="lg">
+		<Navbar className="box-shadow nav-offer" bg="light" expand="lg">
 			<Container className="py-1 ">
 				<Navbar.Brand
 					id="navbar-brand"
