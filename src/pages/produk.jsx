@@ -244,7 +244,7 @@ const filteredTransaction = Object.keys(transaksi).length !== 0 ? transaksi.filt
                   <Card.Body>
                     <Card.Title>{post.name}</Card.Title>
                     <p>{post.category}</p>
-                    <h4>Rp. {post.price}</h4>
+                    <h4>{CurrencyFormatter(post.price)}</h4>
                     <div>
                       <Link to={`/updateProduct/${post.id}`} >
                         <Button
