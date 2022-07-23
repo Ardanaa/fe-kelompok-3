@@ -27,7 +27,7 @@ function Login() {
 			};
 
 			const loginRequest = await axios.post(
-				"http://localhost:2000/v1/auth/login",
+				"http://binar-secondhand-be.herokuapp.com/v1/auth/login",
 				userToLoginPayload
 			);
 

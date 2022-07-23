@@ -15,7 +15,7 @@ function FloatingButton() {
 			try {
 				const token = localStorage.getItem("token");
 				const currentUserRequest = await axios.get(
-					"http://localhost:2000/v1/auth/me",
+					"http://binar-secondhand-be.herokuapp.com/v1/auth/me",
 					{
 						headers: {
 							Authorization: `Bearer ${token}`,

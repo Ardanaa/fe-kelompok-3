@@ -41,7 +41,7 @@ export default function InfoProfile() {
 			userPayload.append("phoneNumber", phoneNumberField.current.value);
 
 			const userRequest = await axios.put(
-				`http://localhost:2000/v1/users/update/${id}`,
+				`http://binar-secondhand-be.herokuapp.com/v1/users/update/${id}`,
 				userPayload,
 				{
 					headers: {
@@ -69,7 +69,7 @@ export default function InfoProfile() {
 		try {
 			const token = localStorage.getItem("token");
 			const responseUser = await axios.get(
-				`http://localhost:2000/v1/auth/me`,
+				`http://binar-secondhand-be.herokuapp.com/v1/auth/me`,
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,

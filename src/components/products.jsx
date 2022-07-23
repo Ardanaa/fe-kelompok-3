@@ -18,7 +18,7 @@ function Product() {
 
 	useEffect(() => {
 		const postData = async () => {
-			const response = await axios.get(`http://localhost:2000/v1/products/search?isPublish=true&&isSold=false${categories}${searched}`);
+			const response = await axios.get(`http://binar-secondhand-be.herokuapp.com/v1/products/search?isPublish=true&&isSold=false${categories}${searched}`);
 			console.log(response);
 			const data = await response.data.data.get_all_product;
 			console.log(data);

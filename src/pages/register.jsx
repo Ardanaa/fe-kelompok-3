@@ -29,7 +29,7 @@ function Register() {
 			};
 
 			const registerRequest = await axios.post(
-				"http://localhost:2000/v1/auth/register",
+				"http://binar-secondhand-be.herokuapp.com/v1/auth/register",
 				userToRegisterPayload
 			);
 

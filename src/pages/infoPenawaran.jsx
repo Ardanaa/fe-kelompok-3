@@ -45,7 +45,7 @@ export default function InfoProfile() {
 			}
 
 			const acceptRequest = await axios.put(
-				`http://localhost:2000/v1/transactions/update/${id}`,
+				`http://binar-secondhand-be.herokuapp.com/v1/transactions/update/${id}`,
 				acceptPayload,
 				{
 					headers: {
@@ -55,7 +55,7 @@ export default function InfoProfile() {
 			);
 			const acceptResponse = acceptRequest.data.data.updated_transaction;
 
-			const response = await axios.get(`http://localhost:2000/v1/transactions/${id}`,
+			const response = await axios.get(`http://binar-secondhand-be.herokuapp.com/v1/transactions/${id}`,
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,
@@ -109,7 +109,7 @@ export default function InfoProfile() {
 			}
 
 			const acceptRequest = await axios.put(
-				`http://localhost:2000/v1/transactions/update/${id}`,
+				`http://binar-secondhand-be.herokuapp.com/v1/transactions/update/${id}`,
 				acceptPayload,
 				{
 					headers: {
@@ -121,7 +121,7 @@ export default function InfoProfile() {
 
 			console.log(acceptResponse);
 
-			const response = await axios.get(`http://localhost:2000/v1/transactions/${id}`,
+			const response = await axios.get(`http://binar-secondhand-be.herokuapp.com/v1/transactions/${id}`,
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,
@@ -150,7 +150,7 @@ export default function InfoProfile() {
 
 			const token = localStorage.getItem("token");
 
-			const response = await axios.get(`http://localhost:2000/v1/transactions/${id}`,
+			const response = await axios.get(`http://binar-secondhand-be.herokuapp.com/v1/transactions/${id}`,
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,

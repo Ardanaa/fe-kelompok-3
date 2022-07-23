@@ -88,7 +88,7 @@ export function NavbarLogin() {
 
 				// 2. Check token validity from API
 				const currentUserRequest = await axios.get(
-					"http://localhost:2000/v1/auth/me",
+					"http://binar-secondhand-be.herokuapp.com/v1/auth/me",
 					{
 						headers: {
 							Authorization: `Bearer ${token}`,
@@ -130,7 +130,7 @@ export function NavbarLogin() {
 				const user_local = localStorage.getItem("user");
 				const user = JSON.parse(user_local);
 				// console.log(JSON.parse(user));
-				const response = await axios.get(`http://localhost:2000/v1/transactions/notification/${user.id}`,
+				const response = await axios.get(`http://binar-secondhand-be.herokuapp.com/v1/transactions/notification/${user.id}`,
 					{
 						headers: {
 							Authorization: `Bearer ${token}`,

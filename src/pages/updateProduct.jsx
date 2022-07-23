@@ -38,7 +38,7 @@ export default function UpdateProduct() {
     try {
       const token = localStorage.getItem("token");
       const responseUser = await axios.get(
-        `http://localhost:2000/v1/auth/me`,
+        `http://binar-secondhand-be.herokuapp.com/v1/auth/me`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -76,7 +76,7 @@ export default function UpdateProduct() {
 
       const token = localStorage.getItem("token");
 
-      const response = await axios.get(`http://localhost:2000/v1/products/${id}`,
+      const response = await axios.get(`http://binar-secondhand-be.herokuapp.com/v1/products/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -108,7 +108,7 @@ export default function UpdateProduct() {
       postPayload.append("isSold", isSold);
 
       const postRequest = await axios.put(
-        `http://localhost:2000/v1/products/update/${id}`,
+        `http://binar-secondhand-be.herokuapp.com/v1/products/update/${id}`,
         postPayload,
         {
           headers: {

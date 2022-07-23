@@ -48,7 +48,7 @@ export default function Produk() {
 
       const token = localStorage.getItem("token");
 
-      const response = await axios.get(`http://localhost:2000/v1/products/${id}`,
+      const response = await axios.get(`http://binar-secondhand-be.herokuapp.com/v1/products/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -68,7 +68,7 @@ export default function Produk() {
       try {
         const token = localStorage.getItem("token");
         const currentUserRequest = await axios.get(
-          `http://localhost:2000/v1/auth/me`,
+          `http://binar-secondhand-be.herokuapp.com/v1/auth/me`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -99,7 +99,7 @@ export default function Produk() {
       postPayload.append("isPublish", isPublish);
 
       const postRequest = await axios.put(
-        `http://localhost:2000/v1/products/update/${id}`,
+        `http://binar-secondhand-be.herokuapp.com/v1/products/update/${id}`,
         postPayload,
         {
           headers: {
@@ -141,7 +141,7 @@ export default function Produk() {
       };
 
       const bidRequest = await axios.post(
-        "http://localhost:2000/v1/transactions/create",
+        "http://binar-secondhand-be.herokuapp.com/v1/transactions/create",
         bidPayload,
         {
           headers: {
@@ -178,7 +178,7 @@ export default function Produk() {
         const user_local = localStorage.getItem("user");
 				const user = JSON.parse(user_local);
         // console.log(JSON.parse(user));
-        const response = await axios.get(`http://localhost:2000/v1/transactions/user/${user.id}`,
+        const response = await axios.get(`http://binar-secondhand-be.herokuapp.com/v1/transactions/user/${user.id}`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,

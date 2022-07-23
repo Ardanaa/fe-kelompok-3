@@ -36,7 +36,7 @@ export default function InfoProduct() {
     try {
 			const token = localStorage.getItem("token");
       const responseUser = await axios.get(
-        `http://localhost:2000/v1/auth/me`,
+        `http://binar-secondhand-be.herokuapp.com/v1/auth/me`,
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,
@@ -86,7 +86,7 @@ export default function InfoProduct() {
       postPayload.append("isSold", isSold);
 
       const postRequest = await axios.post(
-        "http://localhost:2000/v1/products/create",
+        "http://binar-secondhand-be.herokuapp.com/v1/products/create",
         postPayload,
         {
           headers: {

@@ -31,7 +31,7 @@ export default function HomeLogin() {
 
         // 2. Check token validity from API
         const currentUserRequest = await axios.get(
-          "http://localhost:2000/v1/auth/me",
+          "http://binar-secondhand-be.herokuapp.com/v1/auth/me",
           {
             headers: {
               Authorization: `Bearer ${token}`,

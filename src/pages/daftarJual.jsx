@@ -27,7 +27,7 @@ export default function DaftarJual() {
 
         // 2. Check token validity from API
         const currentUserRequest = await axios.get(
-          "http://localhost:2000/v1/auth/me",
+          "http://binar-secondhand-be.herokuapp.com/v1/auth/me",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -53,7 +53,7 @@ export default function DaftarJual() {
 
       const token = localStorage.getItem("token");
 
-      const response = await axios.get(`http://localhost:2000/v1/users/${id}/products`,
+      const response = await axios.get(`http://binar-secondhand-be.herokuapp.com/v1/users/${id}/products`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -73,7 +73,7 @@ export default function DaftarJual() {
 
       const token = localStorage.getItem("token");
 
-      const response = await axios.get(`http://localhost:2000/v1/transactions/owner/${id}`,
+      const response = await axios.get(`http://binar-secondhand-be.herokuapp.com/v1/transactions/owner/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
