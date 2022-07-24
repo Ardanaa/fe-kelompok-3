@@ -187,19 +187,14 @@ export default function InfoProfile() {
 
 				<div className="info-offer">
 					<div className=" radius-primary box-shadow p-2">
-						<Stack direction="horizontal" gap={3}>
-							<img src={`${interest.Product ? interest.Product.picture : ""}`} alt="buyer"
-								style={{ width: "48px", height: "48px", objectFit: "cover", borderRadius: "12px" }} />
-							<Stack>
-								<p className="m-0 text-black-50 fs-8">{interest.Product && interest.Product.isSold === true ? "Berhasil Terjual" : "Penawaran Produk"}</p>
-								<p className="m-0">{interest.Product && interest.Product.name}</p>
-								<p className="m-0">{CurrencyFormatter(interest.Product && interest.Product.price)}</p>
-								<p className="m-0">Ditawar {CurrencyFormatter(interest.requestedPrice)}</p>
-							</Stack>
-							<Stack>
-								<p className="m-0 ms-auto text-black-50 fs-8">{dateFormat(interest.updatedAt, "d mmm, HH:MM")}</p>
-							</Stack>
+					<Stack direction="horizontal" gap={3}>
+						<img src={`${interest.User ? interest.User.picture : ""}`} alt="buyer"
+							style={{ width: "48px", height: "48px", objectFit: "cover", borderRadius: "12px" }} />
+						<Stack>
+							<p className="m-0 fw-bold">{interest.User && interest.User.name}</p>
+							<p className="m-0 text-black-50">{interest.User && interest.User.city}</p>
 						</Stack>
+					</Stack>
 					</div>
 
 					<div className="list-offer">
