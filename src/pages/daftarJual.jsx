@@ -8,6 +8,8 @@ import likedEmpty from '../assets/images/likedEmpty.png'
 import axios from "axios";
 import "../css/daftarJual.css"
 import CurrencyFormatter from "../assets/CurrencyFormatter.js";
+import { FiSearch } from "react-icons/fi";
+
 
 export default function DaftarJual() {
   const navigate = useNavigate();
@@ -100,7 +102,7 @@ export default function DaftarJual() {
 
   return isLoggedIn ? (<>
     <NavbarLogin></NavbarLogin>;
-    <Container style={{ padding: "0px 110px" }}>
+    <Container className="container" style={{ padding: "0px 110px" }}>
       <p className="fw-bold fs-3">Daftar Jual Saya</p>
       <div className=" radius-primary box-shadow p-2">
         <Stack direction="horizontal" gap={3}>
@@ -117,8 +119,20 @@ export default function DaftarJual() {
           </Link>
         </Stack>
       </div>
+      <div className="button-group d-flex button-category d-md-none">
+				<Button onClick={() => setToogleCategory(1)} className="d-flex me-4 radius-secondary bg-color-secondary border-0">
+					<FiSearch className="me-1 mb-1" />
+					Semua
+				</Button>
+				<Button onClick={() => setToogleCategory(2)} className="d-flex me-4 radius-secondary bg-color-secondary border-0">
+					<FiSearch className="me-1 mb-1" /> Diminati
+				</Button>
+				<Button onClick={() => setToogleCategory(3)} className="d-flex me-4 radius-secondary bg-color-secondary border-0">
+					<FiSearch className="me-1 mb-1" /> Terjual
+				</Button>
+			</div>
       <div className="d-flex flex-row mt-3">
-        <div>
+        <div className="daftar-jual">
           <div className="box-shadow me-2">
             <Card id="daftar-jual" classname="radius-primary" style={{ width: '248px' }}>
               <Card.Body>
@@ -150,9 +164,10 @@ export default function DaftarJual() {
             </Card>
           </div>
         </div>
+        
         <div className={toogleCategory === 1 ? "active-content flex-fill" : "content"}>
           <Row className="" >
-            <Col md={4} className="">
+            <Col  className="col-6 col-md-4 ">
               {/* <Link to="/infoProduct"> */}
               <Card onClick={handleJual} className="border-0" role="button">
                 <img src={Uploadproduct} alt="" />
@@ -160,7 +175,7 @@ export default function DaftarJual() {
               {/* </Link> */}
             </Col>
             {post.map((post) =>
-              <Col md={4} key={post.id} className="mb-3">
+              <Col  key={post.id} className="col-6 col-md-4 mb-3">
                 <Link className="text-decoration-none text-black" to={`/produk/${post.id}`}>
                   <Card >
                     <Card.Img variant="top" className="p-2" src={`${post.picture}`} style={{ maxHeight: "100px", objectFit: "cover" }} />
@@ -168,9 +183,11 @@ export default function DaftarJual() {
                       <Card.Title className="fs-7 cut-text">{post.name}</Card.Title>
                       <p className="text-black-50 fs-8  mb-0">{post.category}</p>
                       <Card.Text className="fs-7 ">{CurrencyFormatter(post.price)}</Card.Text>
+                      <span>
                       <Badge bg={post.isPublish === true ? "primary" : "warning"}>
                         {post.isPublish === true ? "Produk sudah di publish" : "Produk belum di publish"}
                       </Badge>
+                      </span>
                     </Card.Body>
                   </Card>
                 </Link>

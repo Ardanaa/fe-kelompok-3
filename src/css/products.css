@@ -11,3 +11,11 @@ Button:hover {
     height: 1.2em!important;
     white-space: nowrap!important;
   }
+
+ .button-category {
+    overflow-x: scroll;
+  }
+
+ .button-category::-webkit-scrollbar {
+    display: none;
+  }

@@ -31,26 +31,26 @@ function Product() {
 	return (
 		<Container className="pt-5" id="btn-category">
 			<h5 className="fw-bold">Telusuri Kategori</h5>
-			<div className="button-group">
-				<Button onClick={() => setCategory(null)} className="me-4 radius-secondary bg-color-secondary border-0">
+			<div className="button-group d-flex button-category">
+				<Button onClick={() => setCategory(null)} className="d-flex me-4 radius-secondary bg-color-secondary border-0">
 					<FiSearch className="me-1 mb-1" />
 					Semua
 				</Button>
-				<Button onClick={() => setCategory("fashion")} className="me-4 radius-secondary bg-color-secondary border-0">
+				<Button onClick={() => setCategory("fashion")} className="d-flex me-4 radius-secondary bg-color-secondary border-0">
 					<FiSearch className="me-1 mb-1" /> Fashion
 				</Button>
-				<Button onClick={() => setCategory("hobi")} className="me-4 radius-secondary bg-color-secondary border-0">
+				<Button onClick={() => setCategory("hobi")} className="d-flex me-4 radius-secondary bg-color-secondary border-0">
 					<FiSearch className="me-1 mb-1" /> Hobi
 				</Button>
-				<Button onClick={() => setCategory("elektronik")} className="me-4 radius-secondary bg-color-secondary border-0">
+				<Button onClick={() => setCategory("elektronik")} className="d-flex me-4 radius-secondary bg-color-secondary border-0">
 					<FiSearch className="me-1 mb-1" /> Elektronik
 				</Button>
 
 			</div>
 			<Container id="products" className="mt-5">
-				<Row md={6}>
+				<Row >
 					{post.map((post) =>
-						<Col md={2} key={post.id} className="mb-3 p-2" >
+						<Col key={post.id} className="col-6 col-md-2 mb-3 p-2" >
 							<Link className="text-decoration-none text-black" to={`/produk/${post.id}`}>
 								<Card >
 									<Card.Img variant="top" className="p-2" src={`${post.picture}`} style={{ maxHeight: "100px", objectFit: "cover" }} />
