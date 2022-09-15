@@ -7,6 +7,7 @@ import "../css/register.css";
 import { FaArrowLeft } from "react-icons/fa";
 
 function Register() {
+	// test
 	const navigate = useNavigate();
 
 	const nameField = useRef("");
